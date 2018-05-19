@@ -2,6 +2,8 @@
 class Monkey {
   foodEaten: string[] = []
 
+  // the question mark makes the argument optional.
+
   constructor(public name?: string, public species?: string){
   }
 
