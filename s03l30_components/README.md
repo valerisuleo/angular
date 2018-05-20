@@ -28,5 +28,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## SURVIVE TO ANGULAR
 
-To run your app type in the terminal: ng serve
-To create a new component type in the terminal: ng g c theNameOfYourComponent
+To run your app type in the terminal: `ng serve`
+To create a new component type in the terminal: `ng g c theNameOfYourComponent`
