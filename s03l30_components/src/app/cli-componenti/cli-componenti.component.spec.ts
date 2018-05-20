@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PoetiComponent } from './poeti.component';
+import { CliComponentiComponent } from './cli-componenti.component';
 
-describe('PoetiComponent', () => {
-  let component: PoetiComponent;
-  let fixture: ComponentFixture<PoetiComponent>;
+describe('CliComponentiComponent', () => {
+  let component: CliComponentiComponent;
+  let fixture: ComponentFixture<CliComponentiComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PoetiComponent ]
+      declarations: [ CliComponentiComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PoetiComponent);
+    fixture = TestBed.createComponent(CliComponentiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
