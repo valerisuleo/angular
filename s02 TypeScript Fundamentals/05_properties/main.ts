@@ -26,7 +26,7 @@ class Monkey {
 
 
   // 6
-  get properties(){
+  get Properties(){
     return this._age;
   }
 
@@ -42,7 +42,7 @@ class Monkey {
 
 
   // 7
-  set properties(value){
+  set Properties(value){
     if (value < 1) {
       throw new Error('value cannot be less than 1');
 
@@ -65,7 +65,7 @@ class Monkey {
 // apeKird.setProperties(10);
 
 // 8
-apeKird.properties = 10;
+apeKird.Properties = 10;
 
 
  console.log(apeKird.introduce());
