@@ -7,7 +7,7 @@ class Monkey {
   // }
 
   // 1. if we set our constructor to private
-  constructor(private _name?: string, private _age?: number){
+  constructor(private name?: string, private age?: number){
   }
 
   eatSomething(food){
@@ -15,23 +15,23 @@ class Monkey {
   }
 
   introduce(){
-    return `My name is ${this._name}, I am a ${this._age} years old and I just ate an ${this.foodEaten}`;
+    return `My name is ${this.name}, I am a ${this.age} years old and I just ate an ${this.foodEaten}`;
   }
 
 // 3. so we can access to the properties onfly inside the object
   // so we can add a method:
-  // getProperties(){
+  // getproperties(){
   //   return this.age;
   // }
 
 
   // 6
-  get Properties(){
-    return this._age;
+  get properties(){
+    return this.age;
   }
 
 // 5. let's set a rule for our Monkey's properties
-  // setProperties(value){
+  // setproperties(value){
   //   if (value < 1) {
   //     throw new Error('value cannot be less than 1');
   //
@@ -42,12 +42,12 @@ class Monkey {
 
 
   // 7
-  set Properties(value){
+  set properties(value){
     if (value < 1) {
       throw new Error('value cannot be less than 1');
 
     }
-    this._age = value;
+    this.age = value;
   }
 }
 
@@ -61,16 +61,16 @@ class Monkey {
  // console.log(apeKird.name);
 
 // 4. now we can access to the object's properties
-// apeKird.getProperties();
-// apeKird.setProperties(10);
+// apeKird.getproperties();
+// apeKird.setproperties(10);
 
 // 8
-apeKird.Properties = 10;
+apeKird.properties = 10;
 
 
  console.log(apeKird.introduce());
 
-
+// REMEBER TO RUN tsc *.ts --target ES5 && node main.js !!!!
 
 
 

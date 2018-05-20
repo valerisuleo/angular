@@ -3,29 +3,29 @@ var Monkey = /** @class */ (function () {
     // constructor(public name?: string, public age?: string){
     // }
     // 1. if we set our constructor to private
-    function Monkey(_name, _age) {
-        this._name = _name;
-        this._age = _age;
+    function Monkey(name, age) {
+        this.name = name;
+        this.age = age;
         this.foodEaten = [];
     }
     Monkey.prototype.eatSomething = function (food) {
         this.foodEaten.push(food);
     };
     Monkey.prototype.introduce = function () {
-        return "My name is " + this._name + ", I am a " + this._age + " years old and I just ate an " + this.foodEaten;
+        return "My name is " + this.name + ", I am a " + this.age + " years old and I just ate an " + this.foodEaten;
     };
-    Object.defineProperty(Monkey.prototype, "Properties", {
+    Object.defineProperty(Monkey.prototype, "properties", {
         // 3. so we can access to the properties onfly inside the object
         // so we can add a method:
-        // getProperties(){
+        // getproperties(){
         //   return this.age;
         // }
         // 6
         get: function () {
-            return this._age;
+            return this.age;
         },
         // 5. let's set a rule for our Monkey's properties
-        // setProperties(value){
+        // setproperties(value){
         //   if (value < 1) {
         //     throw new Error('value cannot be less than 1');
         //
@@ -37,7 +37,7 @@ var Monkey = /** @class */ (function () {
             if (value < 1) {
                 throw new Error('value cannot be less than 1');
             }
-            this._age = value;
+            this.age = value;
         },
         enumerable: true,
         configurable: true
@@ -50,10 +50,10 @@ apeKird.eatSomething('apple');
 // 2. we cant now access to our object's properties...
 // console.log(apeKird.name);
 // 4. now we can access to the object's properties
-// apeKird.getProperties();
-// apeKird.setProperties(10);
+// apeKird.getproperties();
+// apeKird.setproperties(10);
 // 8
-apeKird.Properties = 10;
+apeKird.properties = 10;
 console.log(apeKird.introduce());
 // class Point {
 //   constructor(private x?: number, private y?:number) {
