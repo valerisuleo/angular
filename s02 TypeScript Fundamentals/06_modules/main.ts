@@ -1,5 +1,5 @@
 
-import { Monkey } from './point';
+import { Monkey, Point } from './point';
 
  let kirdApe = new Monkey('Amanda', 'gorilla');
  kirdApe.eatSomething('apple');
@@ -10,7 +10,7 @@ import { Monkey } from './point';
 
 
 
-import { Point } from './point';
+// import { Point } from './point';
 
  let point = new Point(1,2);
  point.draw();
