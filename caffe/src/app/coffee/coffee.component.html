@@ -7,15 +7,17 @@
   <main class="coffeeIndex">
 
     <div class="container">
+
       <div class="row">
         <div *ngFor="let coffee of coffeeList" class="col-lg-4">
           <img src="{{ coffee.image }}" alt="{{ coffee.name }}" class="pure-img">
-          <h2>{{ coffee.name }}</h2>
-          <p>Price <strong>{{ coffee.price }} / kg</strong></p>
-          <p>Strength <strong>{{ coffee.strength }}</strong></p>
-          <p>Roast <strong>{{ coffee.roast }}</strong></p>
+          <h2>{{ coffee.name | uppercase }}</h2>
+          <p>Price <strong>{{ coffee.price | currency:'GBP'}} / kg</strong></p>
+          <p>Strength <strong>{{ coffee.strength | number:'1.2-2' }}</strong></p>
+          <p>Roast <strong>{{ coffee.roast | number }}</strong></p>
         </div>
       </div>
+
     </div>
 
   </main>
