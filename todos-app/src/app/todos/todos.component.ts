@@ -39,6 +39,14 @@ export class TodosComponent implements OnInit {
     this.isFormVisible = true;
   }
 
+  deleteItem(item) {
+    // 1. we need to find the index of the item in the array
+    let myindex = this.items.indexOf(item);
+
+    // 2. now we can pass the index as argument into the splice method.
+    this.items.splice(myindex, 1);
+  }
+
   ngOnInit() {
     // stuff we want to run on load
   }
