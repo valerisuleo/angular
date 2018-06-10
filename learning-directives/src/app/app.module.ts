@@ -8,6 +8,7 @@ import { HiddenPropertyComponent } from './hidden-property/hidden-property.compo
 import { SwitchcaseComponent } from './switchcase/switchcase.component';
 import { LessonNgforComponent } from './lesson-ngfor/lesson-ngfor.component';
 import { LessonNgForTrackbyComponent } from './lesson-ng-for-trackby/lesson-ng-for-trackby.component';
+import { SafetraversaloperatorComponent } from './safetraversaloperator/safetraversaloperator.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LessonNgForTrackbyComponent } from './lesson-ng-for-trackby/lesson-ng-f
     HiddenPropertyComponent,
     SwitchcaseComponent,
     LessonNgforComponent,
-    LessonNgForTrackbyComponent
+    LessonNgForTrackbyComponent,
+    SafetraversaloperatorComponent
   ],
   imports: [
     BrowserModule
