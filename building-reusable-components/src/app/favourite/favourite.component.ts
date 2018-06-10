@@ -18,7 +18,8 @@ export class FavouriteComponent implements OnInit {
 
 
 // 2. Output/event
-  @Output() change = new EventEmitter();
+  @Output()
+  change = new EventEmitter();
 
   onClick(){
 
