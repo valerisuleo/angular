@@ -1,0 +1,20 @@
+<!-- Every time we click on the button angular is going to recreate the the whole List.
+This approach maybe fine as long as we are dealing with small projects. -->
+
+<!-- <button (click)="loadItems()">loadItems</button>
+
+<ul>
+  <li *ngFor="let item of items">
+    {{ item.task }}
+  </li>
+</ul> -->
+
+
+<!-- We use this approach only when we are dealing with large-scale project -->
+<button (click)="loadItems()">loadItems</button>
+
+<ul>
+  <li *ngFor="let item of items; trackBy: trackItem">
+    {{ item.task }}
+  </li>
+</ul>
