@@ -9,6 +9,7 @@ import { SwitchcaseComponent } from './switchcase/switchcase.component';
 import { LessonNgforComponent } from './lesson-ngfor/lesson-ngfor.component';
 import { LessonNgForTrackbyComponent } from './lesson-ng-for-trackby/lesson-ng-for-trackby.component';
 import { SafetraversaloperatorComponent } from './safetraversaloperator/safetraversaloperator.component';
+import { InputFormatDirective } from './input-format.directive';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SafetraversaloperatorComponent } from './safetraversaloperator/safetrav
     SwitchcaseComponent,
     LessonNgforComponent,
     LessonNgForTrackbyComponent,
-    SafetraversaloperatorComponent
+    SafetraversaloperatorComponent,
+    InputFormatDirective,
   ],
   imports: [
     BrowserModule

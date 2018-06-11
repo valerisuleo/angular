@@ -1,0 +1,48 @@
+<!-- <zippyex>
+</zippyex> -->
+
+<div align="center">
+
+<h2>Zippy Component Demonstration</h2>
+
+<p>This component demonstrates the following.</p>
+
+<div>
+
+1. Data flow in Angular 2.
+
+2. Working of Inputs and Outputs at Component level.
+
+3. An event is emitted when a component is opened or closed.
+
+4. At such event the application state is logged.
+
+</div>
+
+<p>Click on the below "Get Application Status" link to get Application Status Logs.</p>
+
+<hr>
+
+<br>
+
+<my-zippy [isOpen]="false" (opened)="log('Component was Opened')" (closed)="log('Component was Closed')">
+
+  inside Zippy View the Projected content
+
+</my-zippy>
+
+<h3>Application Logs:</h3>
+
+<ul>
+
+  <li *ngFor="let log of logs">
+
+    {{log}}
+
+  </li>
+
+</ul>
+
+<hr>
+
+</div>
