@@ -7,20 +7,30 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ZippyexComponent {
 
-  @Input() isOpen = true;
-
-    @Output() opened = new EventEmitter();
-
-    @Output() closed = new EventEmitter();
+  viewMode = '';
 
 
+  @Input() isOpen = false;
 
-    toggle() {
+  @Output() opened = new EventEmitter();
+  @Output() closed = new EventEmitter();
 
-      this.isOpen = !this.isOpen;
 
-      this.isOpen ? this.opened.emit() : this.closed.emit();
 
+  toggle() {
+
+    this.isOpen = !this.isOpen;
+    this.isOpen ? this.opened.emit() : this.closed.emit();
+
+    const lis = document.getElementsByClassName('title');
+    const spans = document.getElementsByTagName('span');
+
+    for (var i = 0; i < lis.length; i++) {
+      if (lis[i].classList.contains('active')) {
+      spans[i].innerHTML = '&#9660;'
+      } else {
+      spans[i].innerHTML = '&#9654;'
+      }
     }
-
+  }
 }

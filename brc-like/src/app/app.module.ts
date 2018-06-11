@@ -3,24 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-
-import { AuthorsService } from './authors.service';
-import { PoetiComponent } from './poeti/poeti.component'
-
-
+import { HeartComponent } from './heart/heart.component';
+import { ProvaComponent } from './prova/prova.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PoetiComponent
+    HeartComponent,
+    ProvaComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [
-    AuthorsService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

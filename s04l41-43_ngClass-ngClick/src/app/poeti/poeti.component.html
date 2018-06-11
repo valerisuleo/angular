@@ -1,0 +1,31 @@
+<div class="poets-container">
+  <h1>Ciao Poeti del mondo!</h1>
+
+  <!-- <p>{{ arrayOfAuthors.length }}</p> -->
+  <p>{{ getTitle() }}</p>
+
+  <ul>
+    <li *ngFor="let singleAuthor of arrayOfAuthors">{{ singleAuthor }}</li>
+  </ul>
+
+  <!-- <button class="btn btn-primary">Save</button> -->
+
+
+  <div [class.open]="isOpen" class="maggie"></div>
+  <div [class.open]="isOpen" class="maggie"></div>
+  <div [class.open]="isOpen" class="maggie"></div>
+
+<!-- EVENT LISTENER -->
+
+  <!-- 1. Add the event listener to the DOM -->
+    <div class="asso" (click)="onSave()"><p>Save</p></div>
+
+
+<!-- EVENT BUBBLING -->
+  <!-- <div (click)="onDivClick()">
+    <button (click)="onSave($event)">Save</button>
+  </div> -->
+</div>
+
+
+<!-- 2. Create the function onSave() -->

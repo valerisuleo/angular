@@ -11,28 +11,32 @@ import { AuthorsService } from '../authors.service'
 
 export class PoetiComponent implements OnInit {
 
-  title = 'Here a list of my favourite coffee';
+  title = 'Here a list of my favourite authors';
 
 
-  arrayOfCoffee;
+  arrayOfAuthors;
 
   constructor(service: AuthorsService) {
-    this.arrayOfCoffee = service.getAuthors();
-    console.log(this.arrayOfCoffee)
+    this.arrayOfAuthors = service.getAuthors();
   }
 
   isOpen = false;
 
-  onClick() {
+// 02. Here we add our event
+  onSave() {
     console.log('uhhhh you clicked me!');
     this.isOpen = !this.isOpen;
   }
 
-  onKeyUp(email) {
-    console.log(email);
-  }
-  // onKeyUp($event) {
-  //   console.log('enter pls')
+
+// STOP EVENT BUBBLING
+  // onSave($event) {
+  // $event.stopPropagation();
+  //   console.log('uhhhh you clicked me!', $event);
+  // }
+
+  // onDivClick() {
+  //   console.log('hey I am the onDivClick!');
   // }
 
 
