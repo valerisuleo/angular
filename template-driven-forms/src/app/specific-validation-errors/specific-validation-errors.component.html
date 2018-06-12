@@ -1,0 +1,24 @@
+<form>
+  <div class="form-group">
+    <label for="firstname">firstname</label>
+    <input type="text" required minlength="3" maxlength="10" pattern="bananas"
+    ngModel name="firstname" #passname="ngModel" (change)="log(passname)"
+    id="firstname" class="form-control">
+
+    <div class="alert alert-danger" *ngIf="passname.touched && !passname.valid">
+      <div *ngIf="passname.errors.required">firstname is required</div>
+      <div *ngIf="passname.errors.minlength">firstname min {{ passname.errors.minlength.requiredLength }} characters</div>
+      <div *ngIf="passname.errors.pattern">firstname does not match pattern</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="comments">comments</label>
+    <textarea rows="10" cols="30" ngModel name="comments" id="comments" class="form-control"></textarea>
+  </div>
+
+  <button class="btn btn-primary">submit</button>
+</form>
+
+<!-- 1.we want a separate div for each validation errors
+2. if we type ok and take a look at the console we'll notice an error obj with some properties inside. we can use those propertiesto make dynamic the errors message -->

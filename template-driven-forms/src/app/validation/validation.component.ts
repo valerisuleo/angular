@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-validation',
+  selector: 'validation',
   templateUrl: './validation.component.html',
   styleUrls: ['./validation.component.css']
 })
-export class ValidationComponent implements OnInit {
+export class ValidationComponent {
 
-  constructor() { }
 
-  ngOnInit() {
+  log(asso) {
+    console.log(asso);
   }
+
 
 }

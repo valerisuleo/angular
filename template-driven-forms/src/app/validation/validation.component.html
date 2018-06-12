@@ -1,3 +1,22 @@
-<p>
-  validation works!
-</p>
+<form>
+  <div class="form-group">
+    <label for="firstname">firstname</label>
+    <input type="text" required
+    ngModel name="firstname" #passname="ngModel" (change)="log(passname)"
+    id="firstname" class="form-control">
+
+    <div class="alert alert-danger" *ngIf="passname.touched && !passname.valid">firstname is required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="comments">comments</label>
+    <textarea rows="10" cols="30" ngModel name="comments" id="comments" class="form-control"></textarea>
+  </div>
+
+  <button class="btn btn-primary">submit</button>
+</form>
+
+
+<!-- 1.we add required in the input fieldset
+2.we create a new div and we use a bootstrap class="alert alert-danger"
+3.we don't wanna display it for the whole time, we wanna show it only if the field is not valid: *ngIf="passname.valid" -->
