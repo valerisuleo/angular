@@ -10,6 +10,7 @@ import { ValidationComponent } from './validation/validation.component';
 import { SpecificValidationErrorsComponent } from './specific-validation-errors/specific-validation-errors.component';
 import { NngFormComponent } from './nng-form/nng-form.component';
 import { NngModelGroupComponent } from './nng-model-group/nng-model-group.component';
+import { CheckboxaComponent } from './checkboxa/checkboxa.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NngModelGroupComponent } from './nng-model-group/nng-model-group.compon
     ValidationComponent,
     SpecificValidationErrorsComponent,
     NngFormComponent,
-    NngModelGroupComponent
+    NngModelGroupComponent,
+    CheckboxaComponent
   ],
   imports: [
     BrowserModule,
