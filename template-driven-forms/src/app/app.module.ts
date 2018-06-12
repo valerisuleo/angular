@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ValidationComponent } from './validation/validation.component';
 import { SpecificValidationErrorsComponent } from './specific-validation-errors/specific-validation-errors.component';
+import { NngFormComponent } from './nng-form/nng-form.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SpecificValidationErrorsComponent } from './specific-validation-errors/
     AppComponent,
     ContactFormComponent,
     ValidationComponent,
-    SpecificValidationErrorsComponent
+    SpecificValidationErrorsComponent,
+    NngFormComponent
   ],
   imports: [
     BrowserModule,
