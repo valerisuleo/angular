@@ -9,6 +9,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ValidationComponent } from './validation/validation.component';
 import { SpecificValidationErrorsComponent } from './specific-validation-errors/specific-validation-errors.component';
 import { NngFormComponent } from './nng-form/nng-form.component';
+import { NngModelGroupComponent } from './nng-model-group/nng-model-group.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { NngFormComponent } from './nng-form/nng-form.component';
     ContactFormComponent,
     ValidationComponent,
     SpecificValidationErrorsComponent,
-    NngFormComponent
+    NngFormComponent,
+    NngModelGroupComponent
   ],
   imports: [
     BrowserModule,
