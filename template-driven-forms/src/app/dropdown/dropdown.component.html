@@ -1,0 +1,48 @@
+<h1>dropdown list</h1>
+
+<form #f="ngForm" (ngSubmit)="submit(f)">
+  <div class="form-group">
+    <label for="firstname">firstname</label>
+    <input type="text" required minlength="3" maxlength="10" pattern="bananas"
+    ngModel name="firstname" #passname="ngModel" (change)="log(passname)"
+    id="firstname" class="form-control">
+
+    <div class="alert alert-danger" *ngIf="passname.touched && !passname.valid">
+      <div *ngIf="passname.errors.required">firstname is required</div>
+      <div *ngIf="passname.errors.minlength">firstname min {{ passname.errors.minlength.requiredLength }} characters</div>
+      <div *ngIf="passname.errors.pattern">firstname does not match pattern</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="comments">comments</label>
+    <textarea rows="10" cols="30"
+    ngModel name="comments" id="comments" class="form-control"></textarea>
+  </div>
+
+
+
+  <div class="form-group">
+
+    <label for="contactMethod">contactMethod</label>
+
+    <!-- to allow users to select multiple choices we can use the multiple attribute -->
+    <select class="form-control" multiple ngModel name="contactMethod">
+      
+    <!-- <select class="form-control" ngModel name="contactMethod"> -->
+
+      <option value=""></option>
+
+      <!-- <option *ngFor="let option of options" [value]="option.id"> -->
+        <option *ngFor="let option of options" [ngValue]="option">
+        {{ option.optionName }}
+      </option>
+    </select>
+  </div>
+
+
+
+  <p>{{ f.value | json }}</p>
+
+  <button class="btn btn-primary" [disabled]="!f.valid">submit</button>
+</form>
