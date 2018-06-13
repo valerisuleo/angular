@@ -12,6 +12,7 @@ import { NngFormComponent } from './nng-form/nng-form.component';
 import { NngModelGroupComponent } from './nng-model-group/nng-model-group.component';
 import { CheckboxaComponent } from './checkboxa/checkboxa.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { RadiobuttonsComponent } from './radiobuttons/radiobuttons.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     NngFormComponent,
     NngModelGroupComponent,
     CheckboxaComponent,
-    DropdownComponent
+    DropdownComponent,
+    RadiobuttonsComponent
   ],
   imports: [
     BrowserModule,
