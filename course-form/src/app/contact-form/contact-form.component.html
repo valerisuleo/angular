@@ -10,7 +10,8 @@
 
 <h1>course form</h1>
 
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)"> -->
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
 
   <div class="form-group">
     <label for="coursename">coursename</label>
