@@ -12,6 +12,7 @@ import { Http } from '@angular/http';
 })
 export class DonutsComponent implements OnInit {
   all: any[];
+  newDonut= {};
   private url = 'https://ga-doughnuts.herokuapp.com/doughnuts';
 
 
@@ -33,15 +34,30 @@ const vm = this;
 donutsCreate(donutform) {
   const vm = this;
 
-  let newDonut = donutform.value;
+  vm.newDonut = donutform.value; // this is the object that i get from the submitted form
 
-  vm.http.post(vm.url, JSON.stringify(newDonut))
+  vm.http.post(vm.url, JSON.stringify(vm.newDonut))
   .subscribe((response) => {
-    newDonut['id'] = response.json().id;
-    vm.all.push(newDonut);
-    console.log(vm.all);
-  })
+    vm.newDonut['id'] = response.json().id;
+    vm.all.push(vm.newDonut);
+    console.log('after push', vm.all);
+    console.log('newDonut after push', vm.newDonut)
+  });
+
+  donutform.reset();
 }
+
+// donutsCreate(donutform: HTMLFormElement) {
+//   let post = {donutform: donutform.value}
+//   console.log(post);
+//
+//   this.http.post(this.url, JSON.stringify(post))
+//   .subscribe((response) => {
+//     // post['id'] = response.json().id;
+//     console.log(response.json());
+//   });
+//   donutform.reset();
+// }
 
 
   ngOnInit() {}
