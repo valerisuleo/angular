@@ -20,7 +20,10 @@
 </form>
 
 <ul id="donuts">
-  <li *ngFor="let donut of all ">{{ donut.flavour }} - <em>{{donut.style}}</em>
+  <li *ngFor="let donut of all ">
+    {{ donut.flavour }} - <em>{{donut.style}}</em>
+    <button (click)="updateDonut(donut)">Edit</button>
+    <button (click)="deleteDonut(donut)">Delete</button>
   </li>
 </ul>
 

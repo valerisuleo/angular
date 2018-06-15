@@ -10,7 +10,7 @@ import { Http } from '@angular/http';
   templateUrl: './donuts.component.html',
   styleUrls: ['./donuts.component.css']
 })
-export class DonutsComponent implements OnInit {
+export class DonutsComponent {
   all: any[];
   newDonut= {};
   private url = 'https://ga-doughnuts.herokuapp.com/doughnuts';
@@ -34,18 +34,58 @@ const vm = this;
 donutsCreate(donutform) {
   const vm = this;
 
-  vm.newDonut = donutform.value; // this is the object that i get from the submitted form
+  vm.newDonut = donutform.value;
 
   vm.http.post(vm.url, JSON.stringify(vm.newDonut))
   .subscribe((response) => {
     vm.newDonut['id'] = response.json().id;
     vm.all.push(vm.newDonut);
-    console.log('after push', vm.all);
-    console.log('newDonut after push', vm.newDonut)
+    vm.newDonut = {};
+
+
+    console.log('vm.all', vm.all)
   });
 
   donutform.reset();
 }
+
+
+// ________________________UPDATE DONUT________________________
+updateDonut(donut) {
+  const vm = this;
+  // vm.http.put(`https://ga-doughnuts.herokuapp.com/doughnuts/${donut.id}`, JSON.stringify(donut))
+  vm.http.put(vm.url + '/' + donut.id, JSON.stringify(donut))
+  .subscribe((response) => {
+    console.log(response.json());
+  })
+}
+
+// ________________________DELETE DONUT_________________________
+deleteDonut(donut) {
+  const vm = this;
+
+  vm.http.delete(vm.url + '/' + donut.id)
+  .subscribe(() => {
+    // 1. we need to find the index of the item in the array
+    let donutIndex = vm.all.indexOf(donut);
+    // 2. now we can pass the index as argument into the splice method.
+    vm.all.splice(donutIndex, 1);
+  });
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // donutsCreate(donutform: HTMLFormElement) {
 //   let post = {donutform: donutform.value}
@@ -58,9 +98,6 @@ donutsCreate(donutform) {
 //   });
 //   donutform.reset();
 // }
-
-
-  ngOnInit() {}
 
 }
 
