@@ -1,27 +1,26 @@
-# AngularHttp
+# Angular Lab
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+### Introduction
 
-## Development server
+I set up an Angular app that loops through an array of donuts and displays them on the page. When the form is submitted, a new donut is pushed into the array.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Services
 
-## Code scaffolding
+In the real world application most of the time we get the data from a server.
+In order to do that we need to create a "Service". So we are gonna define a separate class which we call Service and inside we define the logic to get our list of donuts.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+01. In the app folder we create a new file call `donuts.service.ts`
 
-## Build
+02.  Ok now we have a service but we need to use it in our `courses.component.ts`. How?
+We need to:
+`import { DonutsService } from './donuts.service'`;
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+03. now angular when is going to create an instance of our component, it looks at the constructor, it see that this constructor has a dependecies (service:DonutsService).
+So first it create an instance of the DonutsService and pass it to the constructor
 
-## Running unit tests
+### We are not done yet!
+ We need to instruct angular to create an instance of DonutsService. Pass it to our donuts component.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ Let's register the service in the `app.module.ts`
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Run `ng serve`

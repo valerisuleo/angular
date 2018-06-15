@@ -1,0 +1,35 @@
+
+  <h1 *ngIf="all">{{ all.length }} Donuts</h1>
+<!-- ngIf soved the issues with cannot read property of length -->
+
+<form #donutform="ngForm" (submit)="addDonut(donutform)">
+
+  <div class="form-group">
+    <input type="text" class="form-control"
+    ngModel name="flavour" #passflavour="ngModel"
+    id="flavour" placeholder="What type of donut?">
+  </div>
+
+<div class="form-group">
+  <select ngModel name="style" #passstyle="ngModel" id="style" class="form-control">
+    <option value="Old Fashioned">Old Fashioned</option>
+    <option value="Cake">Cake</option>
+    <option value="French Cruller">French Cruller</option>
+    <option value="Yeast">Yeast</option>
+  </select>
+</div>
+
+  <p>{{ donutform.value | json }}</p>
+
+  <button class="btn btn-default">Save My Donut</button>
+</form>
+
+<ul class="list-group">
+  <li *ngFor="let donut of all" class="list-group-item">
+    {{ donut.flavour }} - <em>{{donut.style}}</em>
+
+    <button class="btn btn-danger btn-xs pull-right" (click)="eraseDonut(donut)">Delete</button>
+
+    <button class="btn btn-warning btn-xs pull-right" (click)="editDonut(donut)">Edit</button>
+  </li>
+</ul>
