@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+h2 {
+	color: #369;
+	font-family: Georgia, Helvetica, sans-serif;
+	font-size: 250%;
+}
+
+h3 {
+	color: #669;
+	font-family: Georgia, Helvetica, sans-serif;
+	font-size: 250%;
+}
+
+p {
+	color: #969;
+	font-family: Georgia, Helvetica, sans-serif;
+	font-size: 100%;
+}
+
+body {
+	margin: 2em;
+}

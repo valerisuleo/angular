@@ -1,0 +1,17 @@
+<ul>
+  <li [class.active]="viewMode === 'shipping'" (click)="toggle()" class="title">
+    <a (click)="viewMode = 'shipping'"><span>&#9654;</span>Shipping Details</a>
+  </li>
+
+
+  <li [class.active]="viewMode === 'billing'" (click)="toggle()" class="title">
+    <a (click)="viewMode = 'billing'"><span>&#9654;</span> Billing Details</a>
+  </li>
+</ul>
+
+<div [ngSwitch]="viewMode" class="content">
+
+  <div *ngSwitchCase="'shipping'">map View content</div>
+  <div *ngSwitchCase="'billing'">list view content</div>
+
+</div>
