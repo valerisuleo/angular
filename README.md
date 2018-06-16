@@ -16,9 +16,7 @@ ANGULAR WITH SASS
 
 ##Step 1: Use Visual Studio Code
 
-I began the project where I was most comfortable: Visual Studio 2017 and its Angular project template. This template uses Microsoft’s JavaScriptServices, which is a set of client-side technologies for ASP.NET Core. I abandoned this approach because it felt like I had added an additional layer that wasn’t really needed.
-
-I decided instead to use Visual Studio Code (VS Code), a lightweight code editor that I was somewhat familiar with. The VS Code documentation is excellent, and even provides a tutorial for getting started using VS Code and Angular.
+I decided to use Visual Studio Code (VS Code), a lightweight code editor that I was somewhat familiar with. The VS Code documentation is excellent, and even provides a tutorial for getting started using VS Code and Angular.
 
  VS Code is customizable through extensions. One of my favorite extension is called “Debugger for Chrome.” It allows me to set breakpoints and debug JavaScript without leaving VS Code. The VS Code team provides a recipe for configuring Chrome Debugging with Angular CLI.
 
