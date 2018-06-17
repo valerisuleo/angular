@@ -42,10 +42,8 @@ donutsCreate(donutform) {
     vm.all.push(vm.newDonut);
     vm.newDonut = {};
 
-
     console.log('vm.all', vm.all)
   });
-
   donutform.reset();
 }
 
@@ -60,6 +58,7 @@ updateDonut(donut) {
   })
 }
 
+
 // ________________________DELETE DONUT_________________________
 deleteDonut(donut) {
   const vm = this;
@@ -70,30 +69,18 @@ deleteDonut(donut) {
     let donutIndex = vm.all.indexOf(donut);
     // 2. now we can pass the index as argument into the splice method.
     vm.all.splice(donutIndex, 1);
-  });
-
+  }); 
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // donutsCreate(donutform: HTMLFormElement) {
-//   let post = {donutform: donutform.value}
-//   console.log(post);
+//   let newDonut = {donutform: donutform.value}
+//   console.log(newDonut);
 //
-//   this.http.post(this.url, JSON.stringify(post))
+//   this.http.newDonut(this.url, JSON.stringify(newDonut))
 //   .subscribe((response) => {
-//     // post['id'] = response.json().id;
+//     // newDonut['id'] = response.json().id;
 //     console.log(response.json());
 //   });
 //   donutform.reset();

@@ -19,7 +19,7 @@ export class RefactoringComponent implements OnInit {
   ngOnInit() {
   const vm = this;
 
-  vm.service.getDonuts()
+  vm.service.getAll()
   .subscribe((response) => {
       vm.all = response.json();
       // console.log('all', vm.all);
@@ -32,7 +32,7 @@ export class RefactoringComponent implements OnInit {
   const vm = this;
 
     vm.newDonut = donutform.value;
-    vm.service.createDonut(vm.newDonut)
+    vm.service.create(vm.newDonut)
     .subscribe((response) => {
       vm.newDonut['id'] = response.json().id;
       vm.all.push(vm.newDonut);
@@ -46,7 +46,7 @@ export class RefactoringComponent implements OnInit {
   editDonut(donut) {
     const vm = this;
 
-    vm.service.updateDonut(donut)
+    vm.service.update(donut)
     .subscribe((response) => {
       console.log(response.json());
     });
@@ -57,7 +57,7 @@ export class RefactoringComponent implements OnInit {
   eraseDonut(donut) {
     const vm = this;
 
-    vm.service.deleteDonut(donut)
+    vm.service.delete(donut)
     .subscribe(() => {
       let donutIndex = vm.all.indexOf(donut);
       vm.all.splice(donutIndex, 1);
