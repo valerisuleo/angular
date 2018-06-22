@@ -9,6 +9,7 @@ import { RefactoringComponent } from './refactoring/refactoring.component';
 import {  HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DonutsService } from './services/donuts.service';
+import { MapOperatorComponent } from './map-operator/map-operator.component';
 
 
 
@@ -17,7 +18,8 @@ import { DonutsService } from './services/donuts.service';
   declarations: [
     AppComponent,
     DonutsComponent,
-    RefactoringComponent
+    RefactoringComponent,
+    MapOperatorComponent
   ],
   imports: [
     BrowserModule,
