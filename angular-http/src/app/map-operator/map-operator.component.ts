@@ -14,7 +14,8 @@ export class MapOperatorComponent implements OnInit {
   constructor(private service: DonutsService) { }
 
 
-  // 1. What we Wanna do here is to get an array of objects instead of the data object and then apply on it the Json method.
+  // 1. What we Wanna do here is to get an array of objects instead of the data object and then apply on it the Json method. let's go to the data.service.ts
+
   // 4. let's make our code more clean
 
   // GET DONUTS
