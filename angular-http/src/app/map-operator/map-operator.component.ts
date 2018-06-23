@@ -16,7 +16,7 @@ export class MapOperatorComponent implements OnInit {
 
   // 1. What we Wanna do here is to get an array of objects instead of the data object and then apply on it the Json method. let's go to the data.service.ts
 
-  // 4. let's make our code more clean
+  // 4. let's make our code  cleaner
 
   // GET DONUTS
     ngOnInit() {
