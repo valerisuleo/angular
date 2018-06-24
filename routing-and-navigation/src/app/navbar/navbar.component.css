@@ -1,0 +1,28 @@
+nav{
+  height: 80px;
+  background-color: silver;
+}
+
+ul{
+  list-style: none;
+}
+
+li{
+  float: left;
+  line-height: 80px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+a{
+  text-decoration: none;
+  color: pink;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+.active{
+  color: dodgerblue;
+}

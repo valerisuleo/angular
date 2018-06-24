@@ -1,0 +1,7 @@
+<ul id="donuts">
+  <li *ngFor="let donut of allDonuts ">
+    <a [routerLink]="['/donuts', donut.id]">{{ donut.flavour }}</a> <br>
+    <em>{{donut.style}}</em>
+
+  </li>
+</ul>
