@@ -17,7 +17,7 @@ export class DonutsComponent implements OnInit {
   const vm = this;
 
   vm.service.getAll()
-  .subscribe((response) => {
+  .then((response) => {
       vm.allDonuts = response.json();
       console.log('allDonuts', vm.allDonuts);
     });
