@@ -20,6 +20,8 @@ export class DonutShowComponent implements OnInit {
   getDonut() {
     const vm = this;
     const id = vm.route.snapshot.paramMap.get('id');
+    console.log(id);
+
 
     vm.service.get(id)
     .subscribe((response) => {

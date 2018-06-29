@@ -27,15 +27,16 @@ import {  DonutsService } from './services/donuts/donuts.service';
     NavbarComponent,
     LandingComponent,
     FollowerShowComponent,
-    DonutShowComponent
+    DonutShowComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: 'followers/:id', component: FollowerShowComponent},
-      { path: 'donuts/:id', component: DonutShowComponent},
+      { path: 'followers/:id/:username', component: FollowerShowComponent},
+      // { path: 'followers/:id', component: FollowerShowComponent},
       { path: 'followers', component: FollowersComponent},
+      { path: 'donuts/:id', component: DonutShowComponent},
       { path: 'donuts', component: DonutsComponent},
       { path: 'home', component: LandingComponent},
       { path: '**', redirectTo: 'home' }
@@ -43,7 +44,7 @@ import {  DonutsService } from './services/donuts/donuts.service';
   ],
   providers: [
     FollowersService,
-    DonutsService
+    DonutsService,
   ],
   bootstrap: [AppComponent]
 })
