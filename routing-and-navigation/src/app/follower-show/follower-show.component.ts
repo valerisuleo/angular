@@ -16,8 +16,8 @@ export class FollowerShowComponent implements OnInit  {
     private service: FollowersService
   ) { }
 
-  asso = {};
-  data: any[];
+  follower = {};
+  all: any[];
   followerParams = +this.route.snapshot.paramMap.get('id');
 
 
@@ -26,8 +26,8 @@ export class FollowerShowComponent implements OnInit  {
 
     return vm.service.getAll()
     .then((response) => {
-      vm.data = response;
-      return vm.data.find((follower) => {
+      vm.all = response;
+      return vm.all.find((follower) => {
         return follower.id === vm.followerParams;
       })
     });
@@ -38,7 +38,7 @@ export class FollowerShowComponent implements OnInit  {
 
     vm.showFollower()
     .then((response) => {
-      vm.asso = response;
+      vm.follower = response;
     });
     console.log('vm', vm);
   }
