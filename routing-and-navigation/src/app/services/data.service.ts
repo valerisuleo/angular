@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-
 
 
 
@@ -18,11 +16,11 @@ export class DataService {
   getAll() {
     return this.http.get(this.url)
     .map(response => response)
-    .toPromise()
+    .toPromise();
   }
 
   get(id) {
-    return this.http.get(this.url + '/' + id)
+    return this.http.get(this.url + '/' + id);
   }
 }
 // import { Injectable } from '@angular/core';

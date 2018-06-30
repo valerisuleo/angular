@@ -12,7 +12,6 @@ export class DonutsComponent implements OnInit {
 
   allDonuts: any[];
 
-// GET DONUTS
   ngOnInit() {
   const vm = this;
 

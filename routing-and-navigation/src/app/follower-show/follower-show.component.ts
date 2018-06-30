@@ -11,6 +11,7 @@ import { FollowersService } from '../services/followers/followers.service';
 })
 export class FollowerShowComponent implements OnInit  {
 
+
   constructor(
     private route: ActivatedRoute,
     private service: FollowersService
@@ -18,34 +19,63 @@ export class FollowerShowComponent implements OnInit  {
 
   follower = {};
 
-  data: any[];
-
-  allMyFollowers = function() {
-  return this.service.getAll()
-    .then((response) => {
-      return response.json();
-    })
-  }
-
-
-  getFollower() {
+  showFollower() {
     const vm = this;
-    const followerId = +vm.route.snapshot.paramMap.get('id');
-    console.log(followerId);
+    const followerId = vm.route.snapshot.paramMap.get('id');
+    console.log('followerId', followerId);
 
-    vm.allMyFollowers()
-    .then((response) => {
-       vm.data = response;
-       return vm.data.find((follower) => {
-         return follower.id === followerId;
-       })
+
+    vm.service.get(followerId)
+    .subscribe((response) => {
+      vm.follower = response.json();
     });
   }
 
   ngOnInit() {
     const vm = this;
 
-    vm.getFollower();
+    vm.showFollower();
     console.log('vm', vm);
   }
+
+
+
+  // constructor(
+  //   private route: ActivatedRoute,
+  //   private service: FollowersService
+  // ) { }
+  //
+  // follower = {};
+  //
+  // data: any[];
+  //
+  // allMyFollowers = function() {
+  // return this.service.getAll()
+  //   .then((response) => {
+  //     return response.json();
+  //   })
+  // }
+  //
+  //
+  // getFollower() {
+  //   const vm = this;
+  //   const followerId = +vm.route.snapshot.paramMap.get('id');
+  //   console.log(followerId);
+  //
+  //   vm.allMyFollowers()
+  //   .then((response) => {
+  //      vm.data = response;
+  //      return vm.data.find((follower) => {
+  //        console.log(follower.id === followerId);
+  //        return follower.id === followerId;
+  //      })
+  //   });
+  // }
+  //
+  // ngOnInit() {
+  //   const vm = this;
+  //
+  //   // vm.getFollower();
+  //   console.log('vm', vm);
+  // }
 }
