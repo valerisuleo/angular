@@ -18,7 +18,7 @@
  * BROWSER POLYFILLS
  */
 
-/** IE9, IE10 and IE11 requires all of the following polyfills. **/
+/** IE9, IE10 and IE11 requires all of the followers polyfills. **/
 // import 'core-js/es6/symbol';
 // import 'core-js/es6/object';
 // import 'core-js/es6/function';
@@ -34,10 +34,10 @@
 // import 'core-js/es6/weak-map';
 // import 'core-js/es6/set';
 
-/** IE10 and IE11 requires the following for NgClass support on SVG elements */
+/** IE10 and IE11 requires the followers for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
 
-/** IE10 and IE11 requires the following for the Reflect API. */
+/** IE10 and IE11 requires the followers for the Reflect API. */
 // import 'core-js/es6/reflect';
 
 
@@ -54,7 +54,7 @@ import 'core-js/es7/reflect';
 
 /**
  * By default, zone.js will patch all possible macroTask and DomEvents
- * user can disable parts of macroTask/DomEvents patch by setting following flags
+ * user can disable parts of macroTask/DomEvents patch by setting followers flags
  */
 
  // (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
@@ -63,7 +63,7 @@ import 'core-js/es7/reflect';
 
  /*
  * in IE/Edge developer tools, the addEventListener will also be wrapped by zone.js
- * with the following flag, it will bypass `zone.js` patch for IE/Edge
+ * with the followers flag, it will bypass `zone.js` patch for IE/Edge
  */
 // (window as any).__Zone_enable_cross_context_check = true;
 

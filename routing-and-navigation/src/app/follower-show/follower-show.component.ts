@@ -12,6 +12,35 @@ import { FollowersService } from '../services/followers/followers.service';
 export class FollowerShowComponent implements OnInit  {
 
 
+  // constructor(
+  //   private route: ActivatedRoute,
+  //   private service: FollowersService
+  // ) { }
+  //
+  // user = {};
+  //
+  // showFollower() {
+  //   const vm = this;
+  //   const id = vm.route.snapshot.paramMap.get('id');
+  //   console.log('id', id);
+  //
+  //
+  //   vm.service.get(id)
+  //   .subscribe((response) => {
+  //     vm.user = response;
+  //     console.log(response);
+  //   });
+  // }
+  //
+  // ngOnInit() {
+  //   const vm = this;
+  //
+  //   vm.showFollower();
+  //   console.log('vm', vm);
+  // }
+
+
+
   constructor(
     private route: ActivatedRoute,
     private service: FollowersService
@@ -19,63 +48,36 @@ export class FollowerShowComponent implements OnInit  {
 
   follower = {};
 
-  showFollower() {
+  data: any[];
+
+  allMyFollowers = function() {
+  return this.service.getAll()
+    .then((response) => {
+      return response;
+    })
+  }
+
+  getFollower() {
     const vm = this;
-    const followerId = vm.route.snapshot.paramMap.get('id');
-    console.log('followerId', followerId);
+    const followerId = +vm.route.snapshot.paramMap.get('id');
+    console.log(followerId);
 
-
-    vm.service.get(followerId)
-    .subscribe((response) => {
-      vm.follower = response.json();
+    vm.allMyFollowers()
+    .then((response) => {
+       vm.data = response;
+       return vm.data.find((follower) => {
+         console.log(follower.id === followerId);
+         return follower.id === followerId;
+       })
     });
   }
 
+  hakunamatata = this.getFollower;
+
   ngOnInit() {
-    const vm = this;
-
-    vm.showFollower();
-    console.log('vm', vm);
+    // const vm = this;
+    //
+    // vm.getFollower()
+    // console.log('vm', vm);
   }
-
-
-
-  // constructor(
-  //   private route: ActivatedRoute,
-  //   private service: FollowersService
-  // ) { }
-  //
-  // follower = {};
-  //
-  // data: any[];
-  //
-  // allMyFollowers = function() {
-  // return this.service.getAll()
-  //   .then((response) => {
-  //     return response.json();
-  //   })
-  // }
-  //
-  //
-  // getFollower() {
-  //   const vm = this;
-  //   const followerId = +vm.route.snapshot.paramMap.get('id');
-  //   console.log(followerId);
-  //
-  //   vm.allMyFollowers()
-  //   .then((response) => {
-  //      vm.data = response;
-  //      return vm.data.find((follower) => {
-  //        console.log(follower.id === followerId);
-  //        return follower.id === followerId;
-  //      })
-  //   });
-  // }
-  //
-  // ngOnInit() {
-  //   const vm = this;
-  //
-  //   // vm.getFollower();
-  //   console.log('vm', vm);
-  // }
 }

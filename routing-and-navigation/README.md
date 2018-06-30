@@ -66,7 +66,7 @@ When we are dealing with a **dynamic** link we need to use property binding:
 
 02. In order to get access to route parameters we need to inject the activated route class in our constructor: `constructor(private route: ActivatedRoute) { }`
 
-03. `paramMap` That's the property that give us all the parameters in this route. Now you at the type of this property: it's an **observable** of paramsMap, and we already know that observables have a method called `subscribe`
+03. `paramMap` That's the property that give us all the parameters in this route. Now you already know the type of this property: it's an **observable** of paramsMap, and we already know that observables have a method called `subscribe`
 
  ```   
     export class FollowerShowComponent implements OnInit  {
@@ -125,7 +125,8 @@ Let's see how:
 ```
 <nav>
   <ul>
-    <li><a routerLinkActive="active current" routerLink="/followers" [queryParams]="{{ page: 1, order: 'newest' }}">Followers</a></li>
+    <li><a routerLinkActive="active current" routerLink="/followers" 
+    [queryParams]="{{ page: 1, order: 'newest' }}">Followers</a></li>
   </ul>
 </nav>
 ```

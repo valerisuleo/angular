@@ -15,14 +15,22 @@ export class DataService {
 
   getAll() {
     return this.http.get(this.url)
-    .map(response => response)
+    .map(response => response.json())
     .toPromise();
   }
 
   get(id) {
-    return this.http.get(this.url + '/' + id);
+    // return this.http.get(this.url + id ?`/${id}` : '')
+    return this.http.get(this.url + `/${id}`)
+    .map(response => response.json());
   }
 }
+
+
+
+
+
+
 // import { Injectable } from '@angular/core';
 //
 // import { Http } from '@angular/http';

@@ -24,7 +24,7 @@ export class FollowersComponent implements OnInit {
 
       vm.service.getAll()
       .then((response) => {
-        vm.allFollowers = response.json();
+        vm.allFollowers = response;
         console.log('allFollowers', vm.allFollowers);
       });
   }

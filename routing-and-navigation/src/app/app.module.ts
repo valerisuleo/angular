@@ -33,9 +33,9 @@ import {  DonutsService } from './services/donuts/donuts.service';
     BrowserModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: 'followers/:id/:username', component: FollowerShowComponent},
-      // { path: 'followers/:id', component: FollowerShowComponent},
-      { path: 'followers', component: FollowersComponent},
+      { path: 'users/:id', component: FollowerShowComponent},
+      // { path: 'users/:id', component: FollowerShowComponent},
+      { path: 'users', component: FollowersComponent},
       { path: 'donuts/:id', component: DonutShowComponent},
       { path: 'donuts', component: DonutsComponent},
       { path: 'home', component: LandingComponent},

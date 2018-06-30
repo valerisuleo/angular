@@ -25,7 +25,7 @@ export class DonutShowComponent implements OnInit {
 
     vm.service.get(id)
     .subscribe((response) => {
-      vm.donut = response.json();
+      vm.donut = response;
     });
   }
 
