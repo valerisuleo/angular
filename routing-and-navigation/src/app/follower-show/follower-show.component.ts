@@ -46,38 +46,32 @@ export class FollowerShowComponent implements OnInit  {
     private service: FollowersService
   ) { }
 
-  follower = {};
-
+  asso = {};
   data: any[];
 
-  allMyFollowers = function() {
-  return this.service.getAll()
-    .then((response) => {
-      return response;
-    })
-  }
+  followerParams = +this.route.snapshot.paramMap.get('id');
 
-  getFollower() {
+  showFollower() {
     const vm = this;
-    const followerId = +vm.route.snapshot.paramMap.get('id');
-    console.log(followerId);
 
-    vm.allMyFollowers()
+    return vm.service.getAll()
     .then((response) => {
-       vm.data = response;
-       return vm.data.find((follower) => {
-         console.log(follower.id === followerId);
-         return follower.id === followerId;
-       })
+      vm.data = response;
+      return vm.data.find((follower) => {
+        return follower.id === vm.followerParams;
+      })
     });
   }
 
-  hakunamatata = this.getFollower;
 
   ngOnInit() {
-    // const vm = this;
-    //
-    // vm.getFollower()
-    // console.log('vm', vm);
+    const vm = this;
+
+    vm.showFollower()
+    .then((response) => {
+      // console.log(response);
+      vm.asso = response;
+    });
+    console.log('vm', vm);
   }
 }
