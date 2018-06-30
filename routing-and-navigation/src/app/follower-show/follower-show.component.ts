@@ -16,8 +16,8 @@ export class FollowerShowComponent implements OnInit  {
     private service: FollowersService
   ) { }
 
-  follower = {};
   all: any[];
+  follower = {};
   followerParams = +this.route.snapshot.paramMap.get('id');
 
 
