@@ -17,11 +17,9 @@ export class DonutShowComponent implements OnInit {
 
   donut = {};
 
-  getDonut() {
+  showDonut() {
     const vm = this;
     const id = vm.route.snapshot.paramMap.get('id');
-    console.log(id);
-
 
     vm.service.get(id)
     .subscribe((response) => {
@@ -32,7 +30,7 @@ export class DonutShowComponent implements OnInit {
   ngOnInit() {
     const vm = this;
 
-    vm.getDonut();
+    vm.showDonut();
     console.log(vm);
   }
 }

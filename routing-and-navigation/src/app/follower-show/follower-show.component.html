@@ -1,3 +1,7 @@
-<h1>Single Follower</h1>
+<h1>Show Follower</h1>
 
-{{ follower.login }}
+<img src="{{ follower.avatar_url }}" alt="">
+<p>{{ follower.login }}</p>
+<a routerLink="{{ follower.html_url }}">{{ follower.html_url }}</a>
+
+<button (click)="submit()">Save</button>

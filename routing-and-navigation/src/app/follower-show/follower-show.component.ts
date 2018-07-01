@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FollowersService } from '../services/followers/followers.service';
 
 
@@ -13,12 +14,22 @@ export class FollowerShowComponent implements OnInit  {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private service: FollowersService
   ) { }
 
   all: any[];
   follower = {};
   followerParams = +this.route.snapshot.paramMap.get('id');
+
+
+  submit() {
+    const vm = this;
+
+    vm.router.navigate(['/users'], {
+      queryParams: {page: 1, order: 'newest'}
+    });
+  }
 
 
   showFollower() {
@@ -33,13 +44,18 @@ export class FollowerShowComponent implements OnInit  {
     });
   }
 
+// The first time I've called the showFollower() it returned 'undefined'.
+// It's because the console is faster than the result from the service.
+// In order to see what showFollower() returns, we need a promise.
+
   ngOnInit() {
     const vm = this;
 
     vm.showFollower()
     .then((response) => {
+      // console.log(response);
       vm.follower = response;
     });
-    console.log('vm', vm);
+    console.log(vm);
   }
 }

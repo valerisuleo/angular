@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FollowersService } from '../services/followers/followers.service';
 
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 
@@ -12,20 +11,17 @@ import 'rxjs/add/observable/combineLatest';
 })
 export class FollowersComponent implements OnInit {
 
-  constructor(
-    private service: FollowersService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private service: FollowersService) {}
 
   allFollowers: any[];
 
   ngOnInit() {
     const vm = this;
 
-      vm.service.getAll()
-      .then((response) => {
-        vm.allFollowers = response;
-        console.log('allFollowers', vm.allFollowers);
-      });
+    vm.service.getAll()
+    .then((response) => {
+      vm.allFollowers = response;
+      console.log('allFollowers', vm.allFollowers);
+    });
   }
 }

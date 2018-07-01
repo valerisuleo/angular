@@ -156,7 +156,7 @@ Let's see how:
   }
 ```
 
-## Subscribing To Multiple Observable
+# Subscribing To Multiple Observable
 
 How can we :
 
@@ -196,7 +196,135 @@ ngOnInit() {
 ```
 
 
+## SwitchMap Operator
+
+So above we have a Subscribe inside another subscribe.
+Let's find a cleaner and better way to write this code.
+
+**01** In our DataService. If we look at the return type of getAll() method it returns an `Observable<any>`
+
+```
+  getAll() {
+    return this.http.get(this.url)
+    .map(response => response.json())
+  }
+```
+From now on every time you see an observable Think of it as a collection. So here we have a collection and In this collection every item its type is any.
+
+
+**02** If we comment out what's inside, nnow it returns an `Observable<Respnse>`
 	 
+```
+  getAll() {
+<!-- return this.http.get(this.url)
+    .map(response => response.json()) -->
+  }
+```
+So here we have a collection and in this collection we're going to get a response object that arrives asynchronously. **Why?**
+
+It's because the get(this.url) method of this HTTP class
+also returns an `Observable<Respnse>`
+
+**03** now let's see what happens when we put back the map operator. As we already know the getAll() method returns an `Observable<any>` because we are mapping the response obj to a new object of type any (mouseover on the response.json() it returns on object of type any).
+
+**04** now let's go back to `followers.component.ts` and let's look at the type of the `combined` parameter: it's a *ParamMap[ ]*
+
+```
+ngOnInit() {
+    const vm = this;
+
+    Observable.combineLatest([
+      vm.route.paramMap,
+      vm.route.queryParamMap
+    ])
+    .subscribe((combined) => {
+      const page = combined[1].get('page');
+
+      vm.service.getAll()
+      .subscribe((response) => {
+        vm.allFollowers = response.json();
+      });
+    })
+  }
+```
+
+We are subscribing to an observable and every item inside is a type paramMap array.
+Now similar the way we use our map operator in the data service, **we can use the `map` to turn the paramMap[ ] into followers[ ].**
+
+We need to import a couple of operator:
+`import 'rxjs/add/operator/map';`
+`import 'rxjs/add/operator/switchMap';`
+
+
+```
+ngOnInit() {
+    const vm = this;
+
+    Observable.combineLatest([
+      vm.route.paramMap,
+      vm.route.queryParamMap
+    ])
+    .map((combined) => {
+		const page = combined[1].get('page');
+
+	  return vm.service.getAll();    
+    })
+    .subscribe(response => vm.allFollowers = response);
+    }
+  }
+```
+
+**Explenation of the code**
+
+01. So we get this paramMap[] object, 
+02. at this point we wanna call the server to get the list of follwers and **return** that.
+03. And then we'll subscribe to the observable and as result we get the array of followers.
+ 
+*NB* At this point we are gonna have a compiltation error on `vm.allFollowers`
+
+**05** To fix this problem we are gonna use the **`switchMap`** operator
+
+```
+.switchMap((combined) => {
+	const page = combined[1].get('page');
+	}
+```
+
+# Programmatic Navigation
+**When** we need it?
+
+For exmple let's imagine a submit btn on the edit page of a user's profile.
+After he has updated the page we wanna redirect him to the list of followers.
+
+01. We need to import:
+	`import { Router } from '@angular/router';`
+
+02. In our costructor:
+
+	```
+	export class FollowerShowComponent implements OnInit  {
+	
+	  constructor(
+	    private router: Router
+	  ) { }
+	```
+03. We can write our function: the *first* argument is the path and the *second* argument is an obj with a property `queryParmas` set to an obj
+	
+	```
+	submit() {
+    const vm = this;
+
+    vm.router.navigate(['/users'], {
+      queryParams: {page: 1, order: 'newest'}
+    });
+  }
+  ```
+
+
+
+
+
+   
 
 
 
