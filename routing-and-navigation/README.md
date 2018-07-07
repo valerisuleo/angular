@@ -54,7 +54,7 @@ When we are dealing with a **dynamic** link we need to use property binding:
       <a [routerLink]="['/followers', follower.id]">{{ follower.login }}</a>
       <a routerLink="{{ follower.html_url }}">{{ follower.html_url }}</a>
   </div>
-</div> 
+</div>
 ```
 
 # Getting The Routes Params
@@ -92,15 +92,15 @@ When we are dealing with a **dynamic** link we need to use property binding:
 }  
 ```
 
-04. Finally we have the `id ` now we need to pass it into our `data.service` 
+04. Finally we have the `id ` now we need to pass it into our `data.service`
 
   ```
   get(id) {
     return this.http.get(this.url + '/' + id);
-  } 
+  }
   ```
-  
-05. Now we can call our brand new function from the service inside `getFollowers()` 
+
+05. Now we can call our brand new function from the service inside `getFollowers()`
 
   ```
   getFollower() {
@@ -111,7 +111,7 @@ When we are dealing with a **dynamic** link we need to use property binding:
     .subscribe((response) => {
       vm.follower = response.json();
     });
-  } 
+  }
   ```
 
 ## Query Parameters
@@ -125,7 +125,7 @@ Let's see how:
 ```
 <nav>
   <ul>
-    <li><a routerLinkActive="active current" routerLink="/followers" 
+    <li><a routerLinkActive="active current" routerLink="/followers"
     [queryParams]="{{ page: 1, order: 'newest' }}">Followers</a></li>
   </ul>
 </nav>
@@ -138,15 +138,15 @@ Let's see how:
 
   ngOnInit() {
     const vm = this;
-    
+
     vm.route.paramMap
     	.subscribe((params) => {
-    
+
     );
-    
+
     vm.route.queryParamMap
      	.subscribe((params) => {
-    
+
     );
 
     vm.service.getAll()
@@ -168,8 +168,8 @@ As we learned an **observable is a stream of asynchronous Data there arrives ove
 
 Now instead of having two different subscriptions to these observables, we want to **combine** them into a new observable and then subscribe to it.
 
-So back to our followers component we need to import: 
- 
+So back to our followers component we need to import:
+
  `import { Observable } from 'rxjs/Observable';`
  `import 'rxjs/add/observable/combineLatest'`
 
@@ -213,7 +213,7 @@ From now on every time you see an observable Think of it as a collection. So her
 
 
 **02** If we comment out what's inside, nnow it returns an `Observable<Respnse>`
-	 
+
 ```
   getAll() {
 <!-- return this.http.get(this.url)
@@ -276,10 +276,10 @@ ngOnInit() {
 
 **Explenation of the code**
 
-01. So we get this paramMap[] object, 
+01. So we get this paramMap[] object,
 02. at this point we wanna call the server to get the list of follwers and **return** that.
 03. And then we'll subscribe to the observable and as result we get the array of followers.
- 
+
 *NB* At this point we are gonna have a compiltation error on `vm.allFollowers`
 
 **05** To fix this problem we are gonna use the **`switchMap`** operator
@@ -303,13 +303,14 @@ After he has updated the page we wanna redirect him to the list of followers.
 
 	```
 	export class FollowerShowComponent implements OnInit  {
-	
+
 	  constructor(
 	    private router: Router
 	  ) { }
 	```
+
 03. We can write our function: the *first* argument is the path and the *second* argument is an obj with a property `queryParmas` set to an obj
-	
+
 	```
 	submit() {
     const vm = this;
