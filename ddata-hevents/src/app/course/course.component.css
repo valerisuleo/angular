@@ -1,0 +1,22 @@
+.child{
+  width: 100px;
+  height: 100px;
+  background-color: silver;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+p{
+  line-height: 100px;
+  text-align: center;
+}
+
+.btn{
+  display: block;
+  margin-bottom: 20px;
+}
+
+.active{
+  background-color: pink !important;
+  color: white !important;
+}

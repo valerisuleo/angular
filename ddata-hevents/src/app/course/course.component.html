@@ -1,0 +1,43 @@
+<h1 [textContent]="title"></h1>
+
+<table>
+  <tr>
+    <td [attr.colspan]="colspan"></td>
+  </tr>
+</table>
+
+
+  <div class="child" [class.active]="isActive">
+    <p>I am pinky</p>
+  </div>
+
+  <div class="child" [class.active]="isActive">
+    <p>I am pinky</p>
+  </div>
+
+  <div class="child" [class.active]="isActive">
+    <p>I am pinky</p>
+  </div>
+
+
+
+
+
+<button class="btn btn-primary" (click)="onClick($event)">Toggle</button>
+
+<!-- NGMODEL -->
+<input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
+
+
+<!-- TEMPLATE VARIBLES -->
+<!-- <input type="text" #email (keyup.enter)="onKeyUp(email.value)" placeholder="Search..." /> -->
+
+
+<!-- $EVENT -->
+<!-- <input type="text" (keyup.enter)="onKeyUp($event)" placeholder="Search..." /> -->
+
+
+<!-- EVENT BUBBLING -->
+<!-- <div (click)="onDivClick()">
+<button (click)="onClick($event)">Save</button>
+</div> -->
