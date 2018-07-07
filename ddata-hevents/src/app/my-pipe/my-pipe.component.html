@@ -1,3 +1,10 @@
-<p>
-  my-pipe works!
-</p>
+<hr>
+
+<h1>Pipe</h1>
+<ul>
+  <li>{{ course.title | uppercase }}</li>
+  <li>{{ course.rating | number: '1.2-2' }}</li>
+  <li>{{ course.students | number }}</li>
+  <li>{{ course.price | currency: 'GBP' }}</li>
+  <li>{{ course.startingDate | date:'shortDate' }}</li>
+</ul>

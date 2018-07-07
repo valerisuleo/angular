@@ -76,23 +76,7 @@ Sometimes we want to add a class `.active` to an element based on some condition
 
 <button class="btn btn-primary" (click)="onClick()">Toggle</button>
 ```
-****
 
-### $event
-
-Sometimes we need to get accesso to the event obj we have to pass it as argument:
-
-```
-  onClick($event) {
-    console.log($event)
-  }
-```
-
-```
-<button class="btn btn-primary" (click)="onClick($event)">Toggle</button>
-```
-
-****
 
 ## Template Variables
 Let's imagine we want get the value of an input field:
@@ -131,7 +115,6 @@ and then we can do:
 
 ## Two Way Binding
 
-
 ```
   <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
 ```
@@ -151,7 +134,61 @@ We use pipes to format data.
 - Currency
 - Percent
 
- 
+```
+<ul>
+  <li>{{ course.title | uppercase }}</li>
+  <li>{{ course.rating | number: '1.2-2' }}</li>
+  <li>{{ course.students | number }}</li>
+  <li>{{ course.price | currency: 'GBP' }}</li>
+  <li>{{ course.startingDate | date:'shortDate' }}</li>
+</ul>
+``` 
+
+to check all the options available: [datepipe](https://angular.io)
+
+In *AngularJS* we used to have 2 more pipe:
+
+- orderBy
+- filter
+
+But for some reason the good people of Angular team decided that were not longer necessaries.
+
+## Creating Custom Pipes
+We want to implement a custuom pipe to summarize this text
+
+```
+<p>{{ text | summary }}</p>
+```
+
+Let's create our pipe. In terminal we type: `ng g p custom` This time `app.module.ts` **will be updated** ^_^
+
+Now in our `custom.pipe.ts` we have something like this:
+
+```
+@Pipe({
+  name: 'summary'
+})
+export class CustomPipe implements PipeTransform {}
+```
+
+In the pipe decorator we put the name of the pipe `summary`
+
+```
+@Pipe({
+  name: 'summary'
+})
+export class CustomPipe implements PipeTransform {
+
+  // when we set the value to 'string' we have access to all the methods available such as 'substring'
+  transform(value: string, args?: any): any {
+    if(!value) {
+      return null;
+    } else {
+      return value.substring(0, 10) + '...';
+    }
+  }
+}
+```    
 
 
 ## Adding Bootstrap
