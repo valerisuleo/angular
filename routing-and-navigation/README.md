@@ -319,16 +319,3 @@ After he has updated the page we wanna redirect him to the list of followers.
     });
   }
   ```
-
-
-
-
-
-   
-
-
-
-
-
-
-
