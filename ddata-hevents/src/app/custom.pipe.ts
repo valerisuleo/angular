@@ -13,7 +13,6 @@ export class CustomPipe implements PipeTransform {
       return value.substring(0, 10) + '...';
     }
   }
-
 }
 
 
