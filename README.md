@@ -6,7 +6,7 @@ It's really weird when people say: "I am an Angular 5 developer".
 So yeah...please don't do that.
 
 
-#Set up your Angular app with *SASS*
+# Set up your Angular app with *SASS*
 
 
 ## 1. Use Angular CLI
