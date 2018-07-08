@@ -1,28 +1,17 @@
-# angular
+# ANGULAR
 Here I'm gonna share with you  what I'm learning about Angular.
-
-## Lesson nr. 1
 There is not such thing as Angular 2,4,5,6...there is **AngularJS (1.x)** and **Angular**.
-
 It's really weird when people say: "I am an Angular 5 developer". 
 
 So yeah...please don't do that.
 
-## Lesson nr. 2
-ANGULAR WITH SASS
-======
-###This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+
+#Set up your Angular app with *SASS*
 
 
-##Step 1: Use Visual Studio Code
+## 1. Use Angular CLI
 
-I decided to use Visual Studio Code (VS Code), a lightweight code editor that I was somewhat familiar with. The VS Code documentation is excellent, and even provides a tutorial for getting started using VS Code and Angular.
-
- VS Code is customizable through extensions. One of my favorite extension is called “Debugger for Chrome.” It allows me to set breakpoints and debug JavaScript without leaving VS Code. The VS Code team provides a recipe for configuring Chrome Debugging with Angular CLI.
-
-##Step 2: Use Angular CLI
-
-Initially, I did not realize that Angular had its own Command Line Interface (CLI). Although it is not required to use, I found it to be essential. Angular CLI helps the developer fall into the pit of success by implementing “best practices.” For example, using Angular CLI to create a new Angular app will create the recommended folder structure. I use Angular CLI all the time to generate Components and Services, thus making it part of my regular workflow.
+Initially, I did not realize that Angular had its own *Command Line Interface* (**CLI**). Although it is not required to use, I found it to be essential. Angular CLI helps the developer fall into the pit of success by implementing “best practices.” For example, using Angular CLI to create a new Angular app will create the recommended folder structure. I use Angular CLI all the time to generate Components and Services, thus making it part of my regular workflow.
 
 Like other aspects of Angular, the documentation for Angular CLI is excellent. You can find documentation that describes how to install Angular CLI as well so that you can get up and running quickly.
 
@@ -36,7 +25,7 @@ This creates a new folder called “myApp” and is already configured to use Sa
 
 In the terminal, you should see the starter template building and then the default browser display the home page.
 
-Bonus: Webpack and Typescript
+*Bonus*: Webpack and Typescript
 
 It was a pleasant surprise to see that the Angular CLI has an opinion about its build process. In the past, creating a build pipeline was a startup task that the Developer undertook. It involved using libraries such as Grunt or Gulp. But, why does JavaScript even need this build process?
 
@@ -46,7 +35,7 @@ The second reason why we need a build process is because we are using Sass. Like
 
 Angular CLI uses a library called WebPack for its build pipeline. What is really helpful is that this is already set up for you. Angular provides a file called “.angular-cli.json” that allows you configure different aspects of the build process. But, I’ve found that I rarely need to touch this file.
 
-##Step 3: Using Bootstrap 4
+## 2. Using Bootstrap
 
 Adding Bootstrap 4 to the project is accomplished by using NPM:
 
@@ -70,7 +59,7 @@ To add the Sass imports, edit the “main.scss” and add the following imports:
 
 That is all you have to do. Now the build process will compile the CSS for Bootstrap and Font Awesome and use them in your project.
 
-###Step 4: NG Bootstrap
+## 3. NG Bootstrap
 
 Some of the components provided by Bootstrap require a JavaScript reference. Initially, I had to add some configuration to the “scripts” section of the “.angular-cli.json” file. However, this required me to also add configurations for JQuery and Popper.js.
 
