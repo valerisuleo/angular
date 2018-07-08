@@ -48,9 +48,9 @@ It's a good practice using *alias* with input decorator to have a more maintaina
 
 **2** In the *host* component `/host.component.html`:
  
-	```
-	<favorite [hakunamatata]="post.isFavorite"></favorite>
-	```
+```
+<favorite [hakunamatata]="post.isFavorite"></favorite>
+```
  
 ## Output Properties
 Now let's take this thing to the next level: I want to be notified when a user click on the favorite component. So I want this component to raise a *custom event* like `change`:
