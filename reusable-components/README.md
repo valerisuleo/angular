@@ -92,6 +92,144 @@ onClick() {
 	this.change.emit();
   }
 ```
-  
+
+> Now we get a message in the console!
+
 
 ## Passing Event Data
+Currently we are displaying just a simple message in the console.
+We don't know if the user has marked the obj as favorite or not.
+So we need to change our implementation and pass some data when raising this event.
+
+**01)** Back in our `/favorite.component`:
+
+```
+onClick() {
+	this.isFavorite = !this.isFavorite;
+	this.change.emit(this.isFavorite);
+  }
+```
+
+This is a simple Boolean and in our event handler we get a simple Boolean value.
+
+**02)** Back in our `/host.component`:
+
+```
+  onFavoriteChanged(isFavorite) {
+    console.log('isFavorite', isFavorite);
+  }
+```
+
+**03)** Finally in the `/host.component.html`:
+
+```
+<favorite [hakunamatata]="post.isFavorite" (change)="onFavoriteChanged($event)"></favorite>
+```
+
+The DollarEvent, here because we are dealing with custom component, could be anything that we pass when we raising the event: in this case it's going to be simple boolean value.
+
+> So this is how we pass data along with the event.
+
+In a real world application we want to pass something more complicated like an object.
+
+```
+  onClick() {
+    this.isFavorite = !this.isFavorite;
+    this.change.emit({
+      newValue: this.isFavorite
+    });
+  }
+```
+
+In the `/host.component` instead of the simple Boolean we're going to receive an object. We can call it `eventArgs`
+
+```
+  onFavoriteChanged(eventArgs) {
+    console.log('newValue', eventArgs);
+  }
+```
+
+### Refactoring
+This is good but we can do a bit better:
+
+We may wanna passa better information with our data like:
+
+```
+  onFavoriteChanged(eventArgs: {newValue: boolean}) {
+    console.log('newValue', eventArgs);
+  }
+```
+
+But this is a little bit verbose... We may want to use `Interface`
+
+```
+interface FavoriteInterface {
+  newValue: boolean
+}
+
+@Component({
+  selector: 'host',
+  templateUrl: './host.component.html',
+  styleUrls: ['./host.component.css']
+})
+
+export class HostComponent {
+
+    post = {
+    title: 'title',
+    isFavorite: true
+  }
+
+  onFavoriteChanged(eventArgs: FavoriteInterface) {
+    console.log('newValueObj', eventArgs);
+  }
+}
+```
+
+However best practice is to move our interface inside `/favorite.component`:
+
+```
+export class FavoriteComponent {
+
+  @Input('hakunamatata') isFavorite: boolean;
+  @Output() change = new EventEmitter();
+
+  onClick() {
+    this.isFavorite = !this.isFavorite;
+    this.change.emit({
+      newValue: this.isFavorite
+    });
+  }
+}
+
+export interface FavoriteInterface {
+  newValue: boolean
+}
+```
+
+And then export it to the `/host.component`:
+
+```
+import { FavoriteInterface } from '../favorite/favorite.component';
+
+export class HostComponent {
+
+  onFavoriteChanged(eventArgs: FavoriteInterface) {
+    console.log('newValueObj', eventArgs);
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+

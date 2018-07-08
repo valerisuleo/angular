@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FavoriteInterface } from '../favorite/favorite.component';
+
+
 @Component({
   selector: 'host',
   templateUrl: './host.component.html',
@@ -14,11 +17,10 @@ export class HostComponent implements OnInit {
     isFavorite: true
   }
 
-  onFavoriteChanged() {
-    console.log('favorite has been clicked!');
+  onFavoriteChanged(eventArgs: FavoriteInterface) {
+    console.log('newValueObj', eventArgs);
   }
 
   ngOnInit() {
   }
-
 }
