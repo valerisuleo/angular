@@ -5,7 +5,6 @@
 - Pass Data
 - Raise Custom Events
 - ngContent
-- ngContainer
 
 
 ## Component API	
