@@ -24,7 +24,7 @@ Our favorite component does not have an API because is missing both Input and Ou
 ```
 
 ## Input Properties
-Back to our `favourite.component.ts` we wanna mark this field:
+Back to our `/favorite.component.ts` we wanna mark this field:
 
 ```
 isFavorite: boolean;
@@ -33,6 +33,7 @@ as an *input* property:
 
 
 1. `import { Component, OnInit, Input } from '@angular/core';`
+
 2. `@Input() isFavorite: boolean;`
 
 ### Aliasing Input Properties
@@ -41,7 +42,7 @@ It's a good practice using *alias* with input decorator to have a more maintaina
 1. In the `/favorite.component.ts`: 
 	`@Input('hakunamatata') isFavorite: boolean;`
 
-2. In the *host* component `host.component.html`:
+2. In the *host* component `/host.component.html`:
  
 	```
 	<favorite [hakunamatata]="post.isFavorite"></favorite>
@@ -82,13 +83,12 @@ We need to declare an *output* property:
 
 6. Finally we wanna raise an event. Now here we have a method call `emit()` and we use that to raise or published an event, which basically means notify to the others that something is happening.
  
-	```
+```
 onClick() {
 	this.isFavorite = !this.isFavorite;
 	this.change.emit();
   }
-  ```
+```
   
-> Now we get a message in the console!
 
 ## Passing Event Data
