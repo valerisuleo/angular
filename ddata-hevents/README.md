@@ -9,14 +9,14 @@
 
 ## Property Binding
 
- So earlier we had a look at *interpolation* 
+ So earlier we had a look at *interpolation*
  `<h1>{{ course }}</h1>`
- 
+
  Let's to the same thing but this time using *property binding*
  `<h1 [textContent]="title"></h1>`
- 
+
  **NB** Property Binding works only one way: from component to the DOM.
- 
+
 ## Attribute Binding
 
 Long story short we can use property binding only if we have a correspondent in the HTML
@@ -98,7 +98,7 @@ We want now beign able to get the **value**:
   onKeyUp($event) {
     console.log($event.target.value);
   }
-``` 
+```
 Now in angular we have a better way to get the value: we can declare a variables that references this input field. We call it *Template Variable*
 
 ```
@@ -142,7 +142,7 @@ We use pipes to format data.
   <li>{{ course.price | currency: 'GBP' }}</li>
   <li>{{ course.startingDate | date:'shortDate' }}</li>
 </ul>
-``` 
+```
 
 to check all the options available: [datepipe](https://angular.io)
 
@@ -160,7 +160,7 @@ We want to implement a custuom pipe to summarize this text
 <p>{{ text | summary }}</p>
 ```
 
-Let's create our pipe. In terminal we type: `ng g p custom` This time `app.module.ts` **will be updated** ^_^
+Let's create our pipe. In terminal we type: `ng g p custom` This time `app.module.ts` **will be updated** :)
 
 Now in our `custom.pipe.ts` we have something like this:
 
@@ -195,4 +195,3 @@ export class CustomPipe implements PipeTransform {
 
 1. Install bootstrap: `npm i bootstrap@3.3.7 --save`
 2. Go to `styles.css` and `@import "~bootstrap/dist/css/bootstrap.css";`
-
