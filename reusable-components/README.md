@@ -4,8 +4,9 @@
 
 - Pass Data
 - Raise Custom Events
-- Apply Styles
-- Shadow DOM
+- ngContent
+- ngContainer
+
 
 ## Component API	
 
@@ -39,13 +40,13 @@ as an *input* property:
 ### Aliasing Input Properties
 It's a good practice using *alias* with input decorator to have a more maintainable code:
 
-1. In the `/favorite.component.ts`: 
+**1** In the `/favorite.component.ts`: 
 
 ```
 @Input('hakunamatata') isFavorite: boolean;
 ```
 
-2. In the *host* component `/host.component.html`:
+**2** In the *host* component `/host.component.html`:
  
 	```
 	<favorite [hakunamatata]="post.isFavorite"></favorite>
@@ -94,6 +95,18 @@ onClick() {
 ```
 
 > Now we get a message in the console!
+
+
+### Aliasing Output Properties
+As we have already seen before, it's always best practice using *alias*:
+
+```
+@Output('outputAlias') change = new EventEmitter();
+```
+
+```
+<favorite [hakunamatata]="post.isFavorite" (outputAlias)="onFavoriteChanged($event)"></favorite>
+```
 
 
 ## Passing Event Data
@@ -220,16 +233,63 @@ export class HostComponent {
 }
 ```
 
+## ngContent
+We want to build are boostrap panel component
+
+```
+<div class="panel panel-default">
+  <div class="panel-heading">Heading</div>
+  <div class="panel-body">Body</div>
+</div>
+```
+
+Now I don't wanna hardcode this heading and body labels; I want the consumer of this panel component being able to inject text or markup into this component.
 
 
+So here we want to add **2 injections points**: so the consumer of this panel component can provide content into those injection points.
 
+```
+<div class="panel panel-default">
 
+  <div class="panel-heading">
+  	<ng-content></ng-content>
+  </div>
+  
+  <div class="panel-body">
+  	<ng-content></ng-content>
+  </div>
+  
+</div>
+```
 
+Now we have 2 <ng-content> and some how we need to be able distinguish them, we use the `select` attribute.
+> With `select` we can reference a class an ID or an element. 
 
+```
+<div class="panel panel-default">
 
+  <div class="panel-heading">
+    <ng-content select=".headingbooty">
+    </ng-content>
+  </div>
+  
+  <div class="panel-body">
+    <ng-content select=".bodybooty">
+    </ng-content>
+  </div>
+  
+</div>
+```
 
+Back to the `/app.component.html`
 
+```
+<bootstrapanel>
+  <div class="headingbooty">heading</div>
+  <div class="bodybooty">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+  </div>
+</bootstrapanel>
+```
 
-
-
-
+> So if you are building reusable component and you want the consumer of this component to be able to provide custom content use `ng-content` 
