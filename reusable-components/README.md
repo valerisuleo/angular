@@ -40,7 +40,10 @@ as an *input* property:
 It's a good practice using *alias* with input decorator to have a more maintainable code:
 
 1. In the `/favorite.component.ts`: 
-	`@Input('hakunamatata') isFavorite: boolean;`
+
+```
+@Input('hakunamatata') isFavorite: boolean;
+```
 
 2. In the *host* component `/host.component.html`:
  
