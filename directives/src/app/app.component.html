@@ -1,0 +1,17 @@
+<!-- <div *ngIf="courses.length > 0">List of courses</div> -->
+<!-- <div *ngIf="doWeHaveCourses()">List of courses</div> -->
+<!-- <div *ngIf="courses.length === 0">No courses yet!</div> -->
+
+<h1>ngIf</h1>
+
+<!-- ngIf in Angular 4.x -->
+<div *ngIf="courses.length > 0;
+  then CoursesList
+  else noCourses">List of courses
+</div>
+
+<ng-template #CoursesList>List of courses</ng-template>
+<ng-template #noCourses>No courses yet!</ng-template>
+
+
+<bootabs></bootabs>
