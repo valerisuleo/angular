@@ -1,0 +1,18 @@
+<hr>
+<h1>ngClass</h1>
+
+<!-- <span
+  class="glyphicon"
+  [class.glyphicon-star]="isFavorite"
+  [class.glyphicon-star-empty]="!isFavorite"
+  (click)="onClick()"
+  ></span> -->
+
+<span
+  (click)="onClick()"
+  class="glyphicon"
+  [ngClass]="{
+    'glyphicon-star': isFavorite,
+    'glyphicon-star-empty': !isFavorite
+  }">
+</span>

@@ -6,7 +6,6 @@
 - ngIf
 - ngSwitchCase
 - ngClass
-- ngStyle
 - Building custom directives
 
 ##ngIf
@@ -99,6 +98,51 @@ export class BootabsComponent {
 ```
  
 ## ngFor
+Imagine you Wanna render a table and lighten the first row or the even row or display the index more stuff [here](https://angular.io/api/common/NgForOf).
+
+```
+<ul>
+  <li *ngFor="let user of users; index as i">{{ i }} - {{ user.username }} - {{ user.email }}</li><br>
+  <li *ngFor="let user of users; even as isEven">
+    {{ isEven }} - {{ user.username }} - {{ user.email }}
+    <span *ngIf="isEven">(I AM EVEN)</span>
+  </li><br>
+  <li *ngFor="let user of users; odd as isOdd">{{ isOdd }} - {{ user.username }} - {{ user.email }}</li>
+</ul>
+```
+
+## ngClass
+
+So before we did:
+
+```
+<span
+  class="glyphicon"
+  [class.glyphicon-star]="isFavorite"
+  [class.glyphicon-star-empty]="!isFavorite"
+  (click)="onClick()">
+</span>
+```
+
+However we can be cleaner using `ngClass`. we bind ngClass to an object and inside this object we have one or more key value pairs: each `keys` represent css class and the `value` for in that key determs if the class should be redner or not.
+
+So here we are dealing with 2 classes so we need two keys.
+
+```
+<span
+  (click)="onClick()"
+  class="glyphicon"
+  [ngClass]="{
+    'glyphicon-star': isFavorite,
+    'glyphicon-star-empty': !isFavorite
+  }">
+</span>
+``` 	 
+
+## Custom Directives
+
+
+
 
 
 

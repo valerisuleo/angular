@@ -1,3 +1,12 @@
-<p>
-  for works!
-</p>
+<hr>
+
+<h1>ngFor</h1>
+
+<ul>
+  <li *ngFor="let user of users; index as i">{{ i }} - {{ user.username }} - {{ user.email }}</li><br>
+  <li *ngFor="let user of users; even as isEven">
+    {{ isEven }} - {{ user.username }} - {{ user.email }}
+    <span *ngIf="isEven">(I AM EVEN)</span>
+  </li><br>
+  <li *ngFor="let user of users; odd as isOdd">{{ isOdd }} - {{ user.username }} - {{ user.email }}</li>
+</ul>
