@@ -8,7 +8,7 @@
 - ngClass
 - Building custom directives
 
-##ngIf
+## ngIf
 
 There are times when you Wanna show or hide some part of the page based on specific conditions.
 
