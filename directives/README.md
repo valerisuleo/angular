@@ -170,47 +170,36 @@ export class InputFormatDirective {
 **4)** We need to prefix them with the decorator:
 
 ```
-@HostListener('focus') onFocus() {
-	console.log('focus');
+@HostListener('blur') onBlur() {
+	console.log('blur');
 }
 ```
 
 **5)** Back to `/app.component.html` we apply the `appInputFormat` attribute to our input field
 
 ```
-<input appInputFormat type="text" name="phone" value="phone">
+<input appInputFormat type="text" name="" value="">
 ```
 
 With this attribute angular is going to apply our custom directive to this input field
 
 Now let's implement the logic to transform text to lower string.
 
-```
-import { Directive, HostListener, ElementRef } from '@angular/core';
-
-@Directive({
-  selector: '[appInputFormat]'
-})
-export class InputFormatDirective {
-
-  constructor(private el: ElementRef) { }
-
-  @HostListener('blur') onBlur() {
-    let value: string = this.el.nativeElement.value;
-    this.el.nativeElement.value = value.toLowerCase();
-  }
-}
-```
-
 On `blur` I need to get the value of this input field:
-First we need a reference to the horst element, so in our constructor we need to inject a reference element object: `constructor(private el: ElementRef) { }`
+First we need a reference to the host element, so in our constructor we need to *inject* a reference element object:
+
+ `constructor(private el: ElementRef) { }`
 > this is a service define in angular which give us access to the actual DOM
 
-Now let's import it on the top: `import { Directive, HostListener, ElementRef } from '@angular/core';`
+Now let's import it on the top:
 
-Now on `blur` we need to get the value of this input field: 
+`import { Directive, HostListener, ElementRef } from '@angular/core';`
+
+On `blur` we need to get the value of this input field: 
 
 ```
-let value: string = this.el.nativeElement.value;
-this.el.nativeElement.value = value.toLowerCase();
+@HostListener('blur') onBlur() {
+	let value: string = this.el.nativeElement.value;
+	this.el.nativeElement.value = value.toLowerCase();
+}
 ```
