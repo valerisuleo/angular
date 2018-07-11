@@ -1,9 +1,0 @@
-<!-- <span>{{ task.assignee.name }}</span> -->
-
-<!-- <span *ngIf="task.assignee">{{ task.assignee.name }}</span> -->
-
-<!-- Maybe you Wanna keep the span class but you don't want to render it unless the task.Assignee is Truthy. In order to do that we can use the safe traversal operator -->
-
-<span>{{ task.assignee?.name }}</span>
-
-<!-- Now if we look at browser we don't see any Errors and the span class is still presents into dom -->
