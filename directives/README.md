@@ -141,9 +141,76 @@ So here we are dealing with 2 classes so we need two keys.
 
 ## Custom Directives
 
+There are times when we want to have more control over the behaviour of DOM elements.
 
+Let's say that we have an input field for a phone number `1234567890`, now the stardard amercican phone number is `(123)456-7890`. In situation like that we use `directive`:
 
+**1)** In the terminal we do:
+`ng g d input-format`
 
+**2)** In the `/input-format.directive` we need to import the `HostListener ` decorator: `import { Directive, HostListener } from '@angular/core';` This decorator allows us to subscribe to the event raise from the DOM element that has this attribute: `selector: '[appInputFormat]'` 
 
+**3)** We define our methods:
 
+```
+export class InputFormatDirective {
 
+  constructor() { }
+
+  onFocus() {
+    console.log('onFocus');
+  }
+
+  onBlur() {
+    console.log('onBlur');
+  }
+}
+```
+
+**4)** We need to prefix them with the decorator:
+
+```
+@HostListener('focus') onFocus() {
+	console.log('focus');
+}
+```
+
+**5)** Back to `/app.component.html` we apply the `appInputFormat` attribute to our input field
+
+```
+<input appInputFormat type="text" name="phone" value="phone">
+```
+
+With this attribute angular is going to apply our custom directive to this input field
+
+Now let's implement the logic to transform text to lower string.
+
+```
+import { Directive, HostListener, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appInputFormat]'
+})
+export class InputFormatDirective {
+
+  constructor(private el: ElementRef) { }
+
+  @HostListener('blur') onBlur() {
+    let value: string = this.el.nativeElement.value;
+    this.el.nativeElement.value = value.toLowerCase();
+  }
+}
+```
+
+On `blur` I need to get the value of this input field:
+First we need a reference to the horst element, so in our constructor we need to inject a reference element object: `constructor(private el: ElementRef) { }`
+> this is a service define in angular which give us access to the actual DOM
+
+Now let's import it on the top: `import { Directive, HostListener, ElementRef } from '@angular/core';`
+
+Now on `blur` we need to get the value of this input field: 
+
+```
+let value: string = this.el.nativeElement.value;
+this.el.nativeElement.value = value.toLowerCase();
+```

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BootabsComponent } from './bootabs/bootabs.component';
 import { ForComponent } from './for/for.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { InputFormatDirective } from './directives/input-format.directive';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FavoriteComponent } from './favorite/favorite.component';
     AppComponent,
     BootabsComponent,
     ForComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    InputFormatDirective
   ],
   imports: [
     BrowserModule
