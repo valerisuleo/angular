@@ -11,8 +11,8 @@ export class NngFormComponent {
     console.log(asso);
   }
 
-  // submit(f) {
-  //   console.log(f);
-  //   // f.value
-  // }
+  submit(f) {
+    console.log(f);
+    // f.value
+  }
 }
