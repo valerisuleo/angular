@@ -4,7 +4,7 @@
 
 ### Overview
 
-In this article, we are going to develop a zippy component application in Angular 2. It demonstrates the following.
+In this article, we are going to develop a zippy component application in Angular. It demonstrates the following.
 
 
 * Data flow in Angular
@@ -17,7 +17,7 @@ In this article, we are going to develop a zippy component application in Angula
 
 In the zippy component, we are going to create a hyperlink (i.e. Get Application Status). When this hyperlink is clicked, it will emit an event and display the underlying hidden text (i.e. ‘View the Projected content’). An event will log the application status as ‘Component was opened’. The same hyperlink when clicked again will hide the underlying text and the emitted event will log the application status as ‘Component was closed’. Lets’ build this app as shown below.
 
----
+
 ## app/Component.ts
 
 
