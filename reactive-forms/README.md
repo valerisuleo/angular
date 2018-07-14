@@ -7,7 +7,7 @@ Instead of letting angular creates the form control object four us we're going t
 - More control over the form structure
 - More control over the behavior
 
->If you want to build dynamic forms where inpu filed are render based on some data structure that you get from the server then your only option is to create this control obj in the code.
+>If you want to build dynamic forms where inputs fields are render based on some data structure that you get from the server then your only option is to create a control obj in the code.
 
 
 ### In this section...
@@ -15,7 +15,7 @@ Instead of letting angular creates the form control object four us we're going t
 - Create control obj programatically
 - Add validation
 - Implement custom validation
-- Implement async valudation
+- Implement async validation
 - Build forms that includes an array of objects
 
 ## Creating Controls Programamatically
@@ -179,6 +179,32 @@ get myUsername() {
 <div *ngIf="myUsername.touched && myUsername.invalid" class="alert alert-danger">Username is required!</div>
 ```
 
+## Specific Validation Errors
+So before we have just added our validator
+
+```
+ username: new FormControl('', Validators.required)
+```
+
+> How can we add multiple Validators?
+
+
+```
+ username: new FormControl('', [
+ 	Validators.required, 
+ 	Validators.minlength(3)
+ ])
+```
+
+Now let's go back to the template to display **Specific Errors Msg**
+
+```
+<!-- Specific Validation Errors -->
+    <div *ngIf="myUsername.touched && myUsername.invalid" class="alert alert-danger">
+      <div *ngIf="myUsername.errors.required">Username is required!</div>
+      <div *ngIf="myUsername.errors.minlength">Minlength is {{ myUsername.errors.minlength.requiredLength }}!</div>
+    </div>
+```
 
 
 
