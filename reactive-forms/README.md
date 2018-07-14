@@ -48,12 +48,12 @@ and in the `/app.module.ts`
 
 `import { ReactiveFormsModule } from '@angular/forms';`
 
-Next we need to define a field, let's call it `form` and set it as new instance of the form obj. 
+Next we need to define a field, let's call it `assoForm` and set it as new instance of the form obj. 
 
 ```
 export class SignupFormComponent {
 
-  form = new FormGroup()
+  assoForm = new FormGroup()
 }
 ```
 
@@ -69,7 +69,7 @@ In obj oriented programming languages we have a concept call *Inheritance*: so i
 ```
 export class SignupFormComponent {
 
-  form = new FormGroup({
+  assoForm = new FormGroup({
     username: new FormControl(),
     password: new FormControl()
   })
@@ -89,5 +89,110 @@ Now back to the template we need to associate this input field with the control 
   </div>
 </form>
 ```
+
+## Adding Validtation
+
+So before we added valudation using *HTML5* attributes:
+
+- `required`
+- `minlenght`
+- `pattern`
+
+When we build Reactive Form **we do not use HTML5 attribute**, we assign validators when creating form control objects.
+
+Back to  `/signup-form.component.ts` of we look at the cosntructor of the `FormControl`
+
+```
+ username: new FormControl()
+```
+
+has few arguments:
+
+1. `formstate?: any` is optional so we can set as `''` becasue we don't need an initial value
+
+2. `validator?: ValidatorFn || ValidatorFn[]` 
+	>What's a ValidatorFn?
+	
+	In angular we have class called `Validators` 
+	
+3. `import { FormGroup, FormControl, Validators } from '@angular/forms';` 
+
+4. Now we can the same mothods:
+	
+	- `Validators.required`
+	- `Validators.minlength`
+	- `Validators.minlength`
+	- `Validators.pattern`
+	- `Validators.email`
+
+```
+ username: new FormControl('', Validators.required)
+```
+
+> Note that we are not calling the method `Validators.required()`, we are simply passing a reference to this function.
+
+So this is how we assing a validator to a form control obj.
+
+
+Let's go back to `/signup-form.component.html` and add **validation error messages**
+
+```
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input formControlName="username" id="username" type="text" class="form-control">
+<!-- Validation error messages -->
+    <div class="alert alert-danger">Username is required!</div>
+  </div>
+```
+
+Now we wanna render the error msg only if the username is `invalid` or the input field has been `touched`:
+
+Now `assoForm` as instance of the `FormGroup` class has a `get`  method...  
+
+```
+<div *ngIf="assoForm.get('')" class="alert alert-danger">Username is required!</div>
+```
+
+...and from here we can get access to any form control obj inside this group...
+
+```
+<div *ngIf="assoForm.get('username')" class="alert alert-danger">Username is required!</div>
+```
+
+...and from here we can access to the `touched` and `invalid` property:
+
+```
+<div *ngIf="assoForm.get('username').touched && assoForm.get('username').invalid" class="alert alert-danger">Username is required!</div>
+```
+
+### Refactoring
+The code above is a little verbose so back to `/signup-form.component.ts` we can define a **property** that give us access to the form control obj...
+
+```
+get myUsername() {
+	return this.assoForm.get('username');
+}
+```
+...now we can access to this property in our template:
+
+```
+<div *ngIf="myUsername.touched && myUsername.invalid" class="alert alert-danger">Username is required!</div>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
