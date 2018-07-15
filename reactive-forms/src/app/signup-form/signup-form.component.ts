@@ -21,6 +21,24 @@ export class SignupFormComponent {
     password: new FormControl('', Validators.required)
   });
 
+// In a real app. here we call the server to see if the password and username are valid
+  // login() {
+  //   let isValid = authService.login(this.form.value);
+  //   if (!isValid) {
+  //     this.assoForm.setErrors({
+  //       invalidLogin: true
+  //     });
+  //   }
+  // }
+
+
+// basically we are gonna have this error no matter what.
+  login() {
+    this.assoForm.setErrors({
+      invalidLogin: true
+    });
+  }
+
   get myUsername() {
     return this.assoForm.get('username');
   }

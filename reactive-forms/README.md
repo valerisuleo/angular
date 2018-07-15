@@ -90,7 +90,7 @@ Now back to the template we need to associate this input field with the control 
 </form>
 ```
 
-## Adding Validtation
+## Adding Validation
 
 So before we added valudation using *HTML5* attributes:
 
@@ -440,7 +440,37 @@ We want do display this div only while async validator is  waiting for the resul
 
 >The `pending` property return `true` if at least one async validator is in progress. 
 
+## How to add validation when submitting a Form
 
+### login form
+
+1. Add the `ngSubmit` event
+
+	```
+	<form [formGroup]="assoForm" (ngSubmit)="login()">
+	```
+
+2. Back to `/signup-form.component.ts`
+	
+	```
+	login() {
+		let isValid = authService.login(this.form.value);
+		if (!isValid) {
+			this.assoForm.setErrors({
+				invalidLogin: true
+			});
+		}
+	}
+	```
+
+3. In the template
+
+	```
+	<form [formGroup]="assoForm" (ngSubmit)="login()">
+  <div *ngIf="assoForm.errors" class="alert alert-danger">Username or password are invalid!</div>
+  ```
+
+## Nested Form Group
 
 
 
