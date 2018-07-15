@@ -3,6 +3,9 @@
     <label for="username">Username</label>
     <input formControlName="username" id="username" type="text" class="form-control">
 
+<!-- loader image -->
+    <div *ngIf="myUsername.pending">Please wait...</div>
+
 <!-- Validation error messages -->
     <!-- <div *ngIf="myUsername.touched && myUsername.invalid" class="alert alert-danger">Username is required!</div> -->
     <!-- <div *ngIf="assoForm.get('username').touched && assoForm.get('username').invalid" class="alert alert-danger">Username is required!</div> -->

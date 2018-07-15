@@ -421,6 +421,26 @@ interface AsyncValidatorFn {
 	```
 	
 
+## Showing a Loader Image
+ 
+ In the template we add a new `div`
+ 
+ ```
+ <div>Please wait...</div>
+ ```
+
+We want do display this div only while async validator is  waiting for the result to come back from the server.
+
+>How do we know if async validator is in progress?
+
+ ```
+ <div *ngIf="myUsername.pending">Please wait...</div>
+ ```
+
+
+>The `pending` property return `true` if at least one async validator is in progress. 
+
+
 
 
 
