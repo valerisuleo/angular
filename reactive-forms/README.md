@@ -206,9 +206,107 @@ Now let's go back to the template to display **Specific Errors Msg**
     </div>
 ```
 
+## Implemeting Custom Validator Fn
 
+1. Go to [Angular.io](https://angular.io/) and look for `validatorfn` which is an *interface*
 
+	```
+	interface ValidationFn {
+		(c: AbstracControl): ValidationErrors|null
+	}
+	```
+2. Create inside the `/sing-up` folder a new file `username.validators.ts`
+	
+	```
+	export class UsernameValidators {}
+	```
+3. Let's say that username cannot contain space
+	
+	```
+	export class UsernameValidators {
+		noSpace()
+	}
+	```
+4. Now as we alredy know it takes as argument `AbstracControl`, this method should return either `ValidationErrors|null`
+	
+	```
+	export class UsernameValidators {
+		noSpace(control: AbstracControl): ValidationErrors|null
+	}
+	```
+5. `import { AbstractControl, ValidationErrors } from '@angular/forms';
+`
+6. Let's implement some logic
 
+	```
+	export class UsernameValidators {
+  noSpace(control: AbstractControl): ValidationErrors|null {
+	    if((control.value as string).indexOf(' ') >= 0) {
+	      // returns some validation error
+	    }
+	  }
+	}	
+	```
+7. Once again on [Angular.io](https://angular.io/api/forms/ValidationErrors)
+	
+	```
+	type ValidationErrors = {
+    [key: string]: any;
+	};
+	```
+	
+	So this `ValidationErrors ` represents an obj that has one or more *keys* as string and the *value* could be anything.
+
+8. So here we should return on obj and its *key* is **the name of the validarion error**: `noSpace` and because the *value* can be anything I choosed `true`
+	
+	```
+	export class UsernameValidators {
+  noSpace(control: AbstractControl): ValidationErrors|null {
+	    if((control.value as string).indexOf(' ') >= 0) {
+	      return { noSpace: true }
+	    } else {
+	    	return null;
+	    }
+	  }
+	}	
+	```
+
+	>In order to access this method from outside without creating an instance of this  `UsernameValidators` class, we decorate this method with `static`
+	
+	```
+	export class UsernameValidators {
+	static noSpace(control: AbstractControl): ValidationErrors|null {
+	    if((control.value as string).indexOf(' ') >= 0) {
+	      return { noSpace: true }
+	    } else {
+	    	return null;
+	    }
+	  }
+	}	
+	```
+9. Back to the `/signup-form.component.ts`
+	
+	```
+	  assoForm = new FormGroup({
+    username: new FormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+    UsernameValidators.noSpace
+  ]),
+    password: new FormControl('', Validators.required)
+  });
+  ```
+10. Back to the template
+	
+	```
+	  <div *ngIf="myUsername.touched && myUsername.invalid" class="alert alert-danger">
+      <div *ngIf="myUsername.errors.required">Username is required!</div>
+      <div *ngIf="myUsername.errors.minlength">Minlength is {{ myUsername.errors.minlength.requiredLength }}!</div>
+      <div *ngIf="myUsername.errors.noSpace">Cannot contain space!</div>
+    </div>
+    ```
+
+>We've put the `username.validators` inside `/signup-form` folder because this is the only place we are using this validator. In larger app chances are that several components might use the same validator. If that's the case we put all the validators in a shared folder as: `/app/common/validators`
 
 
 

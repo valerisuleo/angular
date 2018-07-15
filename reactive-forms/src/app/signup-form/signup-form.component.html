@@ -11,6 +11,7 @@
     <div *ngIf="myUsername.touched && myUsername.invalid" class="alert alert-danger">
       <div *ngIf="myUsername.errors.required">Username is required!</div>
       <div *ngIf="myUsername.errors.minlength">Minlength is {{ myUsername.errors.minlength.requiredLength }}!</div>
+      <div *ngIf="myUsername.errors.noSpace">Cannot contain space!</div>
     </div>
 
   </div>
