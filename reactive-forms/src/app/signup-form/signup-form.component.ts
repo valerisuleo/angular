@@ -17,7 +17,7 @@ export class SignupFormComponent {
     Validators.required,
     Validators.minLength(3),
     UsernameValidators.noSpace
-  ]),
+  ], UsernameValidators.uniqueUsername),
     password: new FormControl('', Validators.required)
   });
 

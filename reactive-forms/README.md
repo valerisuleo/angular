@@ -327,6 +327,103 @@ Now let's go back to the template to display **Specific Errors Msg**
 
 
 ## Asynchronous Validation
+There are times we need to call the server to validate a given value. For example **we want to call the server to verify if a username is taken or not**.
+
+### Asynch Operation...
+
+- Calling the server (AJAX)
+- Timer functions
+
+When we call the server there's going to be a little bit of delay. In situations like that the process that is executing our code doesn't want to block while is waiting for the result coming back from the server.
+
+Another example of an asynch operation is the `setTimeout` function. We are gonna use setTimeout to simulate a call to the server.
+
+```
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+
+export class UsernameValidators {
+  static noSpace(control: AbstractControl): ValidationErrors|null {
+    if((control.value as string).indexOf(' ') >= 0) {
+      return { noSpace: true }
+    } else {
+      return null;
+    }
+  }
+  static uniqueUsername(control: AbstractControl): ValidationErrors| null {
+    setTimeout(() => {
+      if (control.value === 'valerio') {
+          return { uniqueUsername: true }
+      } else {
+        return null; 
+      }
+    }, 2000)
+  }
+}
+
+```
+
+>We have a a compilation error! This is happening because this value `{ uniqueUsername: true }` is not returning from the Validator Fn  `uniqueUsername `.  
+
+Since we are dealing with aync operation we need a **`Promise`**.
+
+Back to the `/signup-form.component.ts`
+
+```
+username: new FormControl('', Validators.required)
+```
+
+If we take a look at the third argument is `AsyncValidatorFn`:
+
+```
+interface AsyncValidatorFn {
+  (c: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null>
+}
+```
+
+01. Let's modify our validator fn to return a `Promise` 
+
+	```
+	  static uniqueUsername(control: AbstractControl) : Promise<ValidationErrors| null> {
+	  return new Promise((resolve, reject) => {
+	    setTimeout(() => {
+	        if (control.value === 'valerio') {
+	            resolve ({ uniqueUsername: true });
+	            // return { uniqueUsername: true }
+	        } else {
+	          resolve (null);
+	          // return null;
+	        }
+	      }, 2000)
+	    })
+	  }
+	```
+
+	This is how we implement an **async validator**.
+
+02. Finally we need to register this inside the form control obj.
+	
+	```
+	assoForm = new FormGroup({
+		username: new FormControl('', [
+		
+		Validators.required,
+		Validators.minLength(3),
+		UsernameValidators.noSpace
+		
+		], UsernameValidators.uniqueUsername)
+	});
+	``` 
+
+03. Back to the template
+
+	```
+	<div *ngIf="myUsername.errors.uniqueUsername">Username has been already taken!</div>
+	```
+	
+
+
+
+
 
 
 

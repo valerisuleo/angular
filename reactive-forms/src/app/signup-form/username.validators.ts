@@ -8,4 +8,18 @@ export class UsernameValidators {
       return null;
     }
   }
+  // static uniqueUsername(control: AbstractControl): ValidationErrors| null {
+  static uniqueUsername(control: AbstractControl) : Promise<ValidationErrors| null> {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+        if (control.value === 'valerio') {
+            resolve ({ uniqueUsername: true });
+            // return { uniqueUsername: true }
+        } else {
+          resolve (null);
+          // return null;
+        }
+      }, 4000)
+    })
+  }
 }
