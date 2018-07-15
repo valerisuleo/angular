@@ -464,11 +464,11 @@ We want do display this div only while async validator is  waiting for the resul
 	```
 
 3. In the template
-
+	
 	```
 	<form [formGroup]="assoForm" (ngSubmit)="login()">
-  <div *ngIf="assoForm.errors" class="alert alert-danger">Username or password are invalid!</div>
-  ```
+	<div *ngIf="assoForm.errors" class="alert alert-danger">Username or password are invalid!</div>
+	```
 
 ## Nested Form Group
 
