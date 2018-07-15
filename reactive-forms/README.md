@@ -215,11 +215,13 @@ Now let's go back to the template to display **Specific Errors Msg**
 		(c: AbstracControl): ValidationErrors|null
 	}
 	```
+	
 2. Create inside the `/sing-up` folder a new file `username.validators.ts`
 	
 	```
 	export class UsernameValidators {}
 	```
+	
 3. Let's say that username cannot contain space
 	
 	```
@@ -227,15 +229,20 @@ Now let's go back to the template to display **Specific Errors Msg**
 		noSpace()
 	}
 	```
+	
 4. Now as we alredy know it takes as argument `AbstracControl`, this method should return either `ValidationErrors|null`
+
 	
 	```
 	export class UsernameValidators {
 		noSpace(control: AbstracControl): ValidationErrors|null
 	}
 	```
-5. `import { AbstractControl, ValidationErrors } from '@angular/forms';
-`
+	
+	
+5. `import { AbstractControl, ValidationErrors } from '@angular/forms';`
+
+
 6. Let's implement some logic
 
 	```
