@@ -267,6 +267,7 @@ Now let's go back to the template to display **Specific Errors Msg**
 	So this `ValidationErrors ` represents an obj that has one or more *keys* as string and the *value* could be anything.
 
 8. So here we should return on obj and its *key* is **the name of the validarion error**: `noSpace` and because the *value* can be anything I choosed `true`
+
 	
 	```
 	export class UsernameValidators {
@@ -279,6 +280,8 @@ Now let's go back to the template to display **Specific Errors Msg**
 	  }
 	}	
 	```
+	
+	
 	
 	```
 	export class UsernameValidators {
