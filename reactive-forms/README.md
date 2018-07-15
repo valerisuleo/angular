@@ -281,6 +281,22 @@ Now let's go back to the template to display **Specific Errors Msg**
 	}	
 	```
 	
+	>In order to access this method from outside without creating an instance of 	this  `UsernameValidators` class, we decorate this method with `static`
+	
+	
+	```
+	export class UsernameValidators {
+	static noSpace(control: AbstractControl): ValidationErrors|null {
+	    if((control.value as string).indexOf(' ') >= 0) {
+	      return { noSpace: true }
+	    } else {
+	    	return null;
+	    }
+	  }
+	}	
+	```
+
+	
 	
 		
 9. Back to the `/signup-form.component.ts`
