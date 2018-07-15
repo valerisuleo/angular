@@ -244,14 +244,14 @@ Now let's go back to the template to display **Specific Errors Msg**
 
 
 6. Let's implement some logic
-
+	
 	```
-	export class UsernameValidators {
-  noSpace(control: AbstractControl): ValidationErrors|null {
-	    if((control.value as string).indexOf(' ') >= 0) {
-	      // returns some validation error
-	    }
-	  }
+		export class UsernameValidators {
+			noSpace(control: AbstractControl): ValidationErrors|null {
+			if((control.value as string).indexOf(' ') >= 0) {
+				// returns some validation error
+			}
+		}
 	}	
 	```
 	
