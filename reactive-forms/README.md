@@ -287,28 +287,29 @@ Now let's go back to the template to display **Specific Errors Msg**
 9. Back to the `/signup-form.component.ts`
 	
 	```
-	  assoForm = new FormGroup({
-    username: new FormControl('', [
-    Validators.required,
-    Validators.minLength(3),
-    UsernameValidators.noSpace
-  ]),
-    password: new FormControl('', Validators.required)
-  });
-  ```
+	assoForm = new FormGroup({
+		username: new FormControl('', [
+			Validators.required,
+			Validators.minLength(3),
+			UsernameValidators.noSpace
+		]),
+		password: new FormControl('', Validators.required)
+	});
+	```
 
 10. Back to the template
 	
 	```
 	<div *ngIf="myUsername.touched && myUsername.invalid" class="alert alert-danger">
-	<div *ngIf="myUsername.errors.required">Username is required!</div>
-	<div *ngIf="myUsername.errors.minlength">Minlength is {{ myUsername.errors.minlength.requiredLength }}!</div>
-	<div *ngIf="myUsername.errors.noSpace">Cannot contain space!</div>
+		<div *ngIf="myUsername.errors.required">Username is required!</div>
+		<div *ngIf="myUsername.errors.minlength">Minlength is {{ myUsername.errors.minlength.requiredLength }}!</div>
+		<div *ngIf="myUsername.errors.noSpace">Cannot contain space!</div>
 	</div>
 	```
 
 
 >We've put the `username.validators` inside `/signup-form` folder because this is the only place we are using this validator. In larger app chances are that several components might use the same validator. If that's the case we put all the validators in a shared folder as: `/app/common/validators`
+
 
 ## Asynchronous Validation
 
