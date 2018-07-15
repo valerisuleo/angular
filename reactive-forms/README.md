@@ -296,9 +296,10 @@ Now let's go back to the template to display **Specific Errors Msg**
     password: new FormControl('', Validators.required)
   });
   ```
+
 10. Back to the template
 	
-	```
+```
 	  <div *ngIf="myUsername.touched && myUsername.invalid" class="alert alert-danger">
       <div *ngIf="myUsername.errors.required">Username is required!</div>
       <div *ngIf="myUsername.errors.minlength">Minlength is {{ myUsername.errors.minlength.requiredLength }}!</div>
