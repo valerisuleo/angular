@@ -304,11 +304,12 @@ Now let's go back to the template to display **Specific Errors Msg**
       <div *ngIf="myUsername.errors.minlength">Minlength is {{ myUsername.errors.minlength.requiredLength }}!</div>
       <div *ngIf="myUsername.errors.noSpace">Cannot contain space!</div>
     </div>
-    ```
+ ```
+
 
 >We've put the `username.validators` inside `/signup-form` folder because this is the only place we are using this validator. In larger app chances are that several components might use the same validator. If that's the case we put all the validators in a shared folder as: `/app/common/validators`
 
-
+## Asynchronous Validation
 
 
 
