@@ -18,6 +18,7 @@ export class FilterPipe implements PipeTransform {
   }
 }
 
+
 // transform is a method and it takes 2 args:
  // 1. items (I named it 'items' but could be anything)
  // 2. query is the name of the [(ngModel)] to hooked up our input field
