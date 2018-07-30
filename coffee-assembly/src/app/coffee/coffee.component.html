@@ -1,7 +1,7 @@
 <div class="wrapper">
   <header class="l-box">
     <h1>Coffee Assembly</h1>
-    <input type="text" #caffe (keyup.enter)="onKeyUp(caffe.value)" class="search" placeholder="Search...">
+    <input [(ngModel)]="query" placeholder="coffee filter...">
   </header>
 
   <main class="coffeeIndex">
@@ -9,12 +9,13 @@
     <div class="container">
 
       <div class="row">
-        <div *ngFor="let coffee of coffeeList" class="col-lg-4">
+        <div *ngFor="let coffee of coffeeList | filter : query" class="col-lg-4">
+
           <img src="{{ coffee.image }}" alt="{{ coffee.name }}" class="pure-img">
           <h2>{{ coffee.name | uppercase }}</h2>
           <p>Price <strong>{{ coffee.price | currency:'GBP'}} / kg</strong></p>
           <p>Strength <strong>{{ coffee.strength | number:'1.2-2' }}</strong></p>
-          <p>Roast <strong>{{ coffee.roast | number }}</strong></p>
+          <p>Origin <strong>{{ coffee.origin }}</strong></p>
         </div>
       </div>
 
