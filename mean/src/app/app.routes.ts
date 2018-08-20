@@ -5,16 +5,21 @@ import { AuthGuard } from './auth.guard';
 
 
 // COMPONENTS
-import { BirdsComponent } from './birds/birds.component';
-import { BirdsShowComponent } from './birds-show/birds-show.component';
+// import { BirdsComponent } from './birds/birds.component';
+// import { BirdsShowComponent } from './birds-show/birds-show.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { IndexDocsComponent } from './rdocumenti/index-docs/index-docs.component';
 
 const appRoutes: Routes = [
-  { path: 'birds/:id', component: BirdsShowComponent},
-  { path: 'birds', component: BirdsComponent},
+  // { path: 'show/:id', component: BirdsShowComponent},
+  // { path: 'home', component: BirdsComponent},
   // { path: 'birds', component: BirdsComponent, canActivate: [AuthGuard]},
+
+  { path: 'indexdocs', component: IndexDocsComponent},
   { path: 'login', component: SignInComponent},
-  { path: '**', redirectTo: 'birds' }
+  { path: 'home', component: LandingPageComponent},
+  { path: '**', redirectTo: 'home' }
 ];
 
 export const uiRouter: ModuleWithProviders = RouterModule.forRoot(appRoutes);

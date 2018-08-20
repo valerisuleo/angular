@@ -19,6 +19,12 @@ export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
 
+// SERVICES
+import { AuthService } from './services/auth.service';
+import { BirdsService } from './services/birds/birds.service';
+import { IndexDocsService } from './services/rdocumenti/index-docs.service';
+
+
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { BirdsComponent } from './birds/birds.component';
@@ -26,10 +32,8 @@ import { BirdsShowComponent } from './birds-show/birds-show.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-
-// SERVICES
-import { AuthService } from './services/auth.service';
-import { BirdsService } from './services/birds/birds.service';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { IndexDocsComponent } from './rdocumenti/index-docs/index-docs.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,8 @@ import { BirdsService } from './services/birds/birds.service';
     BirdsShowComponent,
     SidebarComponent,
     HeaderComponent,
+    LandingPageComponent,
+    IndexDocsComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +67,7 @@ import { BirdsService } from './services/birds/birds.service';
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     BirdsService,
+    IndexDocsService,
     AuthService,
     AuthGuard
   ],
