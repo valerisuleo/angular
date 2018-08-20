@@ -11,7 +11,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 
 const appRoutes: Routes = [
   { path: 'birds/:id', component: BirdsShowComponent},
-  { path: 'birds', component: BirdsComponent, canActivate: [AuthGuard]},
+  { path: 'birds', component: BirdsComponent},
+  // { path: 'birds', component: BirdsComponent, canActivate: [AuthGuard]},
   { path: 'login', component: SignInComponent},
   { path: '**', redirectTo: 'birds' }
 ];

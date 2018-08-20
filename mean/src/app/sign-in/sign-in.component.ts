@@ -23,23 +23,12 @@ export class SignInComponent {
 
     alert('pippo')
     vm.auth.login(vm.username, vm.password)
+    .pipe(first())
     .subscribe(
       result => vm.router.navigate(['/birds']),
       err => vm.error = 'Could not authenticate'
     );
     console.log('vm', vm);
   }
-  // public submit() {
-  //   const vm = this;
-  //
-  //   alert('pippo')
-  //   vm.auth.login(vm.username, vm.password)
-  //   .pipe(first())
-  //   .subscribe(
-  //     result => vm.router.navigate(['/birds']),
-  //     err => vm.error = 'Could not authenticate'
-  //   );
-  //   console.log('vm', vm);
-  // }
 
 }

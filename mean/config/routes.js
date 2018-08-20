@@ -9,13 +9,13 @@ const secureRoute = require('../lib/secureRoute');
 router.route('/birds')
 // Here we are saying that only users who send a valid token with their request can access any of these routes.
   // 13a update secureRoute
-  .all(secureRoute)
+  // .all(secureRoute)
   .get(birds.index)
   .post(birds.create);
 
 router.route('/birds/:id')
   // 13a update secureRoute
-  .all(secureRoute)
+  // .all(secureRoute)
   .get(birds.show)
   .put(birds.update)
   .delete(birds.delete);

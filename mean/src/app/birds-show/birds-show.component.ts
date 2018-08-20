@@ -6,7 +6,7 @@ import { BirdsService } from '../services/birds/birds.service';
 @Component({
   selector: 'birds-show',
   templateUrl: './birds-show.component.html',
-  styleUrls: ['./birds-show.component.css']
+  styleUrls: ['./birds-show.component.scss']
 })
 export class BirdsShowComponent implements OnInit {
 

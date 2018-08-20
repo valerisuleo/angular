@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 // EXTRAS
@@ -13,6 +14,7 @@ import { uiRouter } from './app.routes';
 import { AuthGuard } from './auth.guard';
 
 export function tokenGetter() {
+  console.log(localStorage.getItem('access_token'));
   return localStorage.getItem('access_token');
 }
 
@@ -25,13 +27,17 @@ import { SignInComponent } from './sign-in/sign-in.component';
 // SERVICES
 import { AuthService } from './services/auth.service';
 import { BirdsService } from './services/birds/birds.service';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BirdsComponent,
     SignInComponent,
-    BirdsShowComponent
+    BirdsShowComponent,
+    SidebarComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +45,7 @@ import { BirdsService } from './services/birds/birds.service';
     HttpModule,
     uiRouter,
     FormsModule,
+    NgbModule,
     ReactiveFormsModule,
   JwtModule.forRoot({
     config: {

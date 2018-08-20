@@ -8,38 +8,22 @@ import { map } from 'rxjs/operators';
 export class AuthService {
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<any> {
-    const credentials = {username: username, password: password};
-    console.log('attempAuth ::');
-    return this.http.post('http://localhost:3000/api/login', credentials);
+  login(username: string, password: string): Observable<boolean> {
+    return this.http.post<{token: string}>('/api/login', {username: username, password: password})
+      .pipe(
+        map(result => {
+          localStorage.setItem('access_token', result.token);
+          console.log('result.token', result.token);
+          return true;
+        })
+      );
   }
 
-  // logout() {
-  //   localStorage.removeItem('access_token');
-  // }
+  logout() {
+    localStorage.removeItem('access_token');
+  }
 
-  // public get loggedIn(): boolean {
-  //   return (localStorage.getItem('access_token') !== null);
-  // }
+  public get loggedIn(): boolean {
+    return (localStorage.getItem('access_token') !== null);
+  }
 }
-// export class AuthService {
-//   constructor(private http: HttpClient) { }
-//
-//   login(username: string, password: string): Observable<boolean> {
-//     return this.http.post<{token: string}>('/api/login', {username: username, password: password})
-//       .pipe(
-//         map(result => {
-//           localStorage.setItem('access_token', result.token);
-//           return true;
-//         })
-//       );
-//   }
-//
-//   logout() {
-//     localStorage.removeItem('access_token');
-//   }
-//
-//   public get loggedIn(): boolean {
-//     return (localStorage.getItem('access_token') !== null);
-//   }
-// }
