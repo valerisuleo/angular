@@ -7,7 +7,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 // EXTRAS
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -51,6 +51,7 @@ import { LayoutComponent } from './layout/layout.component';
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
+    AngularFontAwesomeModule,
   JwtModule.forRoot({
     config: {
       tokenGetter: tokenGetter,
