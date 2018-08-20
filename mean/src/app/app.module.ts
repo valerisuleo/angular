@@ -24,13 +24,12 @@ import { AppComponent } from './app.component';
 import { BirdsComponent } from './birds/birds.component';
 import { BirdsShowComponent } from './birds-show/birds-show.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HeaderComponent } from './components/header/header.component';
 
 // SERVICES
 import { AuthService } from './services/auth.service';
 import { BirdsService } from './services/birds/birds.service';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HeaderComponent } from './components/header/header.component';
-import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,6 @@ import { LayoutComponent } from './layout/layout.component';
     BirdsShowComponent,
     SidebarComponent,
     HeaderComponent,
-    LayoutComponent,
   ],
   imports: [
     BrowserModule,
