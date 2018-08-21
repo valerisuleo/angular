@@ -29,6 +29,7 @@ export class IndexDocsComponent implements OnInit {
     {id:6, optionName: 'high prioryty'}
   ];
 
+
   constructor(private service: IndexDocsService) { }
 
 
@@ -40,7 +41,17 @@ export class IndexDocsComponent implements OnInit {
     console.log('f', f.value)
   }
 
+  today = new Date();
 
+  dateRange = {
+    startDate: Date,
+    endDate: Date
+  }
+
+  updateDateRange(obj) {
+    this.dateRange.startDate = obj.startDate;
+    this.dateRange.endDate = obj.endDate;
+  }
 
   ngOnInit() {
     // const vm = this;

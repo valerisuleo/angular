@@ -1,4 +1,4 @@
-<form form #f="ngForm" (ngSubmit)="submit(f)">
+<form name="form" #f="ngForm" (ngSubmit)="submit(f)">
   <div class="row">
     <!-- LEFT COL -->
     <div class="col-md-6">
@@ -6,10 +6,10 @@
         <label for="contactMethod">Canale</label>
         <!-- to allow users to select multiple choices we can use the multiple attribute -->
         <!-- <select class="form-control" multiple ngModel name="contactMethod"> -->
-        <select class="form-control" ngModel name="contactMethod">
+      <select class="form-control" ngModel name="contactMethod">
           <!-- <option *ngFor="let option of options" [value]="option.id"> -->
-          <option *ngFor="let option of canale" [ngValue]="option">
-            {{ option.optionName }}
+          <option *ngFor="let assolo of canale" [ngValue]="assolo">
+            {{ assolo.optionName }}
           </option>
         </select>
       </div>
@@ -36,11 +36,11 @@
     <div class="col-md-6">
       <div class="form-group">
         <label for="codicepos">Codice POS</label>
-        <input ngModel name="codicepos" #passname="ngModel" (change)="log(passname)"
+        <input ngModel name="codicepos" #passpos="ngModel" (change)="log(passpos)"
         type="text" id="codicepos" class="form-control" required>
       </div>
 
-      <div class="alert alert-danger" *ngIf="passname.touched && !passname.valid">Codice POS is required</div>
+      <div class="alert alert-danger" *ngIf="passpos.touched && !passpos.valid">Codice POS is required</div>
 
       <div class="row">
         <div class="col-md-4">
@@ -58,14 +58,20 @@
           </div>
         </div>
 
-        <div class="col-md-8">
+        <!-- <div class="col-md-8">
           <div class="form-group">
-            <label for="codicepos">.</label>
-            <input ngModel name="codicepos" #passname="ngModel" (change)="log(passname)"
-            type="text" id="codicepos" class="form-control" placeholder="+39">
+            <label for="faxmittente">.</label>
+            <input ngModel name="faxmittente" #passname="ngModel" (change)="log(passname)"
+            type="text" id="faxmittente" class="form-control" placeholder="+39">
           </div>
-        </div>
+        </div> -->
 
+      </div>
+
+      <div class="row">
+        <ngbd-datepicker-range [initialDate]="today" (onDateSelected)="updateDateRange($event)"></ngbd-datepicker-range>
+        <input type="hidden" [(ngModel)]="dateRange.startDate" name="startDate" id="startDate" value="">
+        <input type="hidden" [(ngModel)]="dateRange.endDate" name="endDate" id="endDate" value="">
       </div>
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import {NgbDate, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -14,6 +14,10 @@ export class NgbdDatepickerRange {
   fromDate: NgbDate;
   toDate: NgbDate;
 
+  @Input() initialDate: Date;
+  @Output() onDateSelected = new EventEmitter();
+
+
   constructor(calendar: NgbCalendar) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 0);
@@ -28,6 +32,8 @@ export class NgbdDatepickerRange {
       this.toDate = null;
       this.fromDate = date;
     }
+
+    this.onDateSelected.emit({startDate: this.fromDate, endDate: this.toDate });
   }
 
   isHovered = (date: NgbDate) => this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
