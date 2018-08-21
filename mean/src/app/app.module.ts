@@ -34,6 +34,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { IndexDocsComponent } from './rdocumenti/index-docs/index-docs.component';
+import { NgbdDatepickerRange } from './datepicker-range/datepicker-range.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { IndexDocsComponent } from './rdocumenti/index-docs/index-docs.component
     HeaderComponent,
     LandingPageComponent,
     IndexDocsComponent,
+    NgbdDatepickerRange,
   ],
   imports: [
     BrowserModule,
