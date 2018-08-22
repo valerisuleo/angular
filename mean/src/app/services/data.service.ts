@@ -13,4 +13,8 @@ export class DataService {
   get(id) {
     return this.http.get(this.url + '/' + id);
   }
+
+  sendFilters(newResource) {
+    return this.http.post(this.url, JSON.stringify(newResource));
+  }
 }

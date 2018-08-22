@@ -1,3 +1,109 @@
-<p>
-  sidebar works!
-</p>
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+    <div class="list-group">
+        <!-- ESTRATTI DA TE -->
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="addExpandClass('pages')">
+          <i class="fa fa-shopping-bag"></i>&nbsp;
+          <!-- <span>{{ 'Menu' | translate }}</span> -->
+          <span>Estratti da Te</span>
+        </a>
+      </div>
+
+<!-- CODE DI LAVORO -->
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="addExpandClass('pages')">
+          <i class="fa fa-tasks"></i>&nbsp;
+          <!-- <span>{{ 'Menu' | translate }}</span> -->
+          <span>Code di Lavoro</span>
+        </a>
+        <li class="nested" [class.expand]="showMenu === 'pages'">
+          <ul class="submenu">
+            <li>
+              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fax"></i>&nbsp;
+                <!-- <span>{{ 'Component' | translate }}</span> -->
+                <span>Consumer</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fax"></i>&nbsp;
+                <!-- <span>{{ 'Component' | translate }}</span> -->
+                <span>Business</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fax"></i>&nbsp;
+                <!-- <span>{{ 'Component' | translate }}</span> -->
+                <span>High Priority</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fax"></i>&nbsp;
+                <!-- <span>{{ 'Component' | translate }}</span> -->
+                <span>Cliente</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </div>
+
+<!-- FUNZIONALITÀ -->
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="addExpandClass('pages')">
+          <i class="fa fa-fw fa-wrench"></i>&nbsp;
+          <!-- <span>{{ 'Menu' | translate }}</span> -->
+          <span>Funzionalità</span>
+        </a>
+        <li class="nested" [class.expand]="showMenu === 'pages'">
+          <ul class="submenu">
+            <li>
+              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-desktop"></i>&nbsp;
+                <!-- <span>{{ 'Component' | translate }}</span> -->
+                <span>Monitor CdL</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-search"></i>&nbsp;
+                <!-- <span>{{ 'Component' | translate }}</span> -->
+                <span>Ricerca Pratiche</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-search"></i>&nbsp;
+                <!-- <span>{{ 'Component' | translate }}</span> -->
+                <span>Ricerca Clienti</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/indexdocs']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-search"></i>&nbsp;
+                <!-- <span>{{ 'Component' | translate }}</span> -->
+                <span>Ricerca Docs</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </div>
+
+
+        <!-- <i class="fa fa-caret-down"></i>&nbsp; -->
+
+
+      <div class="header-fields">
+        <a (click)="rltAndLtr()" class="list-group-item">
+          <!-- <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span> -->
+        </a>
+        </div>
+      </div>
+
+      <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+        <i class="fa fa-fw fa-angle-double-left"></i>&nbsp;
+        <!-- <span>{{ 'Collapse Sidebar' | translate }}</span> -->
+      </div>
+    </nav>
