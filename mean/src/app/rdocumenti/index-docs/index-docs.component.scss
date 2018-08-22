@@ -1,0 +1,21 @@
+.form-control.ng-invalid.ng-dirty.ng-touched{
+  border: 2px solid red;
+}
+
+:host /deep/ .datepicker-input {
+  .custom-select {
+    width: 50%;
+  }
+}
+
+.date-popup{
+  display: none;
+}
+
+.active{
+  display: block;
+}
+
+.nope{
+  display: none;
+}
