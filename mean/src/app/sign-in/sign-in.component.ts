@@ -21,11 +21,10 @@ export class SignInComponent {
   public submit() {
     const vm = this;
 
-    alert('pippo')
     vm.auth.login(vm.username, vm.password)
     .pipe(first())
     .subscribe(
-      result => vm.router.navigate(['/birds']),
+      result => vm.router.navigate(['/home']),
       err => vm.error = 'Could not authenticate'
     );
     console.log('vm', vm);

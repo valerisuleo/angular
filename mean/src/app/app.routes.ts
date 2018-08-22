@@ -17,10 +17,9 @@ const appRoutes: Routes = [
   // { path: 'home', component: BirdsComponent},
   // { path: 'birds', component: BirdsComponent, canActivate: [AuthGuard]},
 
-  { path: 'dpick', component: NgbdDatepickerRange},
   { path: 'indexdocs', component: IndexDocsComponent},
   { path: 'login', component: SignInComponent},
-  { path: 'home', component: LandingPageComponent},
+  { path: 'home', component: LandingPageComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'home' }
 ];
 

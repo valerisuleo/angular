@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{token: string}>('/api/login', {username: username, password: password})
+    return this.http.post<{token: string}>('/DocCRMH3G/login', {username: username, password: password})
       .pipe(
         map(result => {
           localStorage.setItem('access_token', result.token);

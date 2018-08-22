@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {NgbDate, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -14,7 +14,6 @@ export class NgbdDatepickerRange {
   fromDate: NgbDate;
   toDate: NgbDate;
 
-  @Input() initialDate: Date;
   @Output() onDateSelected = new EventEmitter();
 
 

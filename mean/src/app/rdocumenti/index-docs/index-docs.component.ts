@@ -4,6 +4,11 @@ import { IndexDocsService } from '../../services/rdocumenti/index-docs.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+export interface IDateRange {
+  startDate: Date;
+  endDate: Date;
+  placeHolder: string;
+}
 
 @Component({
   selector: 'index-docs',
@@ -12,15 +17,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class IndexDocsComponent implements OnInit {
 
-  allDocs: any[];
+  filterParams = {};
+  filterResults: any[];
 
-  model: any;
+  isActive = false;
 
+// FAKE OPTIONS TO POPULATE TEMPLATE
   searchOptions = [
-    {id:1, optionName: 'Fax in'},
-    {id:2, optionName: 'Casella Postale'},
-    {id:3, optionName: 'Lavorato'},
-    {id:7, optionName: 'Cerca nel cestino'}
+    {id:1, radioName: 'Fax in'},
+    {id:2, radioName: 'Casella Postale'},
+    {id:3, radioName: 'Lavorato'},
+    {id:7, radioName: 'Cerca nel cestino'}
   ];
 
   canale = [
@@ -29,37 +36,58 @@ export class IndexDocsComponent implements OnInit {
     {id:6, optionName: 'high prioryty'}
   ];
 
+  matchFax = [
+    {id:12, optionMatch: 'Uguale a'},
+    {id:22, optionMatch: 'Contiene'},
+  ];
 
-  constructor(private service: IndexDocsService) { }
 
+  constructor(private service: IndexDocsService) {}
 
-  log(asso) {
-    console.log('asso', asso);
+  dateRange:IDateRange = {
+    startDate: null,
+    endDate: null,
+    placeHolder: null
   }
 
-  submit(f) {
-    console.log('f', f.value)
-  }
 
-  today = new Date();
-
-  dateRange = {
-    startDate: Date,
-    endDate: Date
-  }
 
   updateDateRange(obj) {
-    this.dateRange.startDate = obj.startDate;
-    this.dateRange.endDate = obj.endDate;
+    const vm = this;
+    const btn = document.getElementsByClassName('mais')[0];
+
+    vm.dateRange.startDate = obj.startDate;
+    vm.dateRange.endDate = obj.endDate;
+
+    if (obj.startDate != null) {
+      vm.dateRange.placeHolder = `From ${obj.startDate.day}/${obj.startDate.month}/${obj.startDate.year} `;
+    }
+
+    if (obj.endDate != null) {
+      vm.dateRange.placeHolder += ` To ${obj.endDate.day}/${obj.endDate.month}/${obj.endDate.year}`;
+      vm.isActive = false;
+      btn.classList.remove('nope');
+    }
+  }
+
+
+  toggleDataPicker() {
+    this.isActive = !this.isActive;
+  }
+
+  docsFilter(docsform) {
+    const vm = this;
+
+    vm.filterParams = docsform.value;
+    console.log(vm.filterParams);
+
+    // vm.service.sendFilters(vm.filterParams)
+    // .subscribe((response) => {
+    //   vm.filterResults = response.json();
+    // });
+    // docsform.reset();
   }
 
   ngOnInit() {
-    // const vm = this;
-    //
-    // vm.service.getAll()
-    // .subscribe((response) => {
-    //   vm.allDocs = response.json();
-    //   console.log('allDocs', vm.allDocs);
-    // });
   }
 }

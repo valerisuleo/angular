@@ -7,6 +7,6 @@ import { DataService } from '../data.service';
 export class IndexDocsService extends DataService {
 
   constructor(http: Http) {
-    super('https://jsonplaceholder.typicode.com/comments', http);
+    super('https://ga-doughnuts.herokuapp.com/doughnuts', http);
   }
 }
