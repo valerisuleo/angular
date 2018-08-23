@@ -96,3 +96,29 @@
 
   <!-- <p>{{ docsform.value | json }}</p> -->
 </form>
+
+<div class="row">
+.
+</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Mail</th>
+      <th scope="col">postId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <tr *ngFor="let doc of onLoad">
+      <th scope="row">{{doc.id}}</th>
+      <td>{{doc.name}}</td>
+      <td>{{doc.email}}</td>
+      <td>{{doc.postId}}</td>
+
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-primary" (click)='nextPage()'>Next</button>

@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   // { path: 'show/:id', component: BirdsShowComponent},
   // { path: 'birds', component: BirdsComponent, canActivate: [AuthGuard]},
 
-  { path: 'index-docs', component: IndexDocsComponent, canActivate: [AuthGuard]},
+  { path: 'docs-list', component: IndexDocsComponent, canActivate: [AuthGuard]},
   { path: 'login', component: SignInComponent},
   { path: 'home', component: LandingPageComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'home' }

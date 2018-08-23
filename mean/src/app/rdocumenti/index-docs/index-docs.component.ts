@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IndexDocsService } from '../../services/rdocumenti/index-docs/index-docs.service';
 import { InitDocsService } from '../../services/rdocumenti/init/init-docs.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'index-docs',
+  selector: 'docs-list',
   templateUrl: './index-docs.component.html',
   styleUrls: ['./index-docs.component.scss']
 })
 export class IndexDocsComponent implements OnInit {
 
   filterParams = {};
-
-  filteredResults: any[];
   allDocsParams: any[];
+
+  allDocs: any[];
+  onLoad: any[];
+  indexArray: number;
+  pageNumber: number;
 
   isActive = false;
 
@@ -25,7 +29,14 @@ export class IndexDocsComponent implements OnInit {
   }
 
 
-  constructor(private service: InitDocsService, private serviceDocs: IndexDocsService ) {}
+  constructor(
+    private service: InitDocsService,
+    private serviceDocs: IndexDocsService,
+    private route: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef ) {
+
+    this.indexArray = 10;
+  }
 
   updateDateRange(obj) {
     const vm = this;
@@ -58,23 +69,32 @@ export class IndexDocsComponent implements OnInit {
     // console.log(vm.filterParams);
 
 
-    vm.serviceDocs.getAll()
-    .subscribe((response) => {
-      vm.filteredResults = response.json();
-      console.log('filteredResults', vm.filteredResults);
-    })
 
 
     // vm.service.sendFilters(vm.filterParams)
     // .subscribe((response) => {
-    //   vm.filteredResults = response.json();
+    //   vm.allDocs = response.json();
     // });
     // docsform.reset();
   }
 
+  nextPage() {
+    const vm = this;
+    vm.pageNumber++;
+    vm.onLoad = vm.allDocs.slice(((vm.pageNumber-1) * vm.indexArray), (vm.pageNumber*vm.indexArray));
+    console.log('allDocs', vm.allDocs);
+  }
 
   ngOnInit() {
-    //   const vm = this;
+
+    const vm = this;
+    vm.pageNumber = 1;
+
+    vm.serviceDocs.getAll()
+    .subscribe((response) => {
+      vm.allDocs = response.json();
+      vm.onLoad = vm.allDocs.slice(0, vm.indexArray);
+    })
     //
     //   vm.service.getAll()
     //   .subscribe((response) => {
