@@ -16,7 +16,7 @@ export class IndexDocsComponent implements OnInit {
   allDocsParams: any[];
 
   allDocs: any[];
-  onLoad: any[];
+  limit: any[];
   indexArray: number;
   pageNumber: number;
 
@@ -36,6 +36,8 @@ export class IndexDocsComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef ) {
 
     this.indexArray = 10;
+    this.pageNumber = 1;
+
   }
 
   updateDateRange(obj) {
@@ -67,10 +69,6 @@ export class IndexDocsComponent implements OnInit {
 
     vm.filterParams = docsform.value;
     // console.log(vm.filterParams);
-
-
-
-
     // vm.service.sendFilters(vm.filterParams)
     // .subscribe((response) => {
     //   vm.allDocs = response.json();
@@ -81,20 +79,18 @@ export class IndexDocsComponent implements OnInit {
   nextPage() {
     const vm = this;
     vm.pageNumber++;
-    vm.onLoad = vm.allDocs.slice(((vm.pageNumber-1) * vm.indexArray), (vm.pageNumber*vm.indexArray));
-    console.log('allDocs', vm.allDocs);
+    vm.limit = vm.allDocs.slice(((vm.pageNumber-1) * vm.indexArray), (vm.pageNumber*vm.indexArray));
   }
 
   ngOnInit() {
-
     const vm = this;
-    vm.pageNumber = 1;
 
     vm.serviceDocs.getAll()
     .subscribe((response) => {
       vm.allDocs = response.json();
-      vm.onLoad = vm.allDocs.slice(0, vm.indexArray);
-    })
+      vm.limit = vm.allDocs.slice(0, vm.indexArray);
+    });
+
     //
     //   vm.service.getAll()
     //   .subscribe((response) => {
