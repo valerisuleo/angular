@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// import { IndexDocsService } from '../../services/rdocumenti/index-docs/index-docs.service';
+import { IndexDocsService } from '../../services/rdocumenti/index-docs/index-docs.service';
 import { InitDocsService } from '../../services/rdocumenti/init/init-docs.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-export interface IDateRange {
-  startDate: Date;
-  endDate: Date;
-  placeHolder: string;
-}
 
 @Component({
   selector: 'index-docs',
@@ -19,24 +12,23 @@ export interface IDateRange {
 export class IndexDocsComponent implements OnInit {
 
   filterParams = {};
-  filterResults: any[];
+
+  filteredResults: any[];
   allDocsParams: any[];
 
   isActive = false;
 
-
-
-  constructor(private service: InitDocsService) {}
-
-  dateRange:IDateRange = {
+  dateRange = {
     startDate: null,
     endDate: null,
     placeHolder: null
   }
 
+
+  constructor(private service: InitDocsService, private serviceDocs: IndexDocsService ) {}
+
   updateDateRange(obj) {
     const vm = this;
-    const btn = document.getElementsByClassName('search-docs')[0];
 
     vm.dateRange.startDate = obj.startDate;
     vm.dateRange.endDate = obj.endDate;
@@ -46,9 +38,8 @@ export class IndexDocsComponent implements OnInit {
     }
 
     if (obj.endDate != null) {
-      vm.dateRange.placeHolder += ` To ${obj.endDate.day}/${obj.endDate.month}/${obj.endDate.year}`;
+      vm.dateRange.placeHolder += `To ${obj.endDate.day}/${obj.endDate.month}/${obj.endDate.year}`;
       vm.isActive = false;
-      btn.classList.remove('nope');
     }
   }
 
@@ -57,21 +48,30 @@ export class IndexDocsComponent implements OnInit {
     this.isActive = !this.isActive;
   }
 
+
   docsFilter(docsform) {
     const vm = this;
-    const myVar = this.dateRange.endDate;
+    const preventSubmit = this.dateRange.endDate;
+    // (preventSubmit === null) ? false : console.log('all good');
 
     vm.filterParams = docsform.value;
-    console.log(vm.filterParams);
+    // console.log(vm.filterParams);
 
-    (myVar === null) ? false : console.log('all good');
+
+    vm.serviceDocs.getAll()
+    .subscribe((response) => {
+      vm.filteredResults = response.json();
+      console.log('filteredResults', vm.filteredResults);
+    })
+
 
     // vm.service.sendFilters(vm.filterParams)
     // .subscribe((response) => {
-    //   vm.filterResults = response.json();
+    //   vm.filteredResults = response.json();
     // });
     // docsform.reset();
   }
+
 
   ngOnInit() {
     //   const vm = this;

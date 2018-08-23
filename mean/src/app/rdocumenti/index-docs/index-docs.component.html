@@ -44,17 +44,29 @@
 
     <!-- Right -->
     <div class="col-md-6">
-      <div class="form-group">
-        <label for="">Data Fax (Da, a)</label>
 
-          <div class="input-group" (click)="toggleDataPicker()">
-            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4">
+            <label><span>*</span>Data Fax (Da, a)</label>
+
+            <div class="input-group">
+              <span class="input-group-text" (click)="toggleDataPicker()">
+                <i class="fa fa-calendar"></i>
+              </span>
+            </div>
+            <input type="text" class="form-control" id="datepicker"
+             name="datepicker" #mydatepicker [(ngModel)]="dateRange.placeHolder" value="{{ dateRange.placeHolder }}" required>
+
           </div>
 
-          <label for="dateRange">{{ dateRange.placeHolder }}</label>
-          <input type="text" name="dateRange" class="form-control" id="datepicker"
-          tabindex="-1" style="border:1px solid red ;width:120px; height:20px;" required>
+          <div class="col-md-8">
+            <label>.</label>
+            <p>{{ dateRange.placeHolder}}</p>
+          </div>
         </div>
+      </div>
+
         <!-- DateRange Picker -->
         <ngbd-datepicker-range (onDateSelected)="updateDateRange($event)" class="date-popup" [class.active]="isActive"></ngbd-datepicker-range>
         <input type="hidden" [(ngModel)]="dateRange.startDate" name="startDate" id="startDate" value="">
@@ -81,7 +93,6 @@
   </div>
 
   <input type="submit" value="Ricerca" class="search-docs" [disabled]="!docsform.valid">
-  <!-- <button class="btn btn-primary" (click)="log(docsform); $event.preventDefault()">Preview</button> -->
 
-  <p>{{ docsform.value | json }}</p>
+  <!-- <p>{{ docsform.value | json }}</p> -->
 </form>

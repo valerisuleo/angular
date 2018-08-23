@@ -19,3 +19,25 @@
 .nope{
   display: none;
 }
+
+#datepicker{
+  display: none;
+}
+
+.col-md-4{
+  label{
+    span{
+      color: red;
+      font-weight: bold;
+    }
+  }
+}
+
+.col-md-8{
+  label{
+    color: #fff;
+  }
+  p{
+    letter-spacing: 1px;
+  }
+}

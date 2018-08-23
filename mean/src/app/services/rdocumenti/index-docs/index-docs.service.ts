@@ -7,6 +7,6 @@ import { DataService } from '../../data.service';
 export class IndexDocsService extends DataService {
 
   constructor(http: Http) {
-    super('http://172.18.205.181:8282/DocCRMH3G/birds', http);
+    super('https://jsonplaceholder.typicode.com/comments', http);
   }
 }
