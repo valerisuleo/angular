@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IndexDocsService } from '../../services/rdocumenti/index-docs/index-docs.service';
 import { InitDocsService } from '../../services/rdocumenti/init/init-docs.service';
@@ -32,8 +32,7 @@ export class IndexDocsComponent implements OnInit {
   constructor(
     private service: InitDocsService,
     private serviceDocs: IndexDocsService,
-    private route: ActivatedRoute,
-    private changeDetectorRef: ChangeDetectorRef ) {
+    private route: ActivatedRoute ) {
 
     this.indexArray = 10;
     this.pageNumber = 1;
@@ -76,11 +75,27 @@ export class IndexDocsComponent implements OnInit {
     // docsform.reset();
   }
 
+
+
+
   nextPage() {
     const vm = this;
     vm.pageNumber++;
     vm.limit = vm.allDocs.slice(((vm.pageNumber-1) * vm.indexArray), (vm.pageNumber*vm.indexArray));
   }
+
+  previousPage() {
+    const vm = this;
+    vm.pageNumber--;
+
+    if (vm.limit.length === 10) {
+      vm.limit = vm.allDocs.slice(((vm.pageNumber-1) * vm.indexArray), (vm.pageNumber*vm.indexArray));
+    } else if (vm.limit.length < 10) {
+      (<HTMLInputElement> document.getElementById("previous-btn")).disabled = true;
+      return false
+    }
+  }
+
 
   ngOnInit() {
     const vm = this;
