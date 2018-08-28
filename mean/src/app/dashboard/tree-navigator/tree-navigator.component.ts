@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { TreeComponent, TreeModel, TreeNode } from 'angular-tree-component';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -7,30 +6,48 @@ import { TreeComponent, TreeModel, TreeNode } from 'angular-tree-component';
   templateUrl: './tree-navigator.component.html',
   styleUrls: ['./tree-navigator.component.scss']
 })
-export class TreeNavigatorComponent implements AfterViewInit {
+export class TreeNavigatorComponent implements OnInit {
 
-  nodes = [
+  activities = [
     {
-      id: 4,
-      name: 'Attività',
-      children: [
+      id:"1",
+      name:"folder",
+      channel:[
         {
-          id: 6,
-          name: 'Canale',
-          children: [
-            { id: 7, name: 'Documento' }
+          id:"4",
+          name:"folder-inside",
+          documents:[
+            {
+              id:"8",
+              name:"file"
+            }
+            // {
+            //   id:"9",
+            //   name:"file"
+            // },
+            // {
+            //   id:"10",
+            //   name:"file"
+            // }
           ]
         }
       ]
     }
-  ];
-  @ViewChild('tree') tree;
+  ]
 
 
-  constructor() { }
 
-  ngAfterViewInit() {
-    this.tree.treeModel.expandAll();
+  isOpen: boolean;
+
+  toggleTree() {
+    console.log('wow');
+    this.isOpen = !this.isOpen;
   }
+
+
+  ngOnInit() {
+    this.isOpen = true;
+  }
+
 
 }

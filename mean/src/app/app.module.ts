@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { TreeModule } from 'angular-tree-component';
+
 
 
 // EXTRAS
@@ -75,7 +75,6 @@ import { ProgressTrackerComponent } from './dashboard/progress-tracker/progress-
     NgbModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
-    TreeModule.forRoot(),
   JwtModule.forRoot({
     config: {
       tokenGetter: tokenGetter,

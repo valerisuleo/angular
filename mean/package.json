@@ -25,7 +25,6 @@
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "^3.0.1",
     "angular-font-awesome": "^3.1.2",
-    "angular-tree-component": "^8.0.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.0.0",
@@ -37,6 +36,7 @@
     "popper.js": "^1.14.4",
     "progress-tracker": "^1.4.0",
     "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.2.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
