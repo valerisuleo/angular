@@ -1,15 +1,9 @@
 <ul class="list-group" *ngFor="let activity of activities">
   <li class="list-group-item">
-    <span
-      class="fa"
-      [class.fa-folder]="!isOpen"
-      [class.fa-folder-open]="isOpen"
-      (click)="toggleTree()"
-      ></span>
-
-
-    {{ activity.name }}
-  </li>
+    <span class="fa"
+    [class.fa-folder]="!isOpen"
+    [class.fa-folder-open]="isOpen"
+    (click)="toggleTree()"></span>{{ activity.name }}</li>
 
   <ul class="list-group" *ngFor="let baby of activity.channel">
     <li class="list-group-item my-baby" [class.open]="isOpen"><span><i class="fa fa-folder-open"></i></span>{{ baby.name }}</li>

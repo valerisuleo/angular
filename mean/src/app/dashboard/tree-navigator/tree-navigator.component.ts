@@ -20,7 +20,7 @@ export class TreeNavigatorComponent implements OnInit {
             {
               id:"8",
               name:"file"
-            }
+            },
             // {
             //   id:"9",
             //   name:"file"

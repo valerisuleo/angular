@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 
 
@@ -73,6 +75,7 @@ import { ProgressTrackerComponent } from './dashboard/progress-tracker/progress-
     uiRouter,
     FormsModule,
     NgbModule,
+    PdfViewerModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
   JwtModule.forRoot({
