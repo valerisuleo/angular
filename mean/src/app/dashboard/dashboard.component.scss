@@ -1,6 +1,5 @@
-
 .box{
-  // position: relative;
+  position: relative;
   border-radius: 3px;
   border-top: 3px solid #d2d6de;
   margin-bottom: 20px;
@@ -13,22 +12,32 @@
   border-top-color: #3c8dbc;
 }
 
-.row.nomargin{
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-}
-
 label{
-  font-size: 18px;
-  margin: 1%;
+  padding-top: 3%;
 }
 
 
+// Making space between the 3 divs in the last row
 div{
   .row.nomargin{
+    margin-left: 0px;
+    margin-right: 0px;
     &:nth-child(4){
-      label{
-        margin: 4%;
+      div.col-xl-3{
+        height: 60vh;
+        overflow: auto;
+        &:nth-child(1){
+          border-right: 5px solid #ecf0f5;
+        }
+        &:nth-child(3){
+          border-left: 5px solid #ecf0f5;
+        }
+      }
+      div.col-xl-6{
+        border-left: 5px solid #ecf0f5;
+        border-right: 5px solid #ecf0f5;
+        height: 60vh;
+        overflow: auto;
       }
     }
   }
