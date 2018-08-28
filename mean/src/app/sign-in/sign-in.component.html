@@ -1,13 +1,23 @@
-<form (ngSubmit)="submit()">
-  <div class="form-group col-3">
-    <label for="username">Username</label>
-    <input type="text" name="username" class="form-control" [(ngModel)]="username" />
+<div class="login-page">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <!-- <img src="assets/images/logo.png" width="150px" class="user-avatar" /> -->
+      <h1>SB Admin BS4 Angular5</h1>
+      <form (ngSubmit)="submit()">
+        <div class="form-content">
+          <div class="form-group">
+            <input type="text" class="form-control input-underline input-lg"
+            autocomplete="off" placeholder="username"
+            name="username" [(ngModel)]="username" />
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control input-underline input-lg" placeholder="Password"
+            name="password" [(ngModel)]="password" />
+          </div>
+        </div>
+        <input type="submit" class="btn rounded-btn" value="Login">
+      </form>
+    </div>
   </div>
-  <div class="form-group col-3">
-    <label for="password">Password</label>
-    <input type="password" name="password" class="form-control" [(ngModel)]="password" />
-  </div>
-  <div class="form-group col-3">
-    <button class="btn btn-primary" type="submit">Login</button>
-  </div>
-</form>
+</div>

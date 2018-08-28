@@ -92,15 +92,18 @@
 
   </div>
 
-  <input type="submit" value="Ricerca" class="search-docs" [disabled]="!docsform.valid">
+  <button class="btn btn-primary" [disabled]="!docsform.valid">Ricerca</button>
 
-  <!-- <p>{{ docsform.value | json }}</p> -->
+
+  <p>{{ docsform.value | json }}</p>
 </form>
 
 <div class="row">
 .
 </div>
-<table class="table">
+
+<div class="table-docs nope">
+  <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">id</th>
@@ -121,16 +124,26 @@
   </tbody>
 </table>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item" (click)="previousPage()">
-      <a class="page-link" tabindex="-1" id="previous-btn">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item" (click)="nextPage()">
-      <a class="page-link">Next</a>
-    </li>
-  </ul>
-</nav>
+<div class="row">
+  <div class="col-md-9"></div>
+  <div class="col-md-3">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+
+        <li class="page-item" (click)="previousPage()">
+          <a class="page-link" tabindex="-1" id="previous-btn">
+            <i class="fa fa-backward"></i>
+          </a>
+        </li>
+
+        <li class="page-item" (click)="nextPage()">
+          <a class="page-link" tabindex="-1">
+            <i class="fa fa-forward"></i>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+</div>
+</div>

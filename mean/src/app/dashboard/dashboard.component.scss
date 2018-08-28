@@ -1,0 +1,25 @@
+
+.box{
+  position: relative;
+  border-radius: 3px;
+  border-top: 3px solid #d2d6de;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  background-color: white;
+  font-size: 12px;
+}
+
+.box-primary {
+  border-top-color: #3c8dbc;
+}
+
+.row.nomargin{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+label{
+  font-size: 18px;
+  margin: 1%;
+}

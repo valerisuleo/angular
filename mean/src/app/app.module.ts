@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { TreeModule } from 'angular-tree-component';
+
 
 // EXTRAS
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -36,6 +38,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { IndexDocsComponent } from './rdocumenti/index-docs/index-docs.component';
 import { NgbdDatepickerRange } from './datepicker-range/datepicker-range.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ToolBarComponent } from './dashboard/tool-bar/tool-bar.component';
+import { OverviewComponent } from './dashboard/overview/overview.component';
+import { TreeNavigatorComponent } from './dashboard/tree-navigator/tree-navigator.component';
+import { ContentViewerComponent } from './dashboard/content-viewer/content-viewer.component';
+import { MetadataNavigatorComponent } from './dashboard/metadata-navigator/metadata-navigator.component';
+import { ProgressTrackerComponent } from './dashboard/progress-tracker/progress-tracker.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +57,13 @@ import { NgbdDatepickerRange } from './datepicker-range/datepicker-range.compone
     LandingPageComponent,
     IndexDocsComponent,
     NgbdDatepickerRange,
+    DashboardComponent,
+    ToolBarComponent,
+    OverviewComponent,
+    TreeNavigatorComponent,
+    ContentViewerComponent,
+    MetadataNavigatorComponent,
+    ProgressTrackerComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +75,7 @@ import { NgbdDatepickerRange } from './datepicker-range/datepicker-range.compone
     NgbModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
+    TreeModule.forRoot(),
   JwtModule.forRoot({
     config: {
       tokenGetter: tokenGetter,

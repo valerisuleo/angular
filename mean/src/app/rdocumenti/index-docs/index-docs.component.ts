@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { IndexDocsService } from '../../services/rdocumenti/index-docs/index-docs.service';
 import { InitDocsService } from '../../services/rdocumenti/init/init-docs.service';
 
@@ -29,14 +28,11 @@ export class IndexDocsComponent implements OnInit {
   }
 
 
-  constructor(
-    private service: InitDocsService,
-    private serviceDocs: IndexDocsService,
-    private route: ActivatedRoute ) {
+
+  constructor( private service: InitDocsService, private serviceDocs: IndexDocsService ) {
 
     this.indexArray = 10;
     this.pageNumber = 1;
-
   }
 
   updateDateRange(obj) {
@@ -64,15 +60,17 @@ export class IndexDocsComponent implements OnInit {
   docsFilter(docsform) {
     const vm = this;
     const preventSubmit = this.dateRange.endDate;
+    const tbList = document.getElementsByClassName('table-docs')[0];
     // (preventSubmit === null) ? false : console.log('all good');
 
-    vm.filterParams = docsform.value;
+    // vm.filterParams = docsform.value;
     // console.log(vm.filterParams);
     // vm.service.sendFilters(vm.filterParams)
     // .subscribe((response) => {
     //   vm.allDocs = response.json();
     // });
-    // docsform.reset();
+    tbList.classList.remove('nope');
+    docsform.reset();
   }
 
 
@@ -83,6 +81,7 @@ export class IndexDocsComponent implements OnInit {
     vm.pageNumber++;
     vm.limit = vm.allDocs.slice(((vm.pageNumber-1) * vm.indexArray), (vm.pageNumber*vm.indexArray));
   }
+
 
   previousPage() {
     const vm = this;
