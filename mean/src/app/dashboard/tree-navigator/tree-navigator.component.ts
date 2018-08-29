@@ -35,8 +35,6 @@ export class TreeNavigatorComponent implements OnInit {
     }
   ]
 
-
-
   isOpen: boolean;
 
   toggleTree() {
@@ -44,10 +42,7 @@ export class TreeNavigatorComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
-
   ngOnInit() {
     this.isOpen = true;
   }
-
-
 }

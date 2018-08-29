@@ -7,9 +7,9 @@
       <div class="form-group">
         <label for="canale">Seleziona Canale</label>
         <select class="form-control" ngModel name="canale" #mycanale="ngModel" id="canale">
-          <option *ngFor="let assolo of canale" [ngValue]="assolo">
-            {{ assolo.optionName }}
-          </option>
+          <optgroup *ngFor="let selectChannels of allParams">
+            <option *ngFor="let channelSelected of selectChannels.selectChannels" [ngValue]="channelSelected">{{ channelSelected.channelName }}</option>
+          </optgroup>
         </select>
       </div>
 
@@ -20,7 +20,9 @@
           <div class="form-group">
             <label for="contactMethod">Fax Mittente</label>
             <select class="form-control" ngModel name="match" #mymatch="ngModel" id="match">
-              <option [value]="match.id" *ngFor="let match of matchFax">{{ match.optionMatch }}</option>
+              <optgroup *ngFor="let selectFaxes of allParams">
+                <option *ngFor="let faxSelected of selectFaxes.selectFaxes" [value]="faxSelected.id">{{ faxSelected.faxName }}</option>
+              </optgroup>
             </select>
           </div>
         </div>
@@ -81,18 +83,19 @@
       </div>
 
       <label>Cerca in:</label>
-      <div class="radio" *ngFor="let search of searchOptions">
-        <label>
-          <input type="radio" ngModel name="docsoptions" #mydocsoptions="ngModel" id="docsoptions" [value]="search.id">
-          {{ search.radioName }}
-        </label>
+      <div *ngFor="let radiosBtns of allParams">
+        <div class="radio" *ngFor="let radioSelected of radiosBtns.radiosBtns">
+          <input type="radio" ngModel name="docsoptions" #mydocsoptions="ngModel" id="docsoptions" [value]="radioSelected.id">
+          {{ radioSelected.radioName }}
+        </div>
       </div>
 
     </div>
 
   </div>
 
-  <button class="btn btn-primary" [disabled]="!docsform.valid">Ricerca</button>
+  <button class="btn btn-primary">Ricerca</button>
+  <!-- <button class="btn btn-primary" [disabled]="!docsform.valid">Ricerca</button> -->
 
 
   <p>{{ docsform.value | json }}</p>
@@ -102,8 +105,7 @@
 .
 </div>
 
-<div class="table-docs nope">
-  <table class="table">
+  <table class="table nope" id="table-one">
   <thead class="thead-dark">
     <tr>
       <th scope="col">id</th>
@@ -119,6 +121,28 @@
       <td>{{doc.name}}</td>
       <td>{{doc.email}}</td>
       <td>{{doc.postId}}</td>
+
+    </tr>
+  </tbody>
+</table>
+
+<!-- table2 -->
+  <table class="table nope" id="table-two">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Completed</th>
+      <th scope="col">userId</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <tr *ngFor="let pratica of limit">
+      <th scope="row">{{pratica.id}}</th>
+      <td>{{pratica.title}}</td>
+      <td>{{pratica.completed}}</td>
+      <td>{{pratica.userId}}</td>
 
     </tr>
   </tbody>
@@ -145,5 +169,4 @@
       </ul>
     </nav>
   </div>
-</div>
 </div>

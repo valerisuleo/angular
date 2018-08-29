@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MetadataNavigatorComponent implements OnInit {
 
-  posts = [
+  metadatas = [
   {
     "userId": 1,
     "id": 1,
