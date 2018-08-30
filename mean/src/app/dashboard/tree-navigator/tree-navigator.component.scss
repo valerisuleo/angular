@@ -8,6 +8,10 @@ $wanda: #56ADF5;
   display: block;
 }
 
+.d-inline-block, .dropdown-item{
+  cursor: pointer;
+}
+
 span{
   margin-right: 5%;
   .fa{

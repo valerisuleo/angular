@@ -29,6 +29,7 @@ import { BirdsService } from './services/birds/birds.service';
 import { IndexDocsService } from './services/rdocumenti/index-docs/index-docs.service';
 import { InitDocsService } from './services/rdocumenti/init/init-docs.service';
 import { IndexPraticheService } from './services/rpratiche/ls-pratiche/index-pratiche.service';
+import { SidebarService } from './services/sidebar/sidebar.service';
 
 
 // COMPONENTS
@@ -94,7 +95,8 @@ import { ProgressTrackerComponent } from './dashboard/progress-tracker/progress-
     InitDocsService,
     AuthService,
     AuthGuard,
-    IndexPraticheService
+    IndexPraticheService,
+    SidebarService
   ],
   bootstrap: [AppComponent]
 })

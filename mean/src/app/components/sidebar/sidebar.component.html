@@ -3,8 +3,7 @@
         <!-- ESTRATTI DA TE -->
       <div class="nested-menu">
         <a class="list-group-item" (click)="addExpandClass('pages')">
-          <i class="fa fa-shopping-bag"></i>&nbsp;
-          <!-- <span>{{ 'Menu' | translate }}</span> -->
+          <i class="fa fa-shopping-cart"></i>&nbsp;
           <span>Estratti da Te</span>
         </a>
       </div>
@@ -18,34 +17,30 @@
         </a>
         <li class="nested" [class.expand]="showMenu === 'pages'">
           <ul class="submenu">
-            <li>
+
+            <li *ngFor="let fdQ of fdQualificazione">
               <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-fax"></i>&nbsp;
                 <!-- <span>{{ 'Component' | translate }}</span> -->
-                <span>Consumer</span>
+                <span>{{ fdQ.canaleAssociato }}</span>
               </a>
             </li>
-            <li>
+
+            <li *ngFor="let fda of fdAttivazione">
               <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fax"></i>&nbsp;
-                <!-- <span>{{ 'Component' | translate }}</span> -->
-                <span>Business</span>
+                <i class="fa fa-archive"></i>&nbsp;
+                <span>{{ fda.nomeCoda }}</span>
               </a>
             </li>
-            <li>
+
+            <li *ngFor="let fg of fGenerico">
               <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fax"></i>&nbsp;
-                <!-- <span>{{ 'Component' | translate }}</span> -->
-                <span>High Priority</span>
+                <i class="fa fa-archive"></i>&nbsp;
+                <span>{{ fg.nomeCoda }}</span>
               </a>
             </li>
-            <li>
-              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fax"></i>&nbsp;
-                <!-- <span>{{ 'Component' | translate }}</span> -->
-                <span>Cliente</span>
-              </a>
-            </li>
+
+
           </ul>
         </li>
       </div>

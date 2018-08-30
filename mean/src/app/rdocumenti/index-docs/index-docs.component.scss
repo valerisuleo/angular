@@ -1,3 +1,6 @@
+@import "~src/css-partials/_variables";
+
+
 .form-control.ng-invalid.ng-dirty.ng-touched{
   border: 2px solid red;
 }

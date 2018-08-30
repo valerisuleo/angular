@@ -1,21 +1,13 @@
-.box{
-  position: relative;
-  border-radius: 3px;
-  border-top: 3px solid #d2d6de;
-  margin-bottom: 20px;
-  width: 100%;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-  background-color: white;
-}
+@import "~src/css-partials/_variables";
 
-.box-primary {
-  border-top-color: #3c8dbc;
+div.box{
+  @extend .custom-card;
+  @extend .border-blue;
 }
 
 label{
   padding-top: 3%;
 }
-
 
 // Making space between the 3 divs in the last row
 div{
@@ -25,11 +17,11 @@ div{
     &:nth-child(4){
       div.col-xl-3{
         height: 60vh;
-        overflow: auto;
         &:nth-child(1){
           border-right: 5px solid #ecf0f5;
         }
         &:nth-child(3){
+          overflow: auto;
           border-left: 5px solid #ecf0f5;
         }
       }
