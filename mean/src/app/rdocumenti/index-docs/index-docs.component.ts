@@ -28,6 +28,9 @@ export class IndexDocsComponent implements OnInit {
     placeHolder: null
   }
 
+  time = {hour: 11, minute: 11};
+
+
 
   constructor(
     private serviceInit: InitDocsService,

@@ -64,7 +64,8 @@
 
           <div class="col-md-8">
             <label>.</label>
-            <p>{{ dateRange.placeHolder}}</p>
+            <!-- <p>{{ dateRange.placeHolder}}</p> -->
+            <p>Asso</p>
           </div>
         </div>
       </div>
@@ -73,6 +74,12 @@
         <ngbd-datepicker-range (onDateSelected)="updateDateRange($event)" class="date-popup" [class.active]="isActive"></ngbd-datepicker-range>
         <input type="hidden" [(ngModel)]="dateRange.startDate" name="startDate" id="startDate" value="">
         <input type="hidden" [(ngModel)]="dateRange.endDate" name="endDate" id="endDate" value="">
+
+        <div class="form-group">
+          <label for="timepicker">Ora Fax</label>
+            <ngb-timepicker id="timepicker" name="timepicker" #mytimepicker [(ngModel)]="time"></ngb-timepicker>
+          </div>
+
 
       <!-- CODICE POS -->
       <div class="form-group">
