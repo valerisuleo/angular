@@ -77,8 +77,8 @@ export class SidebarComponent implements OnInit {
 
     vm.allCdl = vm.service.getlistaCode();
 
-    return vm.allCdl.filter((asso) => {
-      return asso.decrizioneFlusso === string;
+    return vm.allCdl.filter((lista) => {
+      return lista.decrizioneFlusso === string;
     })
   }
 

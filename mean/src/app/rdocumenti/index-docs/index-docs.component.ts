@@ -21,16 +21,26 @@ export class IndexDocsComponent implements OnInit {
   pageNumber: number;
 
   isActive = false;
+  spinners = false;
 
-  dateRange = {
-    startDate: null,
-    endDate: null,
+
+  calendar = {
+    start: {
+      startDate: null,
+      time: {
+        hour: null,
+        minute: null
+      }
+    },
+    end: {
+      endDate: null,
+      time: {
+        hour: null,
+        minute: null
+      }
+    },
     placeHolder: null
   }
-
-  time = {hour: 11, minute: 11};
-
-
 
   constructor(
     private serviceInit: InitDocsService,
@@ -44,15 +54,15 @@ export class IndexDocsComponent implements OnInit {
   updateDateRange(obj) {
     const vm = this;
 
-    vm.dateRange.startDate = obj.startDate;
-    vm.dateRange.endDate = obj.endDate;
+    vm.calendar.start.startDate = obj.startDate;
+    vm.calendar.end.endDate = obj.endDate;
 
     if (obj.startDate != null) {
-      vm.dateRange.placeHolder = `From ${obj.startDate.day}/${obj.startDate.month}/${obj.startDate.year} `;
+      vm.calendar.placeHolder = `From ${obj.startDate.day}/${obj.startDate.month}/${obj.startDate.year} `;
     }
 
     if (obj.endDate != null) {
-      vm.dateRange.placeHolder += `To ${obj.endDate.day}/${obj.endDate.month}/${obj.endDate.year}`;
+      vm.calendar.placeHolder += `To ${obj.endDate.day}/${obj.endDate.month}/${obj.endDate.year}`;
       vm.isActive = false;
     }
   }
@@ -63,12 +73,32 @@ export class IndexDocsComponent implements OnInit {
   }
 
 
+  spinnersShow() {
+    const lastMinuteField = document.getElementById('timepicker-start');
+
+    if(lastMinuteField.classList.contains('ng-untouched')) {
+      this.spinners = true;
+    }
+  }
+
+  spinnersShowAgain() {
+    const vm = this;
+    const minute = <HTMLInputElement> document.getElementsByClassName('ngb-tp-minute')[1].children[0];
+    const lastMinuteField = document.getElementById('timepicker-start');
+
+    minute.addEventListener('blur', () => {
+      (minute.value !== '') ? vm.spinners = false : vm.spinners = true;
+      lastMinuteField.classList.remove('ng-touched');
+      lastMinuteField.classList.add('ng-untouched');
+    });
+  }
+
   docsFilter(docsform) {
     const vm = this;
-    const preventSubmit = this.dateRange.endDate;
     const table1 = document.getElementById('table-one');
     const table2 = document.getElementById('table-two');
-    // (preventSubmit === null) ? false : console.log('all good');
+
+    console.log(docsform.value);
 
     if (docsform.value.docsoptions === '') {
       vm.serviceDocs.getAll()
@@ -87,7 +117,6 @@ export class IndexDocsComponent implements OnInit {
     // .subscribe((response) => {
     //   vm.all = response.json();
     // });
-    docsform.reset();
   }
 
 
@@ -120,10 +149,13 @@ export class IndexDocsComponent implements OnInit {
     }
   }
 
+
   ngOnInit() {
     const vm = this;
 
     vm.allParams = vm.serviceInit.getFormParmas();
+    vm.spinnersShowAgain();
+
 
     //   vm.serviceInit.getAll()
     //   .subscribe((response) => {

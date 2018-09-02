@@ -1,6 +1,11 @@
 @import "~src/css-partials/_variables";
 
 
+div.box{
+  @extend .custom-card;
+  @extend .border-blue;
+}
+
 .form-control.ng-invalid.ng-dirty.ng-touched{
   border: 2px solid red;
 }

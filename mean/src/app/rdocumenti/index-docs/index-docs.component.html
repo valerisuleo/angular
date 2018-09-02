@@ -13,8 +13,6 @@
         </select>
       </div>
 
-      <!-- <p>{{ allDocsParams | json }}</p> -->
-
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
@@ -37,8 +35,17 @@
 
       </div>
 
+      <!-- CODICE POS -->
       <div class="form-group">
+        <label for="codicepos">Codice POS</label>
+        <input type="text" class="form-control"
+        ngModel name="codicepos" #mycodicepos="ngModel"
+        id="codicepos" placeholder="Inserire codice pos">
+      </div>
+
+      <div class="form-group box">
         <label for="comments">Denominazione Ragione Sociale</label>
+        <hr>
         <textarea name="name" id="comments" rows="6" cols="30" class="form-control"></textarea>
       </div>
 
@@ -58,54 +65,56 @@
               </span>
             </div>
             <input type="text" class="form-control" id="datepicker"
-             name="datepicker" #mydatepicker [(ngModel)]="dateRange.placeHolder" value="{{ dateRange.placeHolder }}" required>
+             name="datepicker" #mydatepicker [(ngModel)]="calendar.placeHolder" value="{{ calendar.placeHolder }}" required>
 
           </div>
 
           <div class="col-md-8">
             <label>.</label>
-            <!-- <p>{{ dateRange.placeHolder}}</p> -->
-            <p>Asso</p>
+            <p>{{ calendar.placeHolder}}</p>
           </div>
         </div>
       </div>
 
         <!-- DateRange Picker -->
         <ngbd-datepicker-range (onDateSelected)="updateDateRange($event)" class="date-popup" [class.active]="isActive"></ngbd-datepicker-range>
-        <input type="hidden" [(ngModel)]="dateRange.startDate" name="startDate" id="startDate" value="">
-        <input type="hidden" [(ngModel)]="dateRange.endDate" name="endDate" id="endDate" value="">
+        <input type="hidden" [(ngModel)]="calendar.start.startDate" name="startDate" id="startDate" value="">
+        <input type="hidden" [(ngModel)]="calendar.end.endDate" name="endDate" id="endDate" value="">
 
+        <!-- datetimepicker -->
         <div class="form-group">
-          <label for="timepicker">Ora Fax</label>
-            <ngb-timepicker id="timepicker" name="timepicker" #mytimepicker [(ngModel)]="time"></ngb-timepicker>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="timepicker">Dalle ore:</label>
+              <ngb-timepicker id="timepicker-start" #mytimepickerstart name="timepicker-start" [(ngModel)]="calendar.start.time" [spinners]="spinners" (click)="spinnersShow($event)"></ngb-timepicker>
+            </div>
+
+            <div class="col-md-6">
+              <label for="timepicker">Alle ore:</label>
+              <ngb-timepicker id="timepicker-end" #mytimepickerend name="timepicker-end" [(ngModel)]="calendar.end.time" [spinners]="spinners"></ngb-timepicker>
+            </div>
           </div>
-
-
-      <!-- CODICE POS -->
-      <div class="form-group">
-        <label for="codicepos">Codice POS</label>
-        <input type="text" class="form-control"
-        ngModel name="codicepos" #mycodicepos="ngModel"
-        id="codicepos" placeholder="Inserire codice pos">
-      </div>
-
-      <label>Cerca in:</label>
-      <div *ngFor="let radiosBtns of allParams">
-        <div class="radio" *ngFor="let radioSelected of radiosBtns.radiosBtns">
-          <input type="radio" ngModel name="docsoptions" #mydocsoptions="ngModel" id="docsoptions" [value]="radioSelected.id">
-          {{ radioSelected.radioName }}
         </div>
+
+        <label id="azzo">Cerca in:</label>
+        <div *ngFor="let radiosBtns of allParams">
+          <div class="radio" *ngFor="let radioSelected of radiosBtns.radiosBtns">
+            <input type="radio" ngModel name="docsoptions" #mydocsoptions="ngModel" id="docsoptions" [value]="radioSelected.id">
+            {{ radioSelected.radioName }}
+          </div>
+        </div>
+
       </div>
 
     </div>
 
-  </div>
+    <input type="hidden" name="calendarman" [(ngModel)]="calendar" value="">
 
-  <button class="btn btn-primary" [disabled]="!docsform.valid">Ricerca</button>
+    <button class="btn btn-primary" [disabled]="!docsform.valid">Ricerca</button>
 
 
-  <p>{{ docsform.value | json }}</p>
-</form>
+    <!-- <p>{{ docsform.value | json }}</p> -->
+  </form>
 
 <div class="row">
 .
