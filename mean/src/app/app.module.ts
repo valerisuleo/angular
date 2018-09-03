@@ -10,9 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
-
-
-
 // EXTRAS
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { uiRouter } from './app.routes';
@@ -30,7 +27,6 @@ import { IndexDocsService } from './services/rdocumenti/index-docs/index-docs.se
 import { InitDocsService } from './services/rdocumenti/init/init-docs.service';
 import { IndexPraticheService } from './services/rpratiche/ls-pratiche/index-pratiche.service';
 import { SidebarService } from './services/sidebar/sidebar.service';
-
 
 // COMPONENTS
 import { AppComponent } from './app.component';

@@ -1,4 +1,5 @@
-<form #docsform="ngForm" (submit)="docsFilter(docsform)">
+<div [@routerTransition]>
+  <form #docsform="ngForm" (submit)="docsFilter(docsform)">
 <!-- <form #docsform="ngForm" (submit)="docsFilter(docsform)" ngNativeValidate> -->
 
   <div class="row">
@@ -86,7 +87,7 @@
           <div class="row">
             <div class="col-md-6">
               <label for="timepicker">Dalle ore:</label>
-              <ngb-timepicker id="timepicker-start" #mytimepickerstart name="timepicker-start" [(ngModel)]="calendar.start.time" [spinners]="spinners" (click)="spinnersShow($event)"></ngb-timepicker>
+              <ngb-timepicker id="timepicker-start" #mytimepickerstart name="timepicker-start" [(ngModel)]="calendar.start.time" [spinners]="spinners"></ngb-timepicker>
             </div>
 
             <div class="col-md-6">
@@ -96,7 +97,7 @@
           </div>
         </div>
 
-        <label id="azzo">Cerca in:</label>
+        <label>Cerca in:</label>
         <div *ngFor="let radiosBtns of allParams">
           <div class="radio" *ngFor="let radioSelected of radiosBtns.radiosBtns">
             <input type="radio" ngModel name="docsoptions" #mydocsoptions="ngModel" id="docsoptions" [value]="radioSelected.id">
@@ -184,4 +185,5 @@
       </ul>
     </nav>
   </div>
+</div>
 </div>

@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { IndexDocsService } from '../../services/rdocumenti/index-docs/index-docs.service';
 import { InitDocsService } from '../../services/rdocumenti/init/init-docs.service';
 import { IndexPraticheService } from '../../services/rpratiche/ls-pratiche/index-pratiche.service';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { routerTransition } from '../../router.animations';
+
 
 @Component({
   selector: 'docs-list',
   templateUrl: './index-docs.component.html',
-  styleUrls: ['./index-docs.component.scss']
+  styleUrls: ['./index-docs.component.scss'],
+  animations: [routerTransition()]
 })
 export class IndexDocsComponent implements OnInit {
 
@@ -42,6 +44,7 @@ export class IndexDocsComponent implements OnInit {
     placeHolder: null
   }
 
+
   constructor(
     private serviceInit: InitDocsService,
     private serviceDocs: IndexDocsService,
@@ -67,31 +70,34 @@ export class IndexDocsComponent implements OnInit {
     }
   }
 
-
   toggleDataPicker() {
     this.isActive = !this.isActive;
   }
 
+  toggleSpins() {
+    const vm = this;
+    const allInputs = document.getElementsByTagName('input');
+    const minute = <HTMLInputElement> document.getElementsByClassName('ngb-tp-minute')[1].children[0];
 
-  spinnersShow() {
-    const lastMinuteField = document.getElementById('timepicker-start');
-
-    if(lastMinuteField.classList.contains('ng-untouched')) {
-      this.spinners = true;
+    for (var i = 0; i < allInputs.length; i++) {
+      allInputs[i].addEventListener('focus', () => {
+        vm.spinners = true;
+      });
+      allInputs[i].addEventListener('blur', () => {
+        if (minute.value !== '') {
+          vm.spinners = false;
+        }
+      });
     }
   }
 
-  spinnersShowAgain() {
-    const vm = this;
-    const minute = <HTMLInputElement> document.getElementsByClassName('ngb-tp-minute')[1].children[0];
-    const lastMinuteField = document.getElementById('timepicker-start');
-
-    minute.addEventListener('blur', () => {
-      (minute.value !== '') ? vm.spinners = false : vm.spinners = true;
-      lastMinuteField.classList.remove('ng-touched');
-      lastMinuteField.classList.add('ng-untouched');
-    });
-  }
+  // filtering() {
+  //   const allInputs = Array.from(document.getElementsByTagName('input'));
+  //
+  //   return allInputs.filter((result) => {
+  //     return result.placeholder === 'MM';
+  //   });
+  // }
 
   docsFilter(docsform) {
     const vm = this;
@@ -119,7 +125,6 @@ export class IndexDocsComponent implements OnInit {
     // });
   }
 
-
   getPratiche() {
     const vm = this;
 
@@ -127,7 +132,6 @@ export class IndexDocsComponent implements OnInit {
     .subscribe((response) => {
       vm.all = response.json();
       vm.limit = vm.all.slice(0, vm.indexArray);
-      console.log('limit', vm.limit);
     });
   }
 
@@ -154,8 +158,9 @@ export class IndexDocsComponent implements OnInit {
     const vm = this;
 
     vm.allParams = vm.serviceInit.getFormParmas();
-    vm.spinnersShowAgain();
+    // vm.spinnersShowAgain();
 
+     vm.toggleSpins();
 
     //   vm.serviceInit.getAll()
     //   .subscribe((response) => {
