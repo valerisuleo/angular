@@ -14,7 +14,7 @@ export class InitDocsService {
           {id:1, radioName: 'Fax in'},
           {id:2, radioName: 'Casella Postale'},
           {id:3, radioName: 'Lavorato'},
-          {id:7, radioName: 'Cerca nel cestino'}
+          {id:7, radioName: 'Cestino'}
         ],
         selectChannels: [
           {id:4, channelName: 'business'},

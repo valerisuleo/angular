@@ -4,6 +4,7 @@ import { InitDocsService } from '../../services/rdocumenti/init/init-docs.servic
 import { IndexPraticheService } from '../../services/rpratiche/ls-pratiche/index-pratiche.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routerTransition } from '../../router.animations';
+import { BirdsService } from '../../services/birds/birds.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class IndexDocsComponent implements OnInit {
   limit: any[];
   indexArray: number;
   pageNumber: number;
+  titleResults: string;
 
   isActive = false;
   spinners = false;
@@ -31,14 +33,16 @@ export class IndexDocsComponent implements OnInit {
       startDate: null,
       time: {
         hour: null,
-        minute: null
+        minute: null,
+        second: null
       }
     },
     end: {
       endDate: null,
       time: {
         hour: null,
-        minute: null
+        minute: null,
+        second: null
       }
     },
     placeHolder: null
@@ -47,7 +51,7 @@ export class IndexDocsComponent implements OnInit {
 
   constructor(
     private serviceInit: InitDocsService,
-    private serviceDocs: IndexDocsService,
+    private serviceDocs: BirdsService,
     private servicePrat: IndexPraticheService ) {
 
     this.indexArray = 10;
@@ -109,8 +113,9 @@ export class IndexDocsComponent implements OnInit {
     if (docsform.value.docsoptions === '') {
       vm.serviceDocs.getAll()
       .subscribe((response) => {
-        vm.all = response.json();
+        vm.all = response;
         vm.limit = vm.all.slice(0, vm.indexArray);
+        vm.titleResults = 'Documenti';
       });
       table1.classList.remove('nope');
     } else if (docsform.value.docsoptions === 3) {
@@ -132,6 +137,7 @@ export class IndexDocsComponent implements OnInit {
     .subscribe((response) => {
       vm.all = response.json();
       vm.limit = vm.all.slice(0, vm.indexArray);
+      vm.titleResults = 'Pratiche';
     });
   }
 

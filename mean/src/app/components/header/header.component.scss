@@ -1,7 +1,8 @@
-$topnav-background-color: #222;
+@import "~src/css-partials/_colors";
+
 :host {
     .navbar {
-        background-color: #3c8dbc;
+        background-color: $primary;
         .navbar-brand {
             color: #fff;
         }

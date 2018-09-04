@@ -45,6 +45,7 @@ import { TreeNavigatorComponent } from './dashboard/tree-navigator/tree-navigato
 import { ContentViewerComponent } from './dashboard/content-viewer/content-viewer.component';
 import { MetadataNavigatorComponent } from './dashboard/metadata-navigator/metadata-navigator.component';
 import { ProgressTrackerComponent } from './dashboard/progress-tracker/progress-tracker.component';
+import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ProgressTrackerComponent } from './dashboard/progress-tracker/progress-
     ContentViewerComponent,
     MetadataNavigatorComponent,
     ProgressTrackerComponent,
+    ShowDocsComponent,
   ],
   imports: [
     BrowserModule,

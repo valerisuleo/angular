@@ -29,6 +29,9 @@ export class TreeNavigatorComponent implements OnInit {
 
   isOpen: boolean;
 
+  constructor() { }
+
+
   toggleTree() {
     console.log('wow');
     this.isOpen = !this.isOpen;

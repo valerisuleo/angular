@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   pushRightClass: string = 'push-right';
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private service: AuthService) {
 
     this.router.events.subscribe(val => {
       if (
@@ -40,7 +41,7 @@ export class HeaderComponent implements OnInit {
       dom.classList.toggle('rtl');
   }
 
-  onLoggedout() {
-      localStorage.removeItem('isLoggedin');
+  logout() {
+    localStorage.removeItem('access_token');
   }
 }

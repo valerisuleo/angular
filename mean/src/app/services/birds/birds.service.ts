@@ -8,6 +8,6 @@ import { DataService } from '../data.service';
 export class BirdsService extends DataService {
 
   constructor(http: Http) {
-    super('http://172.18.205.181:8282/DocCRMH3G/birds', http);
+    super('http://localhost:3000/api/birds', http);
   }
 }
