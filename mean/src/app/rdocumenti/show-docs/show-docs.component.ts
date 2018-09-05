@@ -11,7 +11,8 @@ import { routerTransition } from '../../router.animations';
 })
 export class ShowDocsComponent implements OnInit {
 
-  docs = {};
+
+  bird = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -23,11 +24,9 @@ export class ShowDocsComponent implements OnInit {
     const vm = this;
     const id = vm.route.snapshot.paramMap.get('id');
 
-    console.log(id);
-
     vm.service.get(id)
     .subscribe((response) => {
-      vm.docs = response;
+      vm.bird = response;
     });
   }
 
