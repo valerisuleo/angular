@@ -38,7 +38,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { IndexDocsComponent } from './rdocumenti/index-docs/index-docs.component';
 import { NgbdDatepickerRange } from './datepicker-range/datepicker-range.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToolBarComponent } from './dashboard/tool-bar/tool-bar.component';
 import { OverviewComponent } from './dashboard/overview/overview.component';
 import { TreeNavigatorComponent } from './dashboard/tree-navigator/tree-navigator.component';
@@ -58,7 +57,6 @@ import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
     LandingPageComponent,
     IndexDocsComponent,
     NgbdDatepickerRange,
-    DashboardComponent,
     ToolBarComponent,
     OverviewComponent,
     TreeNavigatorComponent,

@@ -11,7 +11,6 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { IndexDocsComponent } from './rdocumenti/index-docs/index-docs.component';
 import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   // { path: 'show/:id', component: BirdsShowComponent},
@@ -19,7 +18,6 @@ const appRoutes: Routes = [
 
   { path: 'docs-list/:id', component: ShowDocsComponent, canActivate: [AuthGuard]},
   { path: 'docs-list', component: IndexDocsComponent, canActivate: [AuthGuard]},
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'login', component: SignInComponent},
   { path: 'home', component: LandingPageComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'home' }

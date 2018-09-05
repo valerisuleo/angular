@@ -19,6 +19,12 @@ export class DataService {
     .map(response => response.json());
   }
 
+  // getAllDocs() {
+  //   return this.http.get(this.url)
+  //   .map(response => response.json())
+  //   .toPromise();
+  // }
+
   get(id) {
     return this.http.get(this.url + `/${id}`, { headers: this.headers })
     .map(response => response.json());
