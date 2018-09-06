@@ -112,7 +112,7 @@ export class IndexDocsComponent implements OnInit {
 
     if (docsform.value.docsoptions === '') {
       vm.serviceDocs.getAll()
-      .subscribe((response) => {
+      .then((response) => {
         vm.all = response;
         vm.limit = vm.all.slice(0, vm.indexArray);
         vm.titleResults = 'Documenti';
@@ -125,7 +125,7 @@ export class IndexDocsComponent implements OnInit {
     // vm.filterParams = docsform.value;
     // console.log(vm.filterParams);
     // vm.service.sendFilters(vm.filterParams)
-    // .subscribe((response) => {
+    // .then((response) => {
     //   vm.all = response.json();
     // });
   }
@@ -134,7 +134,7 @@ export class IndexDocsComponent implements OnInit {
     const vm = this;
 
     vm.servicePrat.getAll()
-    .subscribe((response) => {
+    .then((response) => {
       vm.all = response.json();
       vm.limit = vm.all.slice(0, vm.indexArray);
       vm.titleResults = 'Pratiche';
@@ -169,7 +169,7 @@ export class IndexDocsComponent implements OnInit {
      vm.toggleSpins();
 
     //   vm.serviceInit.getAll()
-    //   .subscribe((response) => {
+    //   .then((response) => {
     //     vm.allParams = response.json();
     //     console.log('allParams', vm.allParams);
     //   })

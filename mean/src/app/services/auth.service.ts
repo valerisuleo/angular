@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{token: string}>('http://172.18.205.181:8282/DocCRMH3G/login', {username: username, password: password})
+    return this.http.post<{token: string}>('http://127.0.0.1:8180/DocCRMH3G/login', {username: username, password: password})
     // return this.http.post<{token: string}>('/api/login', {username: username, password: password})
       .pipe(
         map(result => {

@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { SidebarService } from '../../services/sidebar/sidebar.service';
 
+
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -14,10 +16,14 @@ export class SidebarComponent implements OnInit {
   showMenu: string = '';
   pushRightClass: string = 'push-right';
 
-  allCdl: any[];
-  fdQualificazione: any[];
-  fdAttivazione: any[];
-  fGenerico: any[];
+  allCdl: {};
+
+  generica = [];
+  creditoConsumer = [];
+
+  fdQualificazione = [];
+  fdAttivazione = [];
+  fGenerico = [];
 
   @Output() collapsedEvent = new EventEmitter<boolean>();
 
@@ -71,22 +77,48 @@ export class SidebarComponent implements OnInit {
       localStorage.removeItem('isLoggedin');
   }
 
-
-  filterCdl(string) {
+  getCreditoConsumer() {
     const vm =  this;
 
-    vm.allCdl = vm.service.getlistaCode();
+    return vm.service.getAll()
+    .then((response) => {
+      vm.creditoConsumer = response.credito_consumer;
+    });
+  }
 
-    return vm.allCdl.filter((lista) => {
-      return lista.decrizioneFlusso === string;
-    })
+
+  filterGenerica(string) {
+    const vm =  this;
+
+    return vm.service.getAll()
+    .then((response) => {
+      vm.generica = response.generica;
+
+      return vm.generica.filter((list) => {
+        return list.decrizioneFlusso === string;
+      });
+    });
   }
 
   ngOnInit() {
     const vm =  this;
 
-    vm.fdQualificazione = vm.filterCdl('FLUSSO QUALIFICAZIONE');
-    vm.fdAttivazione = vm.filterCdl('FLUSSO ATTIVAZIONE');
-    vm.fGenerico = vm.filterCdl('FLUSSO GENERICO');
+    vm.getCreditoConsumer();
+
+    vm.filterGenerica('FLUSSO QUALIFICAZIONE')
+    .then((response) => {
+      vm.fdQualificazione = response;
+    });
+
+    vm.filterGenerica('FLUSSO ATTIVAZIONE')
+    .then((response) => {
+      vm.fdAttivazione = response;
+    });
+
+    vm.filterGenerica('FLUSSO GENERICO')
+    .then((response) => {
+      vm.fGenerico = response;
+    });
+    console.log(vm);
   }
 }

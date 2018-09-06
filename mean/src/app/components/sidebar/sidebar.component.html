@@ -40,6 +40,13 @@
               </a>
             </li>
 
+            <li *ngFor="let cc of creditoConsumer">
+              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-cross"></i>&nbsp;
+                <span>{{ cc.nomeCoda }}</span>
+              </a>
+            </li>
+
 
           </ul>
         </li>

@@ -30,8 +30,6 @@ import { SidebarService } from './services/sidebar/sidebar.service';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
-import { BirdsComponent } from './birds/birds.component';
-import { BirdsShowComponent } from './birds-show/birds-show.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -49,9 +47,7 @@ import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BirdsComponent,
     SignInComponent,
-    BirdsShowComponent,
     SidebarComponent,
     HeaderComponent,
     LandingPageComponent,
