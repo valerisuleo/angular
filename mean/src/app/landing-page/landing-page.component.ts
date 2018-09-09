@@ -20,6 +20,14 @@ export class LandingPageComponent implements OnInit {
     el.style.padding = '15px';
   }
 
+  destroyMsg() {
+    const el: HTMLElement = document.getElementById('land');
+
+    setTimeout(() => {
+      el.style.display = 'none';
+    }, 2500);
+  }
+
   welcomeUser() {
     const vm = this;
     const myInner = document.getElementById('my-inner');
@@ -43,6 +51,7 @@ export class LandingPageComponent implements OnInit {
     }, 1500);
     pageLoadz.addEventListener('webkitTransitionEnd', () => {
       vm.paddingBack();
+      vm.destroyMsg();
     })
   }
 

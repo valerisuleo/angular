@@ -1,3 +1,5 @@
+
+
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <div class="list-group">
         <!-- ESTRATTI DA TE -->
@@ -8,32 +10,31 @@
         </a>
       </div>
 
+
 <!-- CODE DI LAVORO -->
       <div class="nested-menu">
         <a class="list-group-item" (click)="addExpandClass('cdlavoro')">
           <i class="fa fa-tasks"></i>&nbsp;
-          <!-- <span>{{ 'Menu' | translate }}</span> -->
           <span>Code di Lavoro</span>
         </a>
         <li class="nested" [class.expand]="showMenu === 'cdlavoro'">
           <ul class="submenu">
 
-            <li *ngFor="let fdQ of fdQualificazione">
-              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <li class="asso" *ngFor="let fdQ of fdQualificazione" (click)="lsFax($event)">
+              <a [routerLink]="['/cdlavro']" class="list-group-item">
                 <i class="fa fa-fax"></i>&nbsp;
-                <!-- <span>{{ 'Component' | translate }}</span> -->
                 <span>{{ fdQ.canaleAssociato }}</span>
               </a>
             </li>
 
-            <li *ngFor="let fda of fdAttivazione">
+            <li  *ngFor="let fda of fdAttivazione">
               <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-archive"></i>&nbsp;
                 <span>{{ fda.nomeCoda }}</span>
               </a>
             </li>
 
-            <li *ngFor="let fg of fGenerico">
+            <li  *ngFor="let fg of fGenerico">
               <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-archive"></i>&nbsp;
                 <span>{{ fg.nomeCoda }}</span>

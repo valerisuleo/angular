@@ -1,0 +1,51 @@
+  <app-sidebar (change)="onFavoriteChanged($event)"></app-sidebar>
+
+  <div class="row">
+    .
+  </div>
+
+  <div class="box box-primary">
+    <div class="box-header">
+      <h2 class="title">Lista </h2>
+    </div>
+    <div class="box-body">
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th scope="col">name</th>
+            <th scope="col">latinName</th>
+            <th scope="col">family</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <tr *ngFor="let fax of faxes">
+              <th scope="row"><a>{{ fax.name }}</a></th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Pager -->
+    <div class="row">
+      <div class="col-md-9"></div>
+      <div class="col-md-3">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+
+            <li class="page-item" (click)="previousPage()">
+              <a class="page-link" tabindex="-1" id="previous-btn">
+                <i class="fa fa-backward"></i>
+              </a>
+            </li>
+
+            <li class="page-item" (click)="nextPage()">
+              <a class="page-link" tabindex="-1">
+                <i class="fa fa-forward"></i>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+    </div>

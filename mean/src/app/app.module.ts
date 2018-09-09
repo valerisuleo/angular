@@ -27,6 +27,10 @@ import { IndexDocsService } from './services/rdocumenti/index-docs/index-docs.se
 import { InitDocsService } from './services/rdocumenti/init/init-docs.service';
 import { IndexPraticheService } from './services/rpratiche/ls-pratiche/index-pratiche.service';
 import { SidebarService } from './services/sidebar/sidebar.service';
+import { ConsumerService } from './services/sidebar/consumer.service';
+import { BusinessService } from './services/sidebar/business.service';
+import { HighPriorityService } from './services/sidebar/hpriority.service';
+import { ClienteService } from './services/sidebar/cliente.service';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
@@ -43,6 +47,8 @@ import { ContentViewerComponent } from './dashboard/content-viewer/content-viewe
 import { MetadataNavigatorComponent } from './dashboard/metadata-navigator/metadata-navigator.component';
 import { ProgressTrackerComponent } from './dashboard/progress-tracker/progress-tracker.component';
 import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
+import { IndexPicDocComponent } from './pic-doc/index-pic-doc/index-pic-doc.component';
+import { ShowPicDocComponent } from './pic-doc/show-pic-doc/show-pic-doc.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +66,8 @@ import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
     MetadataNavigatorComponent,
     ProgressTrackerComponent,
     ShowDocsComponent,
+    IndexPicDocComponent,
+    ShowPicDocComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +96,11 @@ import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
     AuthService,
     AuthGuard,
     IndexPraticheService,
-    SidebarService
+    SidebarService,
+    ConsumerService,
+    BusinessService,
+    HighPriorityService,
+    ClienteService
   ],
   bootstrap: [AppComponent]
 })

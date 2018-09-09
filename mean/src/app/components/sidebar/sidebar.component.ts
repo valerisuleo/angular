@@ -1,6 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { SidebarService } from '../../services/sidebar/sidebar.service';
+import { ConsumerService } from '../../services/sidebar/consumer.service';
+import { BusinessService } from '../../services/sidebar/business.service';
+import { ClienteService } from '../../services/sidebar/cliente.service';
+import { HighPriorityService } from '../../services/sidebar/hpriority.service';
 
 
 
@@ -17,18 +21,34 @@ export class SidebarComponent implements OnInit {
   pushRightClass: string = 'push-right';
 
   allCdl: {};
-
   generica = [];
   creditoConsumer = [];
-
   fdQualificazione = [];
   fdAttivazione = [];
   fGenerico = [];
 
+  allConsumer = [];
+  allBusiness = [];
+  allHighPriority = [];
+  allCliente = [];
+
+  fox = [];
+
   @Output() collapsedEvent = new EventEmitter<boolean>();
+  @Output() change = new EventEmitter();
 
-  constructor(public router: Router, public service: SidebarService) {
+  constructor(
+    public router: Router,
+    public service: SidebarService,
+    public consumerService: ConsumerService,
+    public businessService: BusinessService,
+    public clienteService: ClienteService,
+    public priorityService: HighPriorityService,
+  ) {
 
+
+
+// __________________________Animation & logic sidebar__________________________
     this.router.events.subscribe(val => {
       if (
         val instanceof NavigationEnd &&
@@ -77,6 +97,9 @@ export class SidebarComponent implements OnInit {
       localStorage.removeItem('isLoggedin');
   }
 
+
+  // ___________________________________REST___________________________________
+
   getCreditoConsumer() {
     const vm =  this;
 
@@ -100,6 +123,50 @@ export class SidebarComponent implements OnInit {
     });
   }
 
+
+
+  lsFax(e) {
+    const vm =  this;
+
+
+    if(e.target.textContent === 'CONSUMER') {
+      vm.consumerService.getAll()
+      .then((response) => {
+        vm.fox = response;
+        vm.change.emit(vm.fox);
+      });
+    };
+    if(e.target.textContent === 'BUSINESS') {
+      vm.businessService.getAll()
+      .then((response) => {
+        vm.fox = response;
+        vm.change.emit(vm.fox);
+      })
+    };
+    if(e.target.textContent === 'HIGH PRIORITY') {
+      vm.clienteService.getAll()
+      .then((response) => {
+        vm.fox = response;
+        vm.change.emit(vm.fox);
+      })
+    };
+    if(e.target.textContent === 'CLIENTE') {
+      vm.priorityService.getAll()
+      .then((response) => {
+        vm.fox = response;
+        vm.change.emit(vm.fox);
+      })
+    };
+    vm.showFaxTabs();
+  }
+
+
+  showFaxTabs() {
+    const tf = document.getElementById('table-fax')
+
+    tf.classList.remove('nope');
+  }
+
   ngOnInit() {
     const vm =  this;
 
@@ -119,6 +186,6 @@ export class SidebarComponent implements OnInit {
     .then((response) => {
       vm.fGenerico = response;
     });
-    console.log(vm);
+    // console.log(vm);
   }
 }
