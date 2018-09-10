@@ -9,6 +9,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MomentModule } from 'angular2-moment';
+
 
 // EXTRAS
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -79,6 +81,7 @@ import { ShowPicDocComponent } from './pic-doc/show-pic-doc/show-pic-doc.compone
     NgbModule,
     PdfViewerModule,
     ReactiveFormsModule,
+    MomentModule,
     AngularFontAwesomeModule,
   JwtModule.forRoot({
     config: {

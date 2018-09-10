@@ -21,7 +21,7 @@
           <ul class="submenu">
 
             <li class="asso" *ngFor="let fdQ of fdQualificazione" (click)="lsFax($event)">
-              <a [routerLink]="['/cdlavro']" class="list-group-item">
+              <a [routerLink]="['/cdlavoro']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-fax"></i>&nbsp;
                 <span>{{ fdQ.canaleAssociato }}</span>
               </a>

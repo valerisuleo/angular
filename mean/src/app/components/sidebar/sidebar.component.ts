@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit {
   fox = [];
 
   @Output() collapsedEvent = new EventEmitter<boolean>();
-  @Output() change = new EventEmitter();
+  @Output() myevent = new EventEmitter<any>();
 
   constructor(
     public router: Router,
@@ -123,49 +123,40 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-
-
   lsFax(e) {
     const vm =  this;
+    const current = e.target.textContent;
 
-
-    if(e.target.textContent === 'CONSUMER') {
+    if(current === 'CONSUMER') {
       vm.consumerService.getAll()
       .then((response) => {
         vm.fox = response;
-        vm.change.emit(vm.fox);
+        vm.myevent.emit(vm.fox);
       });
     };
-    if(e.target.textContent === 'BUSINESS') {
+    if(current === 'BUSINESS') {
       vm.businessService.getAll()
       .then((response) => {
         vm.fox = response;
-        vm.change.emit(vm.fox);
-      })
+        vm.myevent.emit(vm.fox);
+      });
     };
-    if(e.target.textContent === 'HIGH PRIORITY') {
-      vm.clienteService.getAll()
-      .then((response) => {
-        vm.fox = response;
-        vm.change.emit(vm.fox);
-      })
-    };
-    if(e.target.textContent === 'CLIENTE') {
+    if(current === 'HIGH PRIORITY') {
       vm.priorityService.getAll()
       .then((response) => {
         vm.fox = response;
-        vm.change.emit(vm.fox);
-      })
+        vm.myevent.emit(vm.fox);
+      });
     };
-    vm.showFaxTabs();
+    if(current === 'CLIENTE') {
+      vm.clienteService.getAll()
+      .then((response) => {
+        vm.fox = response;
+        vm.myevent.emit(vm.fox);
+      });
+    };
   }
 
-
-  showFaxTabs() {
-    const tf = document.getElementById('table-fax')
-
-    tf.classList.remove('nope');
-  }
 
   ngOnInit() {
     const vm =  this;

@@ -1,4 +1,4 @@
-  <app-sidebar (change)="onFavoriteChanged($event)"></app-sidebar>
+  <app-sidebar (myevent)="passingCdlFax($event)"></app-sidebar>
 
   <div class="row">
     .
@@ -12,15 +12,21 @@
       <table class="table">
         <thead class="thead">
           <tr>
-            <th scope="col">name</th>
-            <th scope="col">latinName</th>
-            <th scope="col">family</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Formato</th>
+            <th scope="col">Canale</th>
+            <th scope="col">Fax Mittente</th>
+            <th scope="col">Data Fax</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <tr *ngFor="let fax of faxes">
-              <th scope="row"><a>{{ fax.name }}</a></th>
+              <th scope="row">{{ fax.nomeFile }}</th>
+              <td>{{ fax.formato }}</td>
+              <td>{{ fax.canale }}</td>
+              <td>{{ fax.faxMittente }}</td>
+              <td>{{ fax.dataFax | amLocale:'it' | amDateFormat:'DD MMMM YYYY, h:mm:ss a' }}</td>
             </tr>
           </tbody>
         </table>

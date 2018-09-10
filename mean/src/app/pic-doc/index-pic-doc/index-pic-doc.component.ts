@@ -15,13 +15,16 @@ export class IndexPicDocComponent implements OnInit {
 
   constructor() { }
 
-  onFavoriteChanged(fox) {
+  passingCdlFax(fox) {
     const vm = this;
 
     vm.faxes = fox;
     console.log(vm.faxes);
-
   }
+
+
+
+
 
 
   ngOnInit() {
