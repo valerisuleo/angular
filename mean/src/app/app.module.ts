@@ -51,6 +51,9 @@ import { ProgressTrackerComponent } from './dashboard/progress-tracker/progress-
 import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
 import { IndexPicDocComponent } from './pic-doc/index-pic-doc/index-pic-doc.component';
 import { ShowPicDocComponent } from './pic-doc/show-pic-doc/show-pic-doc.component';
+import { BirdsListComponent } from './birds-list/birds-list.component';
+import { NewBirdComponent } from './new-bird/new-bird.component';
+import { Base64Directive } from './new-bird/base64.directive';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,9 @@ import { ShowPicDocComponent } from './pic-doc/show-pic-doc/show-pic-doc.compone
     ShowDocsComponent,
     IndexPicDocComponent,
     ShowPicDocComponent,
+    BirdsListComponent,
+    NewBirdComponent,
+    Base64Directive,
   ],
   imports: [
     BrowserModule,

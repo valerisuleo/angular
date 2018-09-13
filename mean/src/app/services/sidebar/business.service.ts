@@ -8,7 +8,6 @@ import { DataService } from '../data.service';
 export class BusinessService extends DataService {
 
   constructor(http: Http) {
-    super('https://jsonplaceholder.typicode.com/users', http);
-    // super('http://127.0.0.1:8180/DocCRMH3G/code/getDocsCodaClassificazione?idCoda=2', http);
+    super('http://127.0.0.1:8180/DocCRMH3G/code/getDocsCodaClassificazioneFaxInBusiness', http);
   }
 }

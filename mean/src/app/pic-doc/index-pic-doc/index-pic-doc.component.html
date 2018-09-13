@@ -22,7 +22,7 @@
         <tbody>
           <tr>
             <tr *ngFor="let fax of faxes">
-              <th scope="row">{{ fax.nomeFile }}</th>
+              <th scope="row"><a [routerLink]="['/cdlavoro', fax.id]">{{ fax.nomeFile }}</a></th>
               <td>{{ fax.formato }}</td>
               <td>{{ fax.canale }}</td>
               <td>{{ fax.faxMittente }}</td>

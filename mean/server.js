@@ -9,7 +9,9 @@ const { port, env, dbURI } = require('./config/environment');
 const routes = require('./config/routes');
 const customResponses = require('./lib/customResponses');
 const errorHandler = require('./lib/errorHandler');
-const app     = express();
+
+const app = express();
+
 
 
 mongoose.connect(dbURI);
@@ -34,5 +36,10 @@ app.get('/*', (req, res) => {
 // });
 
 app.use(errorHandler);
+
+
+
+
+
 
 app.listen(port, () => console.log(`Express has started on port: ${port}`));

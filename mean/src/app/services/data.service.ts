@@ -20,16 +20,16 @@ export class DataService {
     .toPromise();
   }
 
-  filter() {
-    return this.http.get(this.url, { headers: this.headers })
-    .map(response => response.json());
-  }
-
   get(id) {
     return this.http.get(this.url + `/${id}`, { headers: this.headers })
     .map(response => response.json());
   }
 
+  filter() {
+    return this.http.get(this.url, { headers: this.headers })
+    .map(response => response.json());
+
+  }
   sendFilters(id) {
     return this.http.get(this.url + `/${id}`, { headers: this.headers })
     .map(response => response.json());

@@ -12,6 +12,9 @@ export class OverviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    setInterval(() => {
+      console.log(this.bird);
+    })
   }
 
 }

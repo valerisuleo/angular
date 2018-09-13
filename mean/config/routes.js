@@ -2,22 +2,23 @@ const router = require('express').Router();
 const birds = require('../controllers/birds');
 // 9 require the controllers
 const auth = require('../controllers/auth');
-
 // 13 require secureRoute
 const secureRoute = require('../lib/secureRoute');
+const imageUpload = require('../lib/imageUpload');
+
 
 router.route('/birds')
 // Here we are saying that only users who send a valid token with their request can access any of these routes.
   // 13a update secureRoute
   // .all(secureRoute)
   .get(birds.index)
-  .post(birds.create);
+  .post(imageUpload, birds.create);
 
 router.route('/birds/:id')
   // 13a update secureRoute
   // .all(secureRoute)
   .get(birds.show)
-  .put(birds.update)
+  .put(imageUpload, birds.update)
   .delete(birds.delete);
 
 // To test this in Insomnia, we should take the token that was generated when we logged in and add a 'Header' to our request.
