@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'ngbd-tabset-basic',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
+  @Input() bird: {};
+
   constructor() { }
 
   ngOnInit() {
+    setInterval(() => {
+      console.log(this.bird);
+    })
   }
 
 }

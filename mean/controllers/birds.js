@@ -9,10 +9,13 @@ function indexRoute(req, res, next) {
 }
 
 function createRoute(req, res, next) {
+  if(req.file) req.body.image = req.file.filename;
   Bird
     .create(req.body)
     .then((bird) => res.status(201).json(bird))
     .catch(next);
+
+
 }
 
 function showRoute(req, res, next) {
@@ -28,6 +31,7 @@ function showRoute(req, res, next) {
 }
 
 function updateRoute(req, res, next) {
+  if(req.file) req.body.image = req.file.filename;
   Bird
     .findById(req.params.id)
     .exec()
@@ -42,6 +46,8 @@ function updateRoute(req, res, next) {
     })
     .then((bird) => res.json(bird))
     .catch(next);
+
+
 }
 
 function deleteRoute(req, res, next) {

@@ -5,7 +5,7 @@
     <div class="col-lg-6">
       <div class="box box-success">
         <div class="box-header">
-          <h3 class="box-title"> {{ docs.name }}</h3>
+          <h3 class="box-title"> {{ bird.name }}</h3>
         </div>
         <div class="box-body">
           <label class="formz"></label>
@@ -24,7 +24,9 @@
         </div>
         <div class="box-body">
           <label class="formz"></label>
-          <ngbd-tabset-basic></ngbd-tabset-basic>
+          <!--  -->
+          <ngbd-tabset-basic [bird]="bird"></ngbd-tabset-basic>
+          <!--  -->
         </div>
       </div>
     </div>

@@ -9,6 +9,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MomentModule } from 'angular2-moment';
+
 
 // EXTRAS
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -27,11 +29,13 @@ import { IndexDocsService } from './services/rdocumenti/index-docs/index-docs.se
 import { InitDocsService } from './services/rdocumenti/init/init-docs.service';
 import { IndexPraticheService } from './services/rpratiche/ls-pratiche/index-pratiche.service';
 import { SidebarService } from './services/sidebar/sidebar.service';
+import { ConsumerService } from './services/sidebar/consumer.service';
+import { BusinessService } from './services/sidebar/business.service';
+import { HighPriorityService } from './services/sidebar/hpriority.service';
+import { ClienteService } from './services/sidebar/cliente.service';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
-import { BirdsComponent } from './birds/birds.component';
-import { BirdsShowComponent } from './birds-show/birds-show.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -45,13 +49,16 @@ import { ContentViewerComponent } from './dashboard/content-viewer/content-viewe
 import { MetadataNavigatorComponent } from './dashboard/metadata-navigator/metadata-navigator.component';
 import { ProgressTrackerComponent } from './dashboard/progress-tracker/progress-tracker.component';
 import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
+import { IndexPicDocComponent } from './pic-doc/index-pic-doc/index-pic-doc.component';
+import { ShowPicDocComponent } from './pic-doc/show-pic-doc/show-pic-doc.component';
+import { BirdsListComponent } from './birds-list/birds-list.component';
+import { NewBirdComponent } from './new-bird/new-bird.component';
+import { Base64Directive } from './new-bird/base64.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BirdsComponent,
     SignInComponent,
-    BirdsShowComponent,
     SidebarComponent,
     HeaderComponent,
     LandingPageComponent,
@@ -64,6 +71,11 @@ import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
     MetadataNavigatorComponent,
     ProgressTrackerComponent,
     ShowDocsComponent,
+    IndexPicDocComponent,
+    ShowPicDocComponent,
+    BirdsListComponent,
+    NewBirdComponent,
+    Base64Directive,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +87,7 @@ import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
     NgbModule,
     PdfViewerModule,
     ReactiveFormsModule,
+    MomentModule,
     AngularFontAwesomeModule,
   JwtModule.forRoot({
     config: {
@@ -92,7 +105,11 @@ import { ShowDocsComponent } from './rdocumenti/show-docs/show-docs.component';
     AuthService,
     AuthGuard,
     IndexPraticheService,
-    SidebarService
+    SidebarService,
+    ConsumerService,
+    BusinessService,
+    HighPriorityService,
+    ClienteService
   ],
   bootstrap: [AppComponent]
 })

@@ -95,49 +95,44 @@ export class IndexDocsComponent implements OnInit {
     }
   }
 
-  // filtering() {
-  //   const allInputs = Array.from(document.getElementsByTagName('input'));
-  //
-  //   return allInputs.filter((result) => {
-  //     return result.placeholder === 'MM';
-  //   });
-  // }
-
   docsFilter(docsform) {
     const vm = this;
-    const table1 = document.getElementById('table-one');
-    const table2 = document.getElementById('table-two');
-
     console.log(docsform.value);
 
     if (docsform.value.docsoptions === '') {
-      vm.serviceDocs.getAll()
-      .subscribe((response) => {
-        vm.all = response;
-        vm.limit = vm.all.slice(0, vm.indexArray);
-        vm.titleResults = 'Documenti';
-      });
-      table1.classList.remove('nope');
+      vm.getDocs();
     } else if (docsform.value.docsoptions === 3) {
-      table2.classList.remove('nope');
       vm.getPratiche();
     }
-    // vm.filterParams = docsform.value;
-    // console.log(vm.filterParams);
-    // vm.service.sendFilters(vm.filterParams)
-    // .subscribe((response) => {
-    //   vm.all = response.json();
-    // });
+  }
+
+  getDocs() {
+    const vm = this;
+    const table1 = document.getElementById('table-one');
+
+    vm.serviceDocs.getAll()
+    .then((response) => {
+      vm.all = response;
+      vm.limit = vm.all.slice(0, vm.indexArray);
+
+      table1.classList.remove('nope');
+      vm.titleResults = 'Documenti';
+      vm.saveData();
+    });
   }
 
   getPratiche() {
     const vm = this;
+    const table2 = document.getElementById('table-two');
 
     vm.servicePrat.getAll()
-    .subscribe((response) => {
+    .then((response) => {
       vm.all = response.json();
       vm.limit = vm.all.slice(0, vm.indexArray);
+
+      table2.classList.remove('nope');
       vm.titleResults = 'Pratiche';
+      vm.saveData();
     });
   }
 
@@ -159,20 +154,35 @@ export class IndexDocsComponent implements OnInit {
     }
   }
 
+  // save data to local storage
+  saveData() {
+    const vm = this;
+
+    var str = JSON.stringify(vm.all);
+    localStorage.setItem('vmAll', str);
+  }
+
+  // get data from localStorage
+  getData() {
+  const vm = this;
+
+  var str = localStorage.getItem('vmAll');
+  // localStorage.removeItem('Array');
+  vm.limit = JSON.parse(str);
+  if (!vm.limit) {
+    vm.limit = [];
+  }
+}
+
 
   ngOnInit() {
     const vm = this;
 
-    vm.allParams = vm.serviceInit.getFormParmas();
+    vm.getData()
+    vm.toggleSpins();
     // vm.spinnersShowAgain();
 
-     vm.toggleSpins();
-
-    //   vm.serviceInit.getAll()
-    //   .subscribe((response) => {
-    //     vm.allParams = response.json();
-    //     console.log('allParams', vm.allParams);
-    //   })
-    // }
+    // Call fake service
+    vm.allParams = vm.serviceInit.getFormParmas();
   }
 }

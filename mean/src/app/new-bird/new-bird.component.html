@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Add a bird</h2>
+    <form [formGroup]="form" (submit)="birdCreate()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="latinName">latinName</label>
+        <input type="text" class="form-control" id="latinName" formControlName="latinName">
+      </div>
+      <div class="form-group">
+        <label for="family">family</label>
+        <input type="text" class="form-control" id="family" formControlName="family">
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input (change)="onFileChange($event)" type="file" name="base64" id="image" #fileInput>
+        <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button>
+      </div>
+
+
+      <p>{{ form.value | json }}</p>
+
+    <button type="submit" [disabled]="form.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+    </form>
+  </div>
+</div>
+
+
+<!-- <div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Add a bird</h2>
+    <form #birdForm="ngForm" (submit)="birdCreate()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]="newBird.name" class="form-control" name="name" id="name">
+      </div>
+      <div class="form-group">
+        <label for="latinName">Latin Name</label>
+        <input type="text" [(ngModel)]="newBird.latinName" class="form-control" name="latinName" id="latinName">
+      </div>
+      <div class="form-group">
+        <label for="family">Family</label>
+        <input type="text" [(ngModel)]="newBird.family" class="form-control" name="family" id="family">
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input base64 type="file" [(ngModel)]="newBird.image" name="image" id="image">
+      </div>
+
+
+      <p>{{ birdForm.value | json }}</p>
+
+      <button [disabled]="birdForm.invalid || loading" class="btn btn-success">Create</button>
+    </form>
+  </div>
+</div> -->

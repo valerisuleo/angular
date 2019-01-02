@@ -5,9 +5,9 @@ import { DataService } from '../data.service';
 
 
 @Injectable()
-export class SidebarService extends DataService {
+export class BusinessService extends DataService {
 
   constructor(http: Http) {
-    super('http://127.0.0.1:8180/DocCRMH3G/homepage/getlistaCode', http);
+    super('http://127.0.0.1:8180/DocCRMH3G/code/getDocsCodaClassificazioneFaxInBusiness', http);
   }
 }

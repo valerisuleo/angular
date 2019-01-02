@@ -19,7 +19,7 @@ export class InitDocsService {
         selectChannels: [
           {id:4, channelName: 'business'},
           {id:5, channelName: 'consumer'},
-          {id:6, channelName: 'high prioryty'}
+          {id:6, channelName: 'high priority'},
         ],
         selectFaxes: [
           {id:12, faxName: 'Uguale a'},

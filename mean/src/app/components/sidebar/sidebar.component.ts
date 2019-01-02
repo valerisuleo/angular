@@ -1,6 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { SidebarService } from '../../services/sidebar/sidebar.service';
+import { ConsumerService } from '../../services/sidebar/consumer.service';
+import { BusinessService } from '../../services/sidebar/business.service';
+import { ClienteService } from '../../services/sidebar/cliente.service';
+import { HighPriorityService } from '../../services/sidebar/hpriority.service';
+
+
 
 @Component({
   selector: 'app-sidebar',
@@ -14,15 +20,35 @@ export class SidebarComponent implements OnInit {
   showMenu: string = '';
   pushRightClass: string = 'push-right';
 
-  allCdl: any[];
-  fdQualificazione: any[];
-  fdAttivazione: any[];
-  fGenerico: any[];
+  allCdl: {};
+  generica = [];
+  creditoConsumer = [];
+  fdQualificazione = [];
+  fdAttivazione = [];
+  fGenerico = [];
+
+  allConsumer = [];
+  allBusiness = [];
+  allHighPriority = [];
+  allCliente = [];
+
+  fox = [];
 
   @Output() collapsedEvent = new EventEmitter<boolean>();
+  @Output() myevent = new EventEmitter<any>();
 
-  constructor(public router: Router, public service: SidebarService) {
+  constructor(
+    public router: Router,
+    public service: SidebarService,
+    public consumerService: ConsumerService,
+    public businessService: BusinessService,
+    public clienteService: ClienteService,
+    public priorityService: HighPriorityService,
+  ) {
 
+
+
+// __________________________Animation & logic sidebar__________________________
     this.router.events.subscribe(val => {
       if (
         val instanceof NavigationEnd &&
@@ -72,21 +98,85 @@ export class SidebarComponent implements OnInit {
   }
 
 
-  filterCdl(string) {
+  // ___________________________________REST___________________________________
+
+  getCreditoConsumer() {
     const vm =  this;
 
-    vm.allCdl = vm.service.getlistaCode();
-
-    return vm.allCdl.filter((lista) => {
-      return lista.decrizioneFlusso === string;
-    })
+    return vm.service.getAll()
+    .then((response) => {
+      vm.creditoConsumer = response.credito_consumer;
+    });
   }
+
+
+  filterGenerica(string) {
+    const vm =  this;
+
+    return vm.service.getAll()
+    .then((response) => {
+      vm.generica = response.generica;
+
+      return vm.generica.filter((list) => {
+        return list.decrizioneFlusso === string;
+      });
+    });
+  }
+
+  lsFax(e) {
+    const vm =  this;
+    const current = e.target.textContent;
+
+    if(current === 'CONSUMER') {
+      vm.consumerService.getAll()
+      .then((response) => {
+        vm.fox = response;
+        vm.myevent.emit(vm.fox);
+      });
+    };
+    if(current === 'BUSINESS') {
+      vm.businessService.getAll()
+      .then((response) => {
+        vm.fox = response;
+        vm.myevent.emit(vm.fox);
+      });
+    };
+    if(current === 'HIGH PRIORITY') {
+      vm.priorityService.getAll()
+      .then((response) => {
+        vm.fox = response;
+        vm.myevent.emit(vm.fox);
+      });
+    };
+    if(current === 'CLIENTE') {
+      vm.clienteService.getAll()
+      .then((response) => {
+        vm.fox = response;
+        vm.myevent.emit(vm.fox);
+      });
+    };
+  }
+
 
   ngOnInit() {
     const vm =  this;
 
-    vm.fdQualificazione = vm.filterCdl('FLUSSO QUALIFICAZIONE');
-    vm.fdAttivazione = vm.filterCdl('FLUSSO ATTIVAZIONE');
-    vm.fGenerico = vm.filterCdl('FLUSSO GENERICO');
+    vm.getCreditoConsumer();
+
+    vm.filterGenerica('FLUSSO QUALIFICAZIONE')
+    .then((response) => {
+      vm.fdQualificazione = response;
+    });
+
+    vm.filterGenerica('FLUSSO ATTIVAZIONE')
+    .then((response) => {
+      vm.fdAttivazione = response;
+    });
+
+    vm.filterGenerica('FLUSSO GENERICO')
+    .then((response) => {
+      vm.fGenerico = response;
+    });
+    // console.log(vm);
   }
 }

@@ -1,39 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BirdsService } from '../../services/birds/birds.service';
 import { routerTransition } from '../../router.animations';
+import { ClienteService } from '../../services/sidebar/cliente.service';
 
 @Component({
-  selector: 'showdocs',
-  templateUrl: './show-docs.component.html',
-  styleUrls: ['./show-docs.component.scss'],
-  animations: [routerTransition()]
+  selector: 'showpicdoc',
+  templateUrl: './show-pic-doc.component.html',
+  styleUrls: ['./show-pic-doc.component.scss']
 })
-export class ShowDocsComponent implements OnInit {
+export class ShowPicDocComponent implements OnInit {
 
-
-  bird = {};
+  fax = {}
 
   constructor(
     private route: ActivatedRoute,
-    private service: BirdsService
+    private service: ClienteService
   ) { }
 
-
-  showDocs() {
+  showCdl() {
     const vm = this;
     const id = vm.route.snapshot.paramMap.get('id');
 
     vm.service.get(id)
     .subscribe((response) => {
-      vm.bird = response;
+      vm.fax = response;
     });
   }
 
   ngOnInit() {
     const vm = this;
 
-    vm.showDocs();
+    vm.showCdl();
     console.log(vm);
+
   }
 }
