@@ -1,0 +1,41 @@
+<h1>Index</h1>
+
+<form #postForm="ngForm" (submit)="postCreate(postForm)">
+
+  <label for="title">address</label>
+  <input type="text" name="address" value="address" [(ngModel)]="propertyNew.address">
+
+  <label for="title">postcode</label>
+  <input type="text" name="postcode" value="postcode" [(ngModel)]="propertyNew.postcode">
+
+  <label for="title">bedrooms</label>
+  <input type="text" name="bedrooms" value="bedrooms" [(ngModel)]="propertyNew.bedrooms">
+
+  <label for="title">bathrooms</label>
+  <input type="text" name="bathrooms" value="bathrooms" [(ngModel)]="propertyNew.bathrooms">
+
+  <label for="title">askingPrice</label>
+  <input type="text" name="askingPrice" value="askingPrice" [(ngModel)]="propertyNew.askingPrice">
+
+  <label for="title">floorArea</label>
+  <input type="text" name="floorArea" value="floorArea" [(ngModel)]="propertyNew.floorArea">
+
+  <label for="title">dateAvailable</label>
+  <input type="text" name="dateAvailable" value="dateAvailable" [(ngModel)]="propertyNew.dateAvailable">
+
+  <label for="title">image</label>
+  <input type="text" name="image" value="image" [(ngModel)]="propertyNew.image">
+
+
+
+  <button>Add Property</button>
+</form>
+<ul>
+
+  <p>{{ postForm.value | json }}</p>
+
+  <li *ngFor="let house of all">
+    <a [routerLink]="['/houses', house.id]">{{ house.address }}</a> - <em>{{ house.postcode }}</em>
+    <button type="button" name="button" (click)="erasePost(house)">delete</button> <hr>
+  </li>
+</ul>
