@@ -47,11 +47,11 @@ This will add a dependency to the package.json file and download the Bootstrap f
 
 We need to import the Sass files from both projects in order to use them. This can be done by editing the file named “main.scss,” which was by the Angular CLI when the project was created. Specifically, it was the “—style sass” switch that created it. If you forgot to use this switch, then Angular will expect you to use CSS. However, you can configure Angular to use Sass by running the command:
 
-`ng set defaults.styleExt scss`
+`ng config schematics.@schematics/angular:component '{ styleExt: "scss"}'`
 
 To add the Sass imports, edit the “main.scss” and add the following imports:
 
-`@import "~bootstrap/scss/bootstrap"`
+`@import "~bootstrap/dist/css/bootstrap.css";`
 
 `$fa-font-path: "~font-awesome/fonts"`
 
