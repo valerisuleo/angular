@@ -1,9 +1,9 @@
 // 2. In order to do that we are going to use an 'observable' operator called 'map operator': We can transform the items in observable.
 
 import { Observable } from 'rxjs';
-import { map, catchError } from "rxjs/operators";
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { map, catchError } from "rxjs/operators";
 import { AppError } from '../common/app-error';
 import { NotFoundError} from '../common/not-found-error';
 import { BadRequestError} from '../common/bad-request-error';
@@ -34,7 +34,22 @@ export class DataService {
   create(newResource) {
     return this.http.post(this.url, newResource)
     .pipe(map(response => response.json()))
+    .pipe(
+      catchError((error: Response) => {
+        if (error.status === 400) {
+            return throwError(new BadRequestError())
+        } else {
+          return throwError(new AppError(error))
+        }
+      })
+    )
   }
+
+  // update
+  update(resource) {
+  return this.http.put(this.url + `/${resource.id}`, resource)
+  .pipe(map(response => response.json()));
+}
 
   // DELETE
   delete(resource) {
@@ -50,5 +65,5 @@ export class DataService {
       })
     )
   }
-  
+
 }

@@ -160,7 +160,7 @@ So we need to create a new class to represent *application specific error*.
 
 	```
 	export class AppError {
-  		constructor(public originaError?: any) { }
+  		constructor(public originalError?: any) { }
 	}
 	```
 This will be a field in our class that we can access when logging this error
@@ -217,8 +217,10 @@ So if it's `404` we want to return a different kind of error; because in our com
 	        }
 	      })
 	    )
-  }
+  		}
   ```
+  
+  
 3. Back to our component:
 
 	```
@@ -279,6 +281,7 @@ So let me show you how to handle unexpected errors globally.
 	  }
 	}
 	```
+	
 	> now in the future instead of this alert we could display a toast notification and instead of console log we could log the error message on the server.
 So the actual implementation of this method is not going to be only two lines of code. It's going to be a little bit more complex.
 

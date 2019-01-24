@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { PostsService } from '../services/posts.service';
+import { ForkService } from '../services/fork.service';
 import { AppError } from '../common/app-error';
 import { NotFoundError } from '../common/not-found-error';
 import { BadRequestError } from '../common/bad-request-error';
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,14 +14,37 @@ import { BadRequestError } from '../common/bad-request-error';
 })
 export class IndexComponent implements OnInit {
 
-  all = [];
+  all: any[];
   propertyNew = {};
-  private url = 'http://localhost:3000/propertys'
+
+  notFound = 404;
+  badRequest = 400;
+
+  isProperty: boolean;
 
   constructor(
-    private propertyService: PostsService,
-    private http: Http
-  ) { }
+    private propertyService: ForkService,
+    private http: Http,
+    private router: Router
+  ) {}
+
+  whereAreWe(string) {
+    const vm = this;
+    const getUrl: string = vm.router.url;
+    return getUrl.includes(string);
+  }
+
+  fork() {
+    const vm = this;
+    vm.isProperty = vm.whereAreWe('house');
+
+    if (vm.isProperty) {
+      vm.propertyService.refreshContent('homesweethome');
+    }
+
+    console.log('isProperty', vm.isProperty);
+  }
+
 
 // GET
   getAll() {
@@ -30,7 +53,7 @@ export class IndexComponent implements OnInit {
     vm.propertyService.getAll()
     .subscribe((response) => {
       vm.all = response;
-      console.log('all', vm.all);
+      console.log('response', response);
     },
     error  => {
       console.log('error', error);
@@ -47,16 +70,17 @@ export class IndexComponent implements OnInit {
       vm.all.push(response);
     }, (error: AppError) => {
       if (error instanceof BadRequestError) {
-        console.log('bad BadRequestError');
+        console.log('error', error);
+        alert('Bad Request Dude!')
         // potentially we can hava an error object coming from the server and we can display it.
-        // postform.setErrors(error.originaError);
+        // postform.setErrors(error.originalError);
       } else {
-      alert('An unxpected error occured!');
+      throw error
     }
     });
   }
 
-// DELETE
+// // DELETE
  erasePost(property) {
   const vm = this;
 
@@ -67,7 +91,7 @@ export class IndexComponent implements OnInit {
   },
   (error: AppError) => {
     if (error instanceof NotFoundError) {
-      alert('this property has already been deleted')
+      vm.propertyService.refreshContent(vm.notFound);
     } else {
       throw error;
     }
@@ -75,6 +99,7 @@ export class IndexComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.fork()
     this.getAll();
   }
 

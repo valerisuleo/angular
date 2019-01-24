@@ -123,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "handling-errors"
+  "defaultProject": "handling-errors",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleExt": "scss"
+    }
+  }
 }

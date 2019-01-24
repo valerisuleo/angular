@@ -11,16 +11,29 @@ import { IndexComponent } from './index/index.component';
 import { ShowComponent } from './show/show.component';
 // service
 import { PostsService } from './services/posts.service';
+import { ForkService } from './services/fork.service';
+
 
 import { AppErrorHandler } from './common/app-error-handler';
 import { ErrorHandler } from '@angular/core';
+import { ToastComponent } from './common/toast/toast.component';
+import { TwinComponent } from './twin/twin.component';
+import { OverviewComponent } from './status-update/overview/overview.component';
+import { TreeComponent } from './status-update/tree/tree.component';
+import { DashboardComponent } from './status-update/dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    ShowComponent
+    ShowComponent,
+    ToastComponent,
+    TwinComponent,
+    OverviewComponent,
+    TreeComponent,
+    DashboardComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -29,12 +42,15 @@ import { ErrorHandler } from '@angular/core';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'houses/:id', component: ShowComponent},
+      { path: 'twin', component: TwinComponent},
       { path: 'houses', component: IndexComponent},
-      { path: '**', redirectTo: 'houses' }
+      { path: 'dashboard', component: DashboardComponent},
+      { path: '**', redirectTo: 'dashboard' }
     ])
   ],
   providers: [
     PostsService,
+    ForkService,
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
