@@ -132,13 +132,14 @@ firstname is required
 
 	```
 	  submit(f) {
-    	console.log(f);
-    	// f.value
-  		}
-  ```
- 
-3. Once it has been submitted we can get in the console the value of our form.
+		console.log(f);
+		// f.value
+	  	}
+	  	
+	```
 
+3. Once it has been submitted we can get in the console the value of our form.
+ 
 
 ###### Disabling the Submit Btn
 
