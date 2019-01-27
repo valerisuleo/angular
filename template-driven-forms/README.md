@@ -139,11 +139,14 @@ firstname is required
  
 3. Once it has been submitted we can get in the console the value of our form.
 
-### Disabling the Submit Btn
+
+###### Disabling the Submit Btn
+
 
 ```
 <button class="btn btn-primary" [disabled]="!f.valid">submit</button>
 ```
+
 
 ### Working with Check Boxes
 
