@@ -122,7 +122,7 @@ firstname is required
 }
 ```
 
-##ngForm
+## ngForm
 >We have learned that when we apply and ngModel directive to an input field angular creates a form control object under the hood and associates it with the input field
 
 1. We need to hookup our form with the cotroller 
@@ -198,7 +198,7 @@ In order to render a checkbox using bootstrap we need:
 ```
 
 
-##ngModelGroup
+## ngModelGroup
 Sometimes the api might expect a nested structure like this one:
 
 ```
