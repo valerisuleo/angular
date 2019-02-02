@@ -50,7 +50,7 @@ In order to simulate an error we change wrong our `url`. Now let's handle this e
 We want to tell the users that this item is not available anymore.
 
 ```
- erasePost(post) {
+ postDelete(post) {
    const vm = this;
 
    vm.postService.delete(post)
@@ -71,7 +71,7 @@ We want to tell the users that this item is not available anymore.
 To simulate this scenario we pass a wrong `id`
 
 ```
- erasePost(post) {
+ postDelete(post) {
    const vm = this;
 
    vm.postService.delete(345)
@@ -111,7 +111,7 @@ We want to move this piece of logic out from our component.
      if (error.status === 404) {
 ```
 
-So back to our `data.service` here in the `erasePost` method if there's an exception I wanna that error and instead of sending the `Response` object to our component I wanna send an obj that is part of our application domain.
+So back to our `data.service` here in the `postDelete` method if there's an exception I wanna that error and instead of sending the `Response` object to our component I wanna send an obj that is part of our application domain.
 
 > How can we `catch` this error?
 
@@ -224,7 +224,7 @@ So if it's `404` we want to return a different kind of error; because in our com
 3. Back to our component:
 
 	```
-	 erasePost(post) {
+	 postDelete(post) {
 	   const vm = this;
 	
 	   vm.postService.delete(345)
@@ -298,7 +298,7 @@ In the provider's array we need to register this new class but we're going to us
 5. Back to our component, first we want to check to see if this is a not found error. Otherwise we want to rethrow the error so it will be captured by our global error handler.
 
 	```
-	 erasePost(property) {
+	 postDelete(property) {
 	  const vm = this;
 	
 	  vm.propertyService.delete(property)

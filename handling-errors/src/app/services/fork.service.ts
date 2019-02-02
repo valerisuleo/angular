@@ -69,8 +69,8 @@ export class ForkService {
 
   //   // DELETE
     delete(resource) {
-      // return this.http.delete(this.url + `/${resource.id}`)
-      return this.http.delete(this.url + "5c294330e8fbd178fe22081b")
+      return this.http.delete(this.url + `/${resource.id}`)
+      // return this.http.delete(this.url + "5c294330e8fbd178fe22081b")
       .pipe(
         catchError((error: Response) => {
           if (error.status === 404) {

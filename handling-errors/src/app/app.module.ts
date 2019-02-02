@@ -21,6 +21,8 @@ import { TwinComponent } from './twin/twin.component';
 import { OverviewComponent } from './status-update/overview/overview.component';
 import { TreeComponent } from './status-update/tree/tree.component';
 import { DashboardComponent } from './status-update/dashboard/dashboard.component';
+import { Modale1Component } from './checkbox/modale1/modale1.component';
+import { Modale2Component } from './checkbox/modale2/modale2.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { DashboardComponent } from './status-update/dashboard/dashboard.componen
     OverviewComponent,
     TreeComponent,
     DashboardComponent,
+    Modale1Component,
+    Modale2Component,
 
   ],
   imports: [
@@ -44,8 +48,9 @@ import { DashboardComponent } from './status-update/dashboard/dashboard.componen
       { path: 'houses/:id', component: ShowComponent},
       { path: 'twin', component: TwinComponent},
       { path: 'houses', component: IndexComponent},
-      { path: 'dashboard', component: DashboardComponent},
-      { path: '**', redirectTo: 'dashboard' }
+      { path: 'modale2', component: Modale2Component},
+      // { path: 'dashboard', component: DashboardComponent},
+      { path: '**', redirectTo: 'houses' }
     ])
   ],
   providers: [

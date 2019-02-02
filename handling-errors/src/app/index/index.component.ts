@@ -41,25 +41,28 @@ export class IndexComponent implements OnInit {
     if (vm.isProperty) {
       vm.propertyService.refreshContent('homesweethome');
     }
-
     console.log('isProperty', vm.isProperty);
   }
 
-
 // GET
-  getAll() {
-    const vm = this;
+  postsIndex(){
+   const vm = this;
 
-    vm.propertyService.getAll()
-    .subscribe((response) => {
-      vm.all = response;
-      console.log('response', response);
-    },
-    error  => {
-      console.log('error', error);
-      alert('An unxpected error occured!');
-    });
-  }
+   vm.propertyService.getAll()
+   .subscribe((response) => {
+     vm.all = response;
+     if (vm.all.length === 0) {
+       vm.propertyService.refreshContent('No Results');
+     }
+   },
+   (error: AppError) => {
+     if (error instanceof BadRequestError) {
+       vm.propertyService.refreshContent(vm.badRequest);
+     } else {
+       throw error;
+     }
+   });
+ }
 
 // CREATE
   postCreate() {
@@ -75,13 +78,13 @@ export class IndexComponent implements OnInit {
         // potentially we can hava an error object coming from the server and we can display it.
         // postform.setErrors(error.originalError);
       } else {
-      throw error
+      throw error;
     }
     });
   }
 
 // // DELETE
- erasePost(property) {
+ postDelete(property) {
   const vm = this;
 
   vm.propertyService.delete(property)
@@ -99,8 +102,8 @@ export class IndexComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.fork()
-    this.getAll();
+    // this.fork()
+    // this.postsIndex();
   }
 
 }

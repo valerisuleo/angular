@@ -59,7 +59,7 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
     const vm = this;
-    vm.getStatus();
+    // vm.getStatus();
   }
 
 }

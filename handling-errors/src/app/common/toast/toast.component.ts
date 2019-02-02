@@ -22,16 +22,25 @@ export class ToastComponent implements OnInit {
   receivingData(data) {
     const vm = this;
 
+    console.log('data', data);
+
     if (data === 404) {
       vm.isToasted = true;
       vm.errorMessage = 'This property has already been deleted';
-    } else if (data === 400) {
-      console.log('I am bad')
+    }
+
+    if (data === 400) {
+      console.log('I am bad');
+    }
+
+    if (data === 'No Results') {
+      vm.isToasted = true;
+      vm.errorMessage = 'Your search did not match any documents.';
     }
 
     setTimeout(() => {
       vm.isToasted = false;
-    }, 2000)
+    }, 2000);
   }
 
 
