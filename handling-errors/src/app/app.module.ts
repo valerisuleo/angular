@@ -23,6 +23,8 @@ import { TreeComponent } from './status-update/tree/tree.component';
 import { DashboardComponent } from './status-update/dashboard/dashboard.component';
 import { Modale1Component } from './checkbox/modale1/modale1.component';
 import { Modale2Component } from './checkbox/modale2/modale2.component';
+import { TestcomponentComponent } from './testcomponent/testcomponent.component';
+import { Testcomponent2Component } from './testcomponent2/testcomponent2.component';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { Modale2Component } from './checkbox/modale2/modale2.component';
     DashboardComponent,
     Modale1Component,
     Modale2Component,
+    TestcomponentComponent,
+    Testcomponent2Component,
 
   ],
   imports: [

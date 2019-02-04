@@ -25,6 +25,13 @@
   <label for="title">image</label>
   <input type="text" name="image" value="image" [(ngModel)]="propertyNew.image">
 
+
+  <div *ngIf="address">
+    <p><span>address</span>{{ address }}</p>
+    <p><span>postcode</span>{{ postcode }}</p>
+    <p><span>status</span>{{ status }}</p>
+  </div>
+
   <ul *ngIf="usims.length > 0">
     <li *ngFor="let usim of usims; index as i">
       <p><span>IMEI:</span>{{ usim.imei }}</p>

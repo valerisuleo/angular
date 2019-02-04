@@ -16,8 +16,12 @@ import { Router } from '@angular/router';
 export class Modale1Component implements OnInit {
   all = [];
   usims = [];
+  usimArray = [];
 
-  usimShadow: any;
+  address: string;
+  postcode: string;
+  status: string;
+
 
   propertyNew = {
     usimsPreselected: []
@@ -29,29 +33,42 @@ export class Modale1Component implements OnInit {
 
     this.service.currentSelectedChanged
     .subscribe((args) => {
-      this.fromModale1(args);
+      this.fromModale2(args);
     })
   }
 
-  fromModale1(data) {
+  fromModale2(data) {
     const vm = this;
-    vm.usimShadow = JSON.parse(JSON.stringify(data));
 
-    vm.usims = vm.usimShadow.usim;
-    console.log('vm.usims', vm.usims);
-    // vm.propertyNew.usimsPreselected = data.usim;
-    vm.propertyNew.usimsPreselected = vm.usims;
+    vm.address = data.address;
+    vm.postcode = data.postcode;
+    vm.status = data.stato;
 
+    data.usim.forEach((item) => {
+      vm.usims.push(item);
+    });
+    console.log('usims', vm.usims);
+    vm.hookupUsimToform();
   }
 
-  usimSelect(e, i) {
+
+  hookupUsimToform() {
+    const vm = this;
+    vm.usimArray = JSON.parse(JSON.stringify(vm.usims));
+    vm.propertyNew.usimsPreselected = vm.usimArray;
+  }
+
+  usimSelect(e, index) {
     const vm = this;
 
-    const isChecked = e.target.checked;
+    console.log('index', index);
+    // const isChecked = e.target.checked;
+    // !isChecked ? vm.deleteItem(index, vm.usimArray) : vm.usimArray.push(index);
+  }
 
-    !isChecked ? vm.usims.splice(i, 1) : console.log('wow');
-    console.log('vm.usims', vm.usims);
-
+  deleteItem(item, array) {
+    var index = array.indexOf(item);
+    array.splice(index, 1);
   }
 
   // CREATE
