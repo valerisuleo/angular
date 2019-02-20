@@ -16,21 +16,21 @@ export class ShowComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  // propertyShow() {
-  //   const vm = this;
-  //   const id = vm.route.snapshot.paramMap.get('id');
-  //
-  //   console.log('id', id);
-  //
-  //   vm.propertyService.get(id)
-  //   .subscribe((response) => {
-  //     vm.property = response;
-  //     console.log(vm.property);
-  //   });
-  // }
+  propertyShow() {
+    const vm = this;
+    const address = vm.route.snapshot.paramMap.get('address');
+
+    console.log('address', address);
+
+    // vm.propertyService.get(id)
+    // .subscribe((response) => {
+    //   vm.property = response;
+    //   console.log(vm.property);
+    // });
+  }
 
   ngOnInit() {
-   // this.propertyShow();
+   this.propertyShow();
   }
 
 }

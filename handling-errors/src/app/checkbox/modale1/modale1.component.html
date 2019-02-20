@@ -33,13 +33,13 @@
   </div>
 
   <ul *ngIf="usims.length > 0">
-    <li *ngFor="let usim of usims; index as i">
+    <li *ngFor="let usim of usims">
       <p><span>IMEI:</span>{{ usim.imei }}</p>
       <p><span>NUMBER:</span>{{ usim.number }}</p>
       <p><span>ISDSN:</span>{{ usim.isdsn }}</p>
       <!-- checkbox -->
       <label class="control--checkbox">
-        <input (change)="usimSelect($event, i)" type="checkbox" [checked]="usim"/>
+        <input (change)="usimSelect($event, usim)" type="checkbox" [checked]="usim"/>
         <div class="checkbox">
           <div class="filler"></div>
           <svg width="15px" height="15px" viewBox="0 0 20 20">

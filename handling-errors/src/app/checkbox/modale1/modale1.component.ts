@@ -14,22 +14,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./modale1.component.css']
 })
 export class Modale1Component implements OnInit {
-  all = [];
+
   usims = [];
-  usimArray = [];
 
   address: string;
   postcode: string;
   status: string;
 
-
   propertyNew = {
     usimsPreselected: []
   };
 
-  constructor(
-    private service: PostsService
-  ) {
+  constructor( private service: PostsService ) {
 
     this.service.currentSelectedChanged
     .subscribe((args) => {
@@ -45,54 +41,29 @@ export class Modale1Component implements OnInit {
     vm.status = data.stato;
 
     data.usim.forEach((item) => {
+      item.checka = true;
       vm.usims.push(item);
     });
-    console.log('usims', vm.usims);
-    vm.hookupUsimToform();
+
+    vm.propertyNew.usimsPreselected = vm.usims;
   }
 
-
-  hookupUsimToform() {
+  usimSelect(e, usim) {
     const vm = this;
-    vm.usimArray = JSON.parse(JSON.stringify(vm.usims));
-    vm.propertyNew.usimsPreselected = vm.usimArray;
+    const isChecked = e.target.checked;
+
+    !isChecked ? usim.checka = false : usim.checka = true;
+
+    vm.propertyNew.usimsPreselected = vm.removeFalse();
   }
 
-  usimSelect(e, index) {
+  removeFalse() {
     const vm = this;
-
-    console.log('index', index);
-    // const isChecked = e.target.checked;
-    // !isChecked ? vm.deleteItem(index, vm.usimArray) : vm.usimArray.push(index);
+    return vm.usims.filter((item) => {
+      return item.checka === true;
+    });
   }
 
-  deleteItem(item, array) {
-    var index = array.indexOf(item);
-    array.splice(index, 1);
-  }
-
-  // CREATE
-  postCreate() {
-  const vm = this;
-
-  vm.service.create(vm.propertyNew)
-  .subscribe((response) => {
-    vm.all.push(response);
-  }, (error: AppError) => {
-    if (error instanceof BadRequestError) {
-      console.log('error', error);
-      alert('Bad Request Dude!')
-      // potentially we can hava an error object coming from the server and we can display it.
-      // postform.setErrors(error.originalError);
-    } else {
-    throw error;
-  }
-});
-}
-
-
-ngOnInit() {
-  // this.propertyIndex();
-}
+  ngOnInit() {}
 
 }

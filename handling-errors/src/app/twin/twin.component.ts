@@ -57,7 +57,7 @@ export class TwinComponent implements OnInit {
       },
       error  => {
         console.log('error', error);
-        alert('An unxpected error occured!');
+        // alert('An unxpected error occured!');
       });
     }
 

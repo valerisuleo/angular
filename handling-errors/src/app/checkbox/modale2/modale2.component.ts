@@ -29,7 +29,6 @@ export class Modale2Component implements OnInit {
 
 
   usimSelect(selectedUsim) {
-    console.log('selectedUsim', selectedUsim);
     this.service.resfreshContent(selectedUsim);
   }
 

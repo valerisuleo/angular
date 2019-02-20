@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { ForkService } from '../services/fork.service';
+import { PostsService } from '../services/posts.service';
 import { AppError } from '../common/app-error';
 import { NotFoundError } from '../common/not-found-error';
 import { BadRequestError } from '../common/bad-request-error';
@@ -10,100 +10,48 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'placeholder-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  styleUrls: ['./index.component.css'],
 })
 export class IndexComponent implements OnInit {
 
-  all: any[];
-  propertyNew = {};
+  groups = [];
+  page = 1;
+  pageSize = 10;
+  collectionSize: number;
 
-  notFound = 404;
-  badRequest = 400;
+  isOpen: boolean;
 
-  isProperty: boolean;
-
-  constructor(
-    private propertyService: ForkService,
-    private http: Http,
-    private router: Router
-  ) {}
-
-  whereAreWe(string) {
-    const vm = this;
-    const getUrl: string = vm.router.url;
-    return getUrl.includes(string);
+  constructor(private service: PostsService) {
+    this.isOpen = false;
   }
 
-  fork() {
-    const vm = this;
-    vm.isProperty = vm.whereAreWe('house');
-
-    if (vm.isProperty) {
-      vm.propertyService.refreshContent('homesweethome');
-    }
-    console.log('isProperty', vm.isProperty);
-  }
-
-// GET
-  postsIndex(){
-   const vm = this;
-
-   vm.propertyService.getAll()
-   .subscribe((response) => {
-     vm.all = response;
-     if (vm.all.length === 0) {
-       vm.propertyService.refreshContent('No Results');
-     }
-   },
-   (error: AppError) => {
-     if (error instanceof BadRequestError) {
-       vm.propertyService.refreshContent(vm.badRequest);
-     } else {
-       throw error;
-     }
-   });
- }
-
-// CREATE
-  postCreate() {
+  postsIndex() {
     const vm = this;
 
-    vm.propertyService.create(vm.propertyNew)
+    vm.service.getAll()
     .subscribe((response) => {
-      vm.all.push(response);
-    }, (error: AppError) => {
-      if (error instanceof BadRequestError) {
-        console.log('error', error);
-        alert('Bad Request Dude!')
-        // potentially we can hava an error object coming from the server and we can display it.
-        // postform.setErrors(error.originalError);
-      } else {
-      throw error;
-    }
+      vm.groups = response;
+      vm.collectionSize = vm.groups.length;
+
+      console.log(vm.groups);
     });
   }
 
-// // DELETE
- postDelete(property) {
-  const vm = this;
+  get groupsAll() {
+    return this.groups
+    .map((group, i) => ({id: i + 1, ...group}))
+    .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
 
-  vm.propertyService.delete(property)
-  .subscribe(() => {
-    let index = vm.all.indexOf(property);
-    vm.all.splice(index, 1);
-  },
-  (error: AppError) => {
-    if (error instanceof NotFoundError) {
-      vm.propertyService.refreshContent(vm.notFound);
-    } else {
-      throw error;
-    }
-  });
-}
+  toggleMenu(e) {
+    this.isOpen = !this.isOpen;
+    const current = e.target;
+    this.isOpen ? current.style.opacity = '1' : current.style.opacity = '0';
+    console.log(current);
+  }
 
   ngOnInit() {
-    // this.fork()
-    // this.postsIndex();
+    this.postsIndex();
   }
 
 }

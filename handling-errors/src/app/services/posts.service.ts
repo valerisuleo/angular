@@ -10,7 +10,8 @@ export class PostsService extends DataService {
 
 
   constructor(http: Http) {
-    super('http://localhost:3000/propertys', http);
+    super('https://jsonplaceholder.typicode.com/posts', http);
+    // super('http://localhost:3000/propertys', http);
   }
 
   resfreshContent(args: any) {
