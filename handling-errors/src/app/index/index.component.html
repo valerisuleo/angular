@@ -1,47 +1,60 @@
-<div class="row">
-  <div class="col-lg-12">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>title</th>
-          <th>id</th>
-          <th>#</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of groupsAll">
-          <td>{{ item?.title }}</td>
-          <td>{{ item?.id }}</td>
-          <td>
+<div class="container">
+<!-- title -->
+  <div class="row">
+    <div class="col-md-3 lines labels">Id</div>
+    <div class="col-md-3 lines labels">Title</div>
+    <div class="col-md-3 lines labels">Body</div>
+    <div class="col-md-3 lines labels">Actions</div>
+  </div>
+  <!-- body -->
+  <div *ngFor="let item of groupsAll" class="row">
 
-            <!-- Split button -->
-            <ul (click)="toggleMenu($event)" class="asso-menu" id="asso">
-              <li class="asso-el">Action</li>
-              <li class="asso-el">Another action</li>
-              <li class="asso-el">Something else here</li>
-            </ul>
-            <!-- <div class="btn-group" dropdown>
-              <button type="button" class="btn btn-danger">Action</button>
-              <button type="button" class="btn btn-danger dropdown-toggle">
-                <span class="caret"></span>
-                <span class="sr-only">Split button!</span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a>
-                </li>
-                <li><a href="#">Another action</a>
-                </li>
-                <li><a href="#">Something else here</a>
-                </li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a>
-                </li>
-              </ul>
-            </div> -->
+    <div class="col-md-3 lines">
+      {{ item.id }}
+    </div>
 
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="col-md-3 lines">
+      {{ item.title }}
+    </div>
+
+    <div class="col-md-3 lines">
+      {{ item.body }}
+    </div>
+
+    <div class="col-md-3 lines">
+      <button (click)="greet(item, $event)" class="btn btn-danger" type="button" name="button">Save</button>
+    </div>
+
   </div>
 </div>
+
+
+
+
+
+
+
+<!--
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>id</th>
+      <th>#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of groupsAll">
+      <td>
+        <ul (click)="toggleMenu($event)" class="asso-menu" id="asso">
+          <li class="asso-el">Action</li>
+          <li class="asso-el">Another action</li>
+          <li class="asso-el">Something else here</li>
+        </ul>
+      </td>
+      <td>{{ item?.title }}</td>
+      <td>{{ item?.id }}</td>
+    </tr>
+  </tbody>
+</table> -->

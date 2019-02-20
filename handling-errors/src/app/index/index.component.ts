@@ -46,8 +46,15 @@ export class IndexComponent implements OnInit {
   toggleMenu(e) {
     this.isOpen = !this.isOpen;
     const current = e.target;
-    this.isOpen ? current.style.opacity = '1' : current.style.opacity = '0';
+    this.isOpen ? current.style.display = 'block' : current.style.display = 'none';
     console.log(current);
+  }
+
+  greet(index, e) {
+    console.log(e.target.innerHTML);
+    let current = e.target.innerHTML;
+
+    current = 'Vale';
   }
 
   ngOnInit() {
