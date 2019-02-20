@@ -43,12 +43,12 @@ export class IndexComponent implements OnInit {
     .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
-  toggleMenu(e) {
-    this.isOpen = !this.isOpen;
-    const current = e.target;
-    this.isOpen ? current.style.display = 'block' : current.style.display = 'none';
-    console.log(current);
-  }
+  // toggleMenu(e) {
+  //   this.isOpen = !this.isOpen;
+  //   const current = e.target;
+  //   this.isOpen ? current.style.display = 'block' : current.style.display = 'none';
+  //   console.log(current);
+  // }
 
   greet(index, e) {
     console.log(e.target.innerHTML);
