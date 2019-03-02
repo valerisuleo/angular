@@ -52,9 +52,9 @@ export class IndexComponent implements OnInit {
 
   greet(index, e) {
     console.log(e.target.innerHTML);
-    let current = e.target.innerHTML;
+    let current = e.target;
 
-    current = 'Vale';
+    current.style.display = 'none';
   }
 
   ngOnInit() {

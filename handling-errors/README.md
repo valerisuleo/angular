@@ -45,8 +45,10 @@ In order to simulate an error we change wrong our `url`. Now let's handle this e
 > You might want to use *toast notification* instead of `alert` since they are less confronting and don't freeze the application.
 
 
-##Handling Expected Errors
+## Handling Expected Errors
+
 ### Scenario where an item has already been deleted `404`
+
 We want to tell the users that this item is not available anymore.
 
 ```
@@ -223,23 +225,23 @@ So if it's `404` we want to return a different kind of error; because in our com
   
 3. Back to our component:
 
-	```
-	 postDelete(post) {
-	   const vm = this;
-	
-	   vm.postService.delete(345)
-	   .subscribe(() => {
-	     let index = vm.all.indexOf(post);
-	     vm.all.splice(index, 1);
-	   }, (error: AppError) => {
-	     if (error instanceof NotFoundError) {
-	       alert('this post has already been deleted')
-	     } else {
-	       alert('An unxpected error occured!');
-	     }
-	   });
-	 }
-	```
+		```
+		 postDelete(post) {
+		   const vm = this;
+		
+		   vm.postService.delete(345)
+		   .subscribe(() => {
+		     let index = vm.all.indexOf(post);
+		     vm.all.splice(index, 1);
+		   }, (error: AppError) => {
+		     if (error instanceof NotFoundError) {
+		       alert('this post has already been deleted')
+		     } else {
+		       alert('An unxpected error occured!');
+		     }
+		   });
+		 }
+		```
 
 
 ## Global Error Handling
