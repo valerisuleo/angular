@@ -289,15 +289,17 @@ So let me show you how to handle unexpected errors globally.
 So the actual implementation of this method is not going to be only two lines of code. It's going to be a little bit more complex.
 
 4. So now we have a global error handler. Next we need to register this as a dependency or as a *provider* in the `/app.module.`  
-In the provider's array we need to register this new class but we're going to use a different approach
+In the provider's array we need to register this new class but we're going to use a different approach 
 >We want to tell Angular that wherever internally you're using error handler instead use `AppErrorHandler `.
 
+
 	```
-	   providers: [
-	    PostsService,
-	    { provide: ErrorHandler, useClass: AppErrorHandler}
-	  ],
+	providers: [
+	PostsService,
+	{ provide: ErrorHandler, useClass: AppErrorHandler}
+	],
 	```
+	
 5. Back to our component, first we want to check to see if this is a not found error. Otherwise we want to rethrow the error so it will be captured by our global error handler.
 
 	```
