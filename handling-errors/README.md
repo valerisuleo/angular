@@ -190,6 +190,7 @@ So if it's `404` we want to return a different kind of error; because in our com
 	
 	export class NotFoundError extends AppError {}
 	```
+
 2. `/data.service.ts`
 
 	```
@@ -225,23 +226,7 @@ So if it's `404` we want to return a different kind of error; because in our com
   
 3. Back to our component:
 
-		```
-		 postDelete(post) {
-		   const vm = this;
-		
-		   vm.postService.delete(345)
-		   .subscribe(() => {
-		     let index = vm.all.indexOf(post);
-		     vm.all.splice(index, 1);
-		   }, (error: AppError) => {
-		     if (error instanceof NotFoundError) {
-		       alert('this post has already been deleted')
-		     } else {
-		       alert('An unxpected error occured!');
-		     }
-		   });
-		 }
-		```
+
 
 
 ## Global Error Handling
