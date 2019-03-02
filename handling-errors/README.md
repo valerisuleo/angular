@@ -226,61 +226,7 @@ So if it's `404` we want to return a different kind of error; because in our com
   
 3. Back to our component:
 
-		```
-		 postDelete(post) {
-		   const vm = this;
-		
-		   vm.postService.delete(345)
-		   .subscribe(() => {
-		     let index = vm.all.indexOf(post);
-		     vm.all.splice(index, 1);
-		   }, (error: AppError) => {
-		     if (error instanceof NotFoundError) {
-		       alert('this post has already been deleted')
-		     } else {
-		       alert('An unxpected error occured!');
-		     }
-		   });
-		 }
-		```
 
-
-## Global Error Handling
-
-We repeat lots of time:
-
-
-
-Now here we are dealing with only one component but in a real world application we're going to have tens or maybe hundreds of components.
-We don't want to repeat these two lines in every component.
-
-So let me show you how to handle unexpected errors globally.
-
-1. `touch common/app-error-handler`
-2.  Add:
-
-	```
-	import { ErrorHandler } from '@angular/core';
-	
-	export class AppErrorHandler implements ErrorHandler {
-	  handleError(error) {
-	    
-	  }
-	}
-```
-
-3. Now let's add our infamous 2 lines
-
-	```
-	import { ErrorHandler } from '@angular/core';
-	
-	export class AppErrorHandler implements ErrorHandler {
-	  handleError(error) {
-	    alert('An unxpected error occured!');
-	    console.log(error);
-	  }
-	}
-	```
 	
 	> now in the future instead of this alert we could display a toast notification and instead of console log we could log the error message on the server.
 So the actual implementation of this method is not going to be only two lines of code. It's going to be a little bit more complex.
