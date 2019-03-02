@@ -226,13 +226,30 @@ So if it's `404` we want to return a different kind of error; because in our com
   
 3. Back to our component:
 
+		```
+		 postDelete(post) {
+		   const vm = this;
+		
+		   vm.postService.delete(345)
+		   .subscribe(() => {
+		     let index = vm.all.indexOf(post);
+		     vm.all.splice(index, 1);
+		   }, (error: AppError) => {
+		     if (error instanceof NotFoundError) {
+		       alert('this post has already been deleted')
+		     } else {
+		       alert('An unxpected error occured!');
+		     }
+		   });
+		 }
+		```
+
+
+## Global Error Handling
 
 We repeat lots of time:
 
-```
-console.log(error);
-alert('An unxpected error occured!');
-```
+
 
 Now here we are dealing with only one component but in a real world application we're going to have tens or maybe hundreds of components.
 We don't want to repeat these two lines in every component.
