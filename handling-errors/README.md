@@ -226,23 +226,23 @@ So if it's `404` we want to return a different kind of error; because in our com
   
 3. Back to our component:
 
-		```
-		 postDelete(post) {
-		   const vm = this;
+	```
+	 postDelete(post) {
+	   const vm = this;
 		
-		   vm.postService.delete(345)
-		   .subscribe(() => {
-		     let index = vm.all.indexOf(post);
-		     vm.all.splice(index, 1);
-		   }, (error: AppError) => {
-		     if (error instanceof NotFoundError) {
-		       alert('this post has already been deleted')
-		     } else {
-		       alert('An unxpected error occured!');
-		     }
-		   });
-		 }
-		```
+	   vm.postService.delete(345)
+	   .subscribe(() => {
+	     let index = vm.all.indexOf(post);
+	     vm.all.splice(index, 1);
+	   }, (error: AppError) => {
+	     if (error instanceof NotFoundError) {
+	       alert('this post has already been deleted')
+	     } else {
+	       alert('An unxpected error occured!');
+	     }
+	   });
+	 }
+	```
 
 
 ## Global Error Handling
@@ -345,12 +345,15 @@ private handleError(error: Response) {
   }
 ```
 
- then we change:
- 
- ```
+then we change:
+
+```
    delete(id) {
     return this.http.delete(this.url + `/${resource.id}`)
       .map(response => response.json())
       .catch(this.handleError);
   }
 ```
+ 
+ 
+
