@@ -227,10 +227,6 @@ So if it's `404` we want to return a different kind of error; because in our com
 3. Back to our component:
 
 
-
-
-## Global Error Handling
-
 We repeat lots of time:
 
 ```
