@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { PostsService } from '../services/posts.service';
+import { PropertyService } from '../services/property.service';
 import { AppError } from '../common/app-error';
 import { NotFoundError } from '../common/not-found-error';
 import { BadRequestError } from '../common/bad-request-error';
@@ -14,51 +14,45 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
-  groups = [];
-  page = 1;
-  pageSize = 10;
-  collectionSize: number;
+  all = [];
+  propertyNew = {};
 
-  isOpen: boolean;
+  subscription: any
 
-  constructor(private service: PostsService) {
-    this.isOpen = false;
-  }
+  constructor(private service: PropertyService) {}
 
-  postsIndex() {
+// INDEX
+  propertyIndex() {
     const vm = this;
 
     vm.service.getAll()
     .subscribe((response) => {
-      vm.groups = response;
-      vm.collectionSize = vm.groups.length;
-
-      console.log(vm.groups);
+      vm.all = response;
+      console.log(vm.all);
     });
   }
 
-  get groupsAll() {
-    return this.groups
-    .map((group, i) => ({id: i + 1, ...group}))
-    .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-  }
 
-  // toggleMenu(e) {
-  //   this.isOpen = !this.isOpen;
-  //   const current = e.target;
-  //   this.isOpen ? current.style.display = 'block' : current.style.display = 'none';
-  //   console.log(current);
-  // }
+// NEW
+  propertyCreate() {
+    const vm = this;
 
-  greet(index, e) {
-    console.log(e.target.innerHTML);
-    let current = e.target;
-
-    current.style.display = 'none';
+    vm.service.create(vm.propertyNew)
+    .subscribe((response) => {
+      vm.all.push(response);
+    }, (error: AppError) => {
+      if (error instanceof BadRequestError) {
+          alert('BadRequestError')
+      } else {
+        console.log(error);
+        console.log(error.originalError.statusText);
+        throw error;
+      }
+    });
   }
 
   ngOnInit() {
-    this.postsIndex();
+    this.propertyIndex();
   }
 
 }

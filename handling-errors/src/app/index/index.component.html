@@ -1,60 +1,77 @@
 <div class="container">
-<!-- title -->
+  <h1>Handling Errors</h1>
   <div class="row">
-    <div class="col-md-3 lines labels">Id</div>
-    <div class="col-md-3 lines labels">Title</div>
-    <div class="col-md-3 lines labels">Body</div>
-    <div class="col-md-3 lines labels">Actions</div>
+
+    <div class="col-12">
+      <form #propertyForm="ngForm" (submit)="propertyCreate()">
+
+        <div class="form-group">
+          <label for="title">address</label>
+          <input class="form-control" type="text" name="address" value="address" [(ngModel)]="propertyNew.address">
+        </div>
+
+        <div class="form-group">
+          <label for="title">postcode</label>
+          <input class="form-control" type="text" name="postcode" value="postcode" [(ngModel)]="propertyNew.postcode">
+        </div>
+
+        <div class="form-group">
+          <label for="title">bedrooms</label>
+          <input class="form-control" type="text" name="bedrooms" value="bedrooms" [(ngModel)]="propertyNew.bedrooms">
+        </div>
+
+        <div class="form-group">
+          <label for="title">bathrooms</label>
+          <input class="form-control" type="text" name="bathrooms" value="bathrooms" [(ngModel)]="propertyNew.bathrooms">
+        </div>
+
+        <div class="form-group">
+          <label for="title">askingPrice</label>
+          <input class="form-control" type="text" name="askingPrice" value="askingPrice" [(ngModel)]="propertyNew.askingPrice">
+        </div>
+
+        <div class="form-group">
+          <label for="title">floorArea</label>
+          <input class="form-control" type="text" name="floorArea" value="floorArea" [(ngModel)]="propertyNew.floorArea">
+        </div>
+
+        <div class="form-group">
+          <label for="title">dateAvailable</label>
+          <input class="form-control" type="text" name="dateAvailable" value="dateAvailable" [(ngModel)]="propertyNew.dateAvailable">
+        </div>
+
+        <div class="form-group">
+          <label for="title">image</label>
+          <input class="form-control-file" type="text" name="image" value="image" [(ngModel)]="propertyNew.image">
+        </div>
+
+        <button class="btn btn-primary">Add Property</button>
+      </form>
+    </div>
   </div>
-  <!-- body -->
-  <div *ngFor="let item of groupsAll" class="row">
 
-    <div class="col-md-3 lines">
-      {{ item.id }}
+  <div class="row mb-5">
+    <div class="col-lg-12 mt-5">
+      <h3>Houses List</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">address</th>
+            <th scope="col">postcode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of all">
+            <td>{{ item.id }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.postcode }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <div class="col-md-3 lines">
-      {{ item.title }}
-    </div>
-
-    <div class="col-md-3 lines">
-      {{ item.body }}
-    </div>
-
-    <div class="col-md-3 lines">
-      <button (click)="greet(item, $event)" class="btn btn-danger" type="button" name="button">Save</button>
-    </div>
-
   </div>
+
+  <p>{{ propertyForm.value | json }}</p>
+
 </div>
-
-
-
-
-
-
-
-<!--
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>id</th>
-      <th>#</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of groupsAll">
-      <td>
-        <ul (click)="toggleMenu($event)" class="asso-menu" id="asso">
-          <li class="asso-el">Action</li>
-          <li class="asso-el">Another action</li>
-          <li class="asso-el">Something else here</li>
-        </ul>
-      </td>
-      <td>{{ item?.title }}</td>
-      <td>{{ item?.id }}</td>
-    </tr>
-  </tbody>
-</table> -->

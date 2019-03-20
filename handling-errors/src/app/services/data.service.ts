@@ -45,7 +45,7 @@ export class DataService {
     )
   }
 
-  // update
+  // UPDATE
   update(resource) {
   return this.http.put(this.url + `/${resource.id}`, resource)
   .pipe(map(response => response.json()));
