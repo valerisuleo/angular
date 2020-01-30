@@ -85,7 +85,6 @@ export class DonutsComponent implements OnInit {
 
     // }
 
-
     ngOnInit() {
         this.getAll();
     }

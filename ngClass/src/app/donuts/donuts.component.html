@@ -1,7 +1,7 @@
 <div class="wrapper">
     <h1>Angular Donuts</h1>
 
-<form #donutform="ngForm" (submit)="donutsCreate(donutform)">
+<form #f="ngForm" (submit)="donutsCreate()">
     <label for=flavor>flavor</label>
     <input [(ngModel)]="donut.flavor" type="text" name=flavor id=flavor placeholder="what's your flavor?">
 
@@ -23,13 +23,17 @@
 
 </form>
 
-<h2 [ngClass]="donut.flavor + ' ' + donut.size">{{donut.flavor}} {{donut.size}}</h2>
+<h2 [ngClass]="[donut.flavor + ' ' + donut.size]" [class.eaten]="donut.eaten === true">{{donut.flavor}} {{donut.size}}</h2>
 </div>
 
 
 <!-- _________________________________________currently not works_________________________________________ -->
+
 <!-- <h2 [ngClass]="[donut.flavor + ' ' + { eaten: donut.eaten }]">{{donut.flavor}} {{donut.size}}</h2> -->
+
 <!-- ______________________________________________________________________________________________________ -->
+
+
 
 <hr>
 
@@ -59,7 +63,7 @@
     <li *ngFor="let item of newAll">
 
     <div class="top">
-         {{ item[0].id }}
+         {{ item.id }}
     </div>
 
     <div class="bottom">
