@@ -14,7 +14,7 @@ export class DonutsComponent implements OnInit {
     all: any[];
     newAll = [];
     captionValues = [];
-    
+
     donut = {};
 
     constructor(private http: Http) { }
@@ -25,12 +25,13 @@ export class DonutsComponent implements OnInit {
                 this.all = response.json().slice(0, 4);
                 this.getCaptionValues();
                 this.newAll = this.removeFlavourProperty().slice(0, 4);
-                this.addKeys();                
+                this.addKeys();
                 // setTimeout(this.triggerRemoveChocolate.bind(this), 5000)
             });
 
     }
-    
+
+
     getCaptionValues() {
         this.captionValues = this.all.map((item) => {
             let noSpaces = item.flavour.replace(/\s/g, '-');
@@ -62,13 +63,13 @@ export class DonutsComponent implements OnInit {
     //                 index: i
     //             });
     //         });
-            
+
     //         return obj;
     //     });
     // }
 
     // REFACTORING...
-    addKeys() {        
+    addKeys() {
         this.newAll.forEach((donutObj) => {
             // we add a new key 'classes' to { id: number, style: string} which will be an [{flavor: "chocolate", index: 0}]
             donutObj.classes = this.captionValues.map((flavor, i) => {
