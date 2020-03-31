@@ -1,0 +1,20 @@
+<div class="row mt-5">
+    <div class="col">
+        <bootstrap-form-container 
+            [title]='title' 
+            [formGroup]="formObj" 
+            (handleSubmit)="handleSubmit($event)">
+
+            <bootstrap-form-group 
+                *ngFor="let key of keys"
+                [formGroup]="formObj"
+                [name]="key">
+            </bootstrap-form-group>
+
+        </bootstrap-form-container>
+    </div>
+</div>
+
+<p>
+    {{ formObj.value | json }}
+</p>

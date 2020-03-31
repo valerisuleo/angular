@@ -1,0 +1,6 @@
+<form (ngSubmit)="submit()" [formGroup]="formGroup">
+    <h3>{{ title }}</h3>
+    <!-- inject form-group -->
+    <ng-content></ng-content>
+    <button type="submit" [disabled]="!formGroup.valid" class="btn btn-primary">Submit</button>
+</form>
