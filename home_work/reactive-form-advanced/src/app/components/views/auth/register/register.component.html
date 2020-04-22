@@ -1,0 +1,28 @@
+<bootstrap-form 
+    [formGroup]="formGroup" 
+    (handleSubmit)="handleSubmit($event)">
+
+    <bootstrap-form-group-input 
+        *ngFor="let item of inputs" 
+        [formGroup]="formGroup" 
+        [name]="item.type">
+    </bootstrap-form-group-input>
+
+    <bootstrap-form-group-checkbox
+        *ngFor="let item of checkbox" 
+        [formGroup]="formGroup" 
+        [type]="item.type"
+        [label]="item.label">
+    </bootstrap-form-group-checkbox>
+    
+    <bootstrap-form-group-select 
+        *ngFor="let item of selects"
+        [formGroup]="formGroup"
+        [label]='item.label'
+        [type]='item.type'
+        [options]='item.options'>
+    </bootstrap-form-group-select>
+
+</bootstrap-form>
+
+{{ formGroup.value | json }}
