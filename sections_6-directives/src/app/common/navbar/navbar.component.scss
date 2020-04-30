@@ -1,0 +1,13 @@
+nav{
+    a {
+        color: white;
+    }
+
+    div {
+        & :first-child {
+            a {
+                color: white;
+            }
+        }
+    }
+}

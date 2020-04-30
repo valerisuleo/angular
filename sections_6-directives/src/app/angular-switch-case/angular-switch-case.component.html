@@ -1,0 +1,42 @@
+<div class="row">
+    <bootstrap-tab class="m-3" *ngFor="let tab of tabs" (click)="toggleActiveClass(tab)" [tab]="tab" [viewMode]="viewMode">
+
+        <ng-container class="tab-label">
+            {{ tab.name }}
+        </ng-container>
+
+        <ng-container class="tab-content">
+
+            <div *ngIf="tab.viewMode === 'list'">
+                <ul class="list-group">
+                    <li *ngFor="let movie of movies" class="list-group-item">
+                        {{ movie.title }}
+                    </li>
+                </ul>
+            </div>
+
+            <div *ngIf="tab.viewMode === 'table'">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">title</th>
+                            <th scope="col">genre</th>
+                            <th scope="col">numberInStock</th>
+                            <th scope="col">dailyRentalRate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let movie of movies">
+                            <td>{{ movie.title }}</td>
+                            <td>{{ movie.genre.name }}</td>
+                            <td>{{ movie.numberInStock }}</td>
+                            <td>{{ movie.dailyRentalRate }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </ng-container>
+
+    </bootstrap-tab>
+</div>

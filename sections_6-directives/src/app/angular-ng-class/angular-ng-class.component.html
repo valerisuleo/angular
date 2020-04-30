@@ -1,0 +1,42 @@
+<div class="wrapper">
+    <h1>Angular Donuts</h1>
+
+    <form (ngSubmit)="donutsCreate()">
+        <label for=flavor>flavor</label>
+        <input appInputFormat [(ngModel)]="donut.flavor" type="text" name=flavor id=flavor placeholder="what's your flavor?">
+
+        <label for=size>size</label>
+        <input [(ngModel)]="donut.size" type="text" name=size id=size placeholder="what's your size?">
+
+        <label for="eaten">eaten</label>
+        <input [(ngModel)]="donut.eaten" type="checkbox" name="eaten" id="eaten">
+
+        <label for="yes">yes</label>
+        <input [(ngModel)]="donut.yes" type="radio" name="yes" value="yes">
+
+        <label for="no">no</label>
+        <input [(ngModel)]="donut.no" type="radio" name="yes" value="no">
+
+        <input type="submit" value="Add">
+
+        <!-- <p>{{ donut | json }}</p> -->
+
+    </form>
+
+    <ul>
+        <li *ngFor="let donut of all" 
+        [ngClass]="[donut.flavor + ' ' + donut.size]" 
+        [class.eaten]="donut.eaten === true">
+            {{donut.flavor}} {{donut.size}}
+        </li>
+    </ul>
+
+    <!-- ________________________ngClass with Giacomo________________________ -->
+    <!-- <ul class="ng-class-with-giacomo">
+        <li *ngFor="let donut of all">
+            <p *ngFor="let item of donut.classes" [ngClass]='item.flavor'>
+                {{item.flavor}}
+            </p>
+        </li>
+    </ul> -->
+</div>

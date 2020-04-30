@@ -1,0 +1,32 @@
+<h1>ngif</h1>
+
+<ng-container *ngIf="isToggle
+then hidden
+else showed">
+</ng-container>
+
+
+<ng-template #showed>
+    <bootstrap-card>
+        <div class="header">
+            <h3>Showed</h3>
+        </div>
+        <div class="body">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, voluptatem! Tenetur, vitae tempora suscipit dolorem eligendi amet error omnis beatae deserunt voluptate excepturi iure cumque in recusandae, culpa, ad vel?
+        </div>
+    </bootstrap-card>
+</ng-template>
+
+<ng-template #hidden>
+    <bootstrap-card class="m-5">
+        <div class="header">
+            <h3>Hidden</h3>
+        </div>
+        <div class="body">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, voluptatem! Tenetur, vitae tempora suscipit dolorem eligendi amet error omnis beatae deserunt voluptate excepturi iure cumque in recusandae, culpa, ad vel?
+        </div>
+    </bootstrap-card>
+</ng-template>
+
+
+<button class="btn btn-primary m-5" (click)="isToggle = !isToggle">Toggle Card</button>
