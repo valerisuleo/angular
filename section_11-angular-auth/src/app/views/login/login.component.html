@@ -1,0 +1,15 @@
+<div class="row mt-5">
+    <div class="col">
+        <h1>Login</h1>
+        <bootstrap-form-group [formGroup]='formGroup' (handleSubmit)="handleSubmit($event)">
+            
+            <bootstrap-form-group-input
+                *ngFor="let item of inputs"
+                [formGroup]='formGroup'
+                [name]='item.type'
+                [label]='item.label'>
+            </bootstrap-form-group-input>
+            
+        </bootstrap-form-group>
+    </div>
+</div>
