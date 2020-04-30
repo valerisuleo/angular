@@ -314,10 +314,10 @@ refreshNavbarAfterLogin() {
         }
     }
 ```
-
-
+__________________________________________
 
 ## Append Headers
+
 
 As we know we need to pass the token each time to the back-end each time we want to access to a protected `API`.
 
@@ -417,6 +417,7 @@ export class DataService {
     }
 }
 ```
+
 
 Back to `DataService`:
 
