@@ -303,18 +303,17 @@ refreshNavbarAfterLogin() {
 - Now we need to decode the token to verufy is an *admin* user:
 
 	```
-    canActivate() {
-        const decodeToken = this.service.getCurrentUser();
-        const { admin } = decodeToken;
-	
-        if (admin) {
-            return admin;
-        } else {
-            this.router.navigate(['/no-access']);
-        }
-    }
-```
-__________________________________________
+	canActivate() {
+		const decodeToken = this.service.getCurrentUser();
+		const { admin } = decodeToken;
+			
+		if (admin) {
+		return admin;
+		} else {
+		this.router.navigate(['/no-access']);
+		}
+	}
+	```
 
 ## Append Headers
 
