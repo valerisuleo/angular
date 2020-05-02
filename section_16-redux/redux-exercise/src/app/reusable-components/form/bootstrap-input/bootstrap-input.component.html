@@ -1,0 +1,8 @@
+<ng-container [formGroup]="formGroup">
+    <div class="form-group">
+        <label [for]="name">
+            {{name | titlecase }}
+        </label>
+        <input [formControlName]="name" type="text" class="form-control">
+    </div>
+</ng-container>
