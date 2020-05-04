@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TodosService } from '../services/todos.service';
-import { IWidget } from '../interfaces';
+import { NgRedux, select } from '@angular-redux/store';
+import { IAppState } from '../store';
+import ACTIONS from '../actions';
 
 @Component({
     selector: 'widget',
@@ -9,27 +10,16 @@ import { IWidget } from '../interfaces';
 })
 export class WidgetComponent implements OnInit {
 
-    constructor(private service: TodosService) { }
+    constructor( private ngRedux: NgRedux<IAppState>) { }
 
-    totalItems: number;
-    lastUpdate: string
-    todos = [];
-
-    fromDashboard() {
-        this.service.handleSubscription
-        .subscribe((data: IWidget) => {
-            this.todos = data.todos;
-            this.totalItems = data.todos.length;
-            this.lastUpdate = data.lastUpdate;
-        });
-    }
+    @select() todos: any[];
+    @select() lastUpdate: any;
 
     todosDeleteAll() {
-        this.service.onDelete(true);
+        this.ngRedux.dispatch({ type: ACTIONS.DELETE_ALL })
     }
 
     ngOnInit(): void {
-        this.fromDashboard();
     }
 
 }

@@ -4,9 +4,11 @@
     </ng-container>
 
     <ng-container class="body">
-        <p><span class="mr-2">Last Update:</span>{{ lastUpdate }}</p>
-        <p><span class="mr-2">Total Items:</span>{{ totalItems }}</p>
+        <p><span class="mr-2">Last Update:</span>{{ lastUpdate | async  }}</p>
+        <p><span class="mr-2">Total Items:</span>{{ (todos | async ).length  }}</p>
         <button class="btn btn-danger" (click)="todosDeleteAll()">Delete All</button>
     </ng-container>
 
 </bootstrap-card>
+
+{{ todos | async | json}}
