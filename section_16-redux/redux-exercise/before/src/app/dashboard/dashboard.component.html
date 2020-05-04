@@ -1,0 +1,23 @@
+<h1 class="mb-5">Todos List Dashboard Edition!</h1>
+
+<bootstrap-form 
+    [formGroup]="formGroup" 
+    (handleSubmit)="handleSubmit($event)">
+
+    <bootstrap-input 
+        [formGroup]="formGroup" 
+        [name]='name'>
+    </bootstrap-input>
+
+</bootstrap-form>
+
+<div class="row mt-5">
+    <div class="col">
+        <bootstrap-list-group *ngFor="let todo of todos">
+            <span (click)="toggleTask(todo)" class="todo" [ngClass]="{'completed': todo.completed}">
+                {{ todo.title }}
+            </span>
+            <button (click)="todoDelete(todo)" class="btn btn-danger btn-sm float-right">Remove</button>
+        </bootstrap-list-group>
+    </div>
+</div>

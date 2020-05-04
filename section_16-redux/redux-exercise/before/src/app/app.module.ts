@@ -7,6 +7,10 @@ import { BootstrapInputComponent } from './reusable-components/form/bootstrap-in
 import { BootstrapListGroupComponent } from './reusable-components/bootstrap-list-group/bootstrap-list-group.component';
 import { BootstrapCardComponent } from './reusable-components/bootstrap-card/bootstrap-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { WidgetComponent } from './widget/widget.component';
+import { TodosService } from './services/todos.service';
+import {  HttpModule } from '@angular/http';
+import { DataService } from './services/data.service';
 
 @NgModule({
     declarations: [
@@ -15,14 +19,19 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         BootstrapInputComponent,
         BootstrapListGroupComponent,
         BootstrapCardComponent,
-        DashboardComponent
+        DashboardComponent,
+        WidgetComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpModule
     ],
-    providers: [],
+    providers: [
+        TodosService,
+        DataService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
