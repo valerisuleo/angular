@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {  HttpModule } from '@angular/http';
+// components
 import { AppComponent } from './app.component';
 import { BootstrapFormComponent } from './reusable-components/form/bootstrap-form/bootstrap-form.component';
 import { BootstrapInputComponent } from './reusable-components/form/bootstrap-input/bootstrap-input.component';
@@ -8,10 +10,11 @@ import { BootstrapListGroupComponent } from './reusable-components/bootstrap-lis
 import { BootstrapCardComponent } from './reusable-components/bootstrap-card/bootstrap-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WidgetComponent } from './widget/widget.component';
+// services
 import { TodosService } from './services/todos.service';
-import {  HttpModule } from '@angular/http';
 import { DataService } from './services/data.service';
-import { NgReduxModule, NgRedux } from '@angular-redux/store';
+// redux
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 import { IAppState, rootReducer, INITIAL_STATE } from './store';
 
 @NgModule({
@@ -38,7 +41,10 @@ import { IAppState, rootReducer, INITIAL_STATE } from './store';
     bootstrap: [AppComponent]
 })
 export class AppModule { 
-    constructor(ngRedux: NgRedux<IAppState>) {
-        ngRedux.configureStore(rootReducer, INITIAL_STATE);
+    constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+
+        const enhancer = isDevMode() ? [devTools.enhancer()] : [];
+        
+        ngRedux.configureStore(rootReducer, INITIAL_STATE, [], enhancer);
     }
 }

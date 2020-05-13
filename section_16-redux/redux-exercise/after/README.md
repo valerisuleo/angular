@@ -76,3 +76,38 @@ But this is too verbose. We can use the *spread operator* to enumerate items in 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -22,11 +22,7 @@ export class DashboardComponent extends BootstrapFormComponent implements OnInit
     }
 
     todosIndex() {
-        this.service.getAll()
-            .subscribe((response) => {
-                const todos = response.splice(0, 5);
-                this.ngRedux.dispatch({ type: ACTIONS.GET, todos: todos });
-            });
+        this.service.getTodos();
     }
 
     todoCreate() {

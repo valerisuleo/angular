@@ -301,7 +301,7 @@ Issues:
 	}
 	```
 
-## The `Select` Decorator
+## The `@Select` Decorator
 
 At this point when we click on the `btn` the view isn't updating; **we need to read the state**
 
@@ -427,125 +427,54 @@ We can use *immutable obj* however the code is a bit verbose and we lose `tassig
 > Personal Note: I don't like it but if it will be need it watch lesson 241 to implent the logic
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Redux DevTools
+
+1. Install [Chrome Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+2. `import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';`
+3. We need to update our constructor as well
+
+```
+export class AppModule { 
+    constructor(
+    ngRedux: NgRedux<IAppState>, 
+    
+    devTools: DevToolsExtension
+    
+    ) {
+        ngRedux.configureStore(rootReducer, INITIAL_STATE);
+    }
+}
+```
+
+> In order to use *devtools* we have to pass 2 more args:
+> 
+> - The *third* arg is where we can add a **middleware**: *a middleware is an extension point so we can execute some code from the moment an action is dispatched to the monent it reaches a reducer* (i.e. login).
+> - The *forth* arg is an array of `enhancer` and this is where we are gonna use the devtool extension.
+
+```
+export class AppModule { 
+    constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+        ngRedux.configureStore(rootReducer, INITIAL_STATE, [], [devTools.enhancer()]);
+    }
+}
+```
+
+> This is going to have some cost so we wanna **run it only in dev mode!**
+
+```
+import { NgModule, isDevMode } from '@angular/core';
+
+export class AppModule { 
+    constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+
+        const enhancer = isDevMode() ? [devTools.enhancer()] : [];
+        
+        ngRedux.configureStore(rootReducer, INITIAL_STATE, [], enhancer);
+    }
+}
+```
+
+Now to test if it's working back to chrome we should see the *DevTool* enlightened. 
+
+![Imgur](https://www.dropbox.com/s//uofn37t1wsbfvnc/devtool.png?raw=1)
+@
