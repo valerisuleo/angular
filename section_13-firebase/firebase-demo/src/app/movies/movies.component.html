@@ -1,0 +1,24 @@
+<!-- get all -->
+<ul>
+    <li *ngFor="let movie of movies$ | async">
+        {{ movie.title }} - 
+        <button (click)="setFormValue(movie)">update</button>
+        <button (click)="movieDelete(movie)">delete</button>
+    </li>
+</ul>
+
+<!-- get item -->
+<div *ngIf="movie$ | async as movie">
+    <h3>Title: {{ movie.title }} </h3>
+    <p>liked: {{ movie.liked }} </p>
+    <p>genre: {{ movie.genre?.name }} </p>
+</div>
+
+<!-- create item -->
+<form (ngSubmit)="submit()">
+    <input name="title" type="text" [(ngModel)]="formModel.title">
+    <input name="liked" type="checkbox" [(ngModel)]="formModel.liked">
+    <button type="submit">Add</button>
+</form>
+
+{{ formModel | json }}
