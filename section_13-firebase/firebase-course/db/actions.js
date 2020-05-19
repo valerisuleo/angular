@@ -106,7 +106,7 @@ function populateDB(payload, string) {
             if (!response.empty) {
 
                 if (payload.nestedCollectionPath) {
-                    removeNestedCollection(payload, string);
+                    removeNestedCollection(payload);
                 }
                 
                 deleteCollection(payload.db, payload.collectionPath, 500)
