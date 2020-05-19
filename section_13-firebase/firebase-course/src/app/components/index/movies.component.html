@@ -1,0 +1,19 @@
+<!-- get all -->
+<ul>
+    <li *ngFor="let movie of movies$ | async">
+        <a [routerLink]="['/movies', movie.id]">
+            {{ movie.title }}
+        </a>
+        <button (click)="setFormValue(movie)">update</button>
+        <button (click)="movieDelete(movie)">delete</button>
+    </li>
+</ul>
+
+<!-- create item -->
+<form (ngSubmit)="submit()">
+    <input name="title" type="text" [(ngModel)]="formModel.title">
+    <input name="liked" type="checkbox" [(ngModel)]="formModel.liked">
+    <button type="submit">Add</button>
+</form>
+
+{{ formModel | json }}
