@@ -1,0 +1,85 @@
+<div class="row m-5">
+    <div class="col">
+        <ng-container *ngIf="isEdit
+            then formEdit
+            else showDetails">
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #formEdit>
+    <bootstrap-card>
+        <ng-container class="body">
+
+            <form (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                    <label for="title">Email address</label>
+                    <input type="email" class="form-control" name="titles" [(ngModel)]="formModel.titles.description">
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Example textarea</label>
+                    <textarea class="form-control" rows="3" name="longDescription" [(ngModel)]="formModel.titles.longDescription"></textarea>
+                </div>
+
+                <div class="form-group hide">
+                    <span>Upload img</span>
+                    <input type="string" class="form-control" name="img" [(ngModel)]="formModel.iconUrl" >
+                </div>
+    
+
+                <button type="submit" class="btn btn-primary mr-3">Save</button>
+                <button type="button" (click)="back()" class="btn btn-secondary">Back</button>
+
+            </form>
+
+            
+            <div>
+                <span>Course</span>
+                <input type="file" (change)="upload($event)">
+            </div>
+
+            <div class="preview" *ngIf="downloadUrl">
+                <img [src]="downloadUrl" alt="">
+            </div>
+
+        </ng-container>
+    </bootstrap-card>
+</ng-template>
+
+
+<ng-template #showDetails>
+    <bootstrap-card *ngIf="course$ | async as course">
+
+        <ng-container class="icon-url">
+            <img [src]="course.iconUrl" class="card-img-top" alt="">
+        </ng-container>
+
+        <ng-container class="body">
+            <h5 class="card-title">
+                {{ course.titles.description }}
+            </h5>
+            <p class="card-text">
+                {{ course.titles.longDescription }}
+            </p>
+
+            <h5>Lessons: {{ lessons.length }}</h5>
+
+            <ul>
+                <div id="spinner" *ngIf="isLoading"></div>
+                <li *ngFor="let lesson of lessons">
+                    <em>
+                        {{ lesson.description }}
+                    </em>
+                </li>
+            </ul>
+        </ng-container>
+
+        <ng-container class="button">
+            <button class="btn btn-secondary m-2" (click)="loadMoreLessons()">Load More</button>
+            <button (click)="edit(course)" class="btn btn-warning">Edit</button>
+        </ng-container>
+
+    </bootstrap-card>
+</ng-template>
