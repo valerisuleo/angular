@@ -21,7 +21,7 @@ import { BatchedWritesComponent } from './batched-writes/batched-writes.componen
   imports: [
     BrowserModule,
     FormsModule,
-    CoursesModule,
+    // CoursesModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

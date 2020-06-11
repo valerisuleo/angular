@@ -7,13 +7,25 @@ import { CourseShowComponent } from './course-show/course-show.component';
 import { CardComponent } from '../../reusable-components/card/card.component';
 import { PillsComponent } from '../../reusable-components/pills/pills.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
     imports: [
         AppRoutingModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: CoursesIndexComponent,
+                pathMatch: 'full',
+                children: [
+                    { path: ':id', component: CourseShowComponent },
+                ]
+            },
+
+        ])
     ],
     exports: [
         CoursesIndexComponent,
@@ -30,3 +42,4 @@ import { FormsModule } from '@angular/forms';
     providers: [],
 })
 export class CoursesModule { }
+

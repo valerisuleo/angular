@@ -1,0 +1,14 @@
+<!-- pre-select -->
+<mat-select [(ngModel)]="preSelected">
+    <mat-option *ngFor="let item of colors" [value]='item.id'>
+        {{item.name}}
+    </mat-option>
+</mat-select>
+
+
+<!-- regular select -->
+<mat-select>
+    <mat-option *ngFor="let item of colors" [value]='item.id'>
+        {{item.name}}
+    </mat-option>
+</mat-select>

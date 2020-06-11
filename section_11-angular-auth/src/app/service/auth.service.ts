@@ -28,6 +28,7 @@ export class AuthService {
                     localStorage.setItem('token', data.token);
                     this.navbarRefresh$.next(this.isRefreshed = true);
                 }
+
                 return data;
             }));
     }

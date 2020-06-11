@@ -1,0 +1,16 @@
+<mat-form-field>
+    <mat-label>Choose a date</mat-label>
+    <input [min]="minDate" [max]="maxDate" matInput [matDatepicker]="bday">
+    <mat-datepicker-toggle matSuffix [for]="bday"></mat-datepicker-toggle>
+    <mat-datepicker #bday></mat-datepicker>
+</mat-form-field>
+
+<!-- if we click on the input filed it will open the calendar -->
+<div>
+    <mat-form-field>
+        <mat-label>Click on input field</mat-label>
+        <input (focus)="bday.open()" [min]="minDate" [max]="maxDate" matInput [matDatepicker]="bday2">
+        <mat-datepicker-toggle matSuffix [for]="bday2"></mat-datepicker-toggle>
+        <mat-datepicker #bday2></mat-datepicker>
+    </mat-form-field>
+</div>

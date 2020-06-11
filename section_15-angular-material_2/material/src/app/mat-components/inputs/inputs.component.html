@@ -1,0 +1,58 @@
+<!-- these 2 below are the same... -->
+<mat-form-field class="example-full-width">
+    <mat-label>Username</mat-label>
+    <input matInput>
+</mat-form-field>
+
+<div>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username">
+    </mat-form-field>
+</div>
+
+
+<!-- hint -->
+<div>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username">
+        <mat-hint>Type a unique username</mat-hint>
+    </mat-form-field>
+</div>
+
+<!-- suffix -->
+<div>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username">
+        <mat-hint>Type a unique username</mat-hint>
+        <span matSuffix>@ga.co</span>
+    </mat-form-field>
+</div>
+
+<!-- prefix -->
+<div>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username">
+        <mat-hint>Type a unique username</mat-hint>
+        <span matPrefix>admin.</span>
+    </mat-form-field>
+</div>
+
+<!-- suff/prefix -->
+<div>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username">
+        <mat-hint>Type a unique username</mat-hint>
+        <span matPrefix>admin.</span>
+        <span matSuffix>@ga.co</span>
+    </mat-form-field>
+</div>
+
+<!-- validation msg template driven way -->
+<div>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username" required name="username" ngModel #username='ngModel'>
+        <mat-error *ngIf="username.invalid && username.errors.required">
+            Username is required!
+        </mat-error>
+    </mat-form-field>
+</div>
