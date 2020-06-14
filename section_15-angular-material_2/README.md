@@ -401,7 +401,7 @@ Now that we better understand `@mixin` it's time to create a custom them:
 	
 	>We can also have a **dark-theme**:
 	
-	>```
+	```
 	$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 $app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 ```
