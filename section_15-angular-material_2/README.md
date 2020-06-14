@@ -1,4 +1,16 @@
-# What's Angular Material?
+# Material Design
+
+In this section...
+
+- Work with advanced material elements:
+	- Icons
+	- Spinners
+	- Date picker
+	- Dialogs
+- Custom theme
+- Typography
+
+## What's Angular Material?
 
 *A library of high-quality UI components built with Angular and Typescript*.
 
