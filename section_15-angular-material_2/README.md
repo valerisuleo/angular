@@ -399,12 +399,7 @@ Now that we better understand `@mixin` it's time to create a custom them:
 	$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 	```
 	
-	>We can also have a **dark-theme**:
-	
-	```
-	$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
-$app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
-```
+	>We can also have a **dark-theme**: `$app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);`
 	
 	4.c) finally ovewrite the original theme with our custom theme:
 	
