@@ -327,11 +327,11 @@ constructor(@Inject(MAT_DIALOG_DATA) data: any) {
 
 ## Custom Theme
 
-> ### Sass: understanding `@mixin`
+### Sass: understanding `@mixin`
 
->What I usually do is to create a common style class such as:
+What I usually do is to create a common style class such as:
 
->```
+```
 .center-styles{
   position: absolute;
   top: 50%;
@@ -340,29 +340,29 @@ constructor(@Inject(MAT_DIALOG_DATA) data: any) {
 }
 ```
 
->and apply `@extend` to reuse it where needed
+and apply `@extend` to reuse it where needed
 
->```
+```
 p{
-  @extend .center-styles;
-}
+	  @extend .center-styles;
+	}
 ```
 
->Now `@mixin` is even more powerful and I'll show you why:
+Now `@mixin` is even more powerful and I'll show you why:
 
->```
+```
 @mixin center($position) {
-  position: $position;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+	position: $position;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
-
->.box {
+	
+.box {
     @include center(absolute);
 }
-
->.modern-box {
+	
+.modern-box {
    @include center(relative);
 }
 ```
