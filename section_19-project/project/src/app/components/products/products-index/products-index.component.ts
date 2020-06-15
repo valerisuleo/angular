@@ -1,15 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DataService } from '../../../services/data.service';
+import { IProduct } from '../interfaces';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-products-index',
-  templateUrl: './products-index.component.html',
-  styleUrls: ['./products-index.component.scss']
+    selector: 'products-index',
+    templateUrl: './products-index.component.html',
+    styleUrls: ['./products-index.component.scss']
 })
-export class ProductsIndexComponent implements OnInit {
+export class ProductsIndexComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+    products: IProduct[] = [];
+    subscription: Subscription;
 
-  ngOnInit(): void {
-  }
+    constructor(private service: DataService) { }
+
+    getCollection() {
+        this.subscription = this.service.getAll('vegetables')
+            .subscribe((response: any) => {
+                console.log(response);
+                
+                this.products = response;
+            });
+    }
+
+    ngOnInit(): void {
+        this.getCollection();
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 
 }

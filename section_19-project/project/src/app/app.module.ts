@@ -9,12 +9,26 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { DataService } from './services/data.service';
-import { HomeComponent } from './components/home/home.component';
+import { ProductsIndexComponent } from './components/products/products-index/products-index.component';
+import { ProductsShowComponent } from './components/products/products-show/products-show.component';
+import { BootstrapFormComponent } from './reusable-components/bootstrap-form/bootstrap-form.component';
+import { BootstrapInputComponent } from './reusable-components/bootstrap-input/bootstrap-input.component';
+import { BootstrapSelectComponent } from './reusable-components/bootstrap-select/bootstrap-select.component';
+import { BootstrapListComponent } from './reusable-components/bootstrap-list/bootstrap-list.component';
+import { BootstrapCardComponent } from './reusable-components/bootstrap-card/bootstrap-card.component';
+import { BootstrapNavbarComponent } from './components/bootstrap-navbar/bootstrap-navbar.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent
+        ProductsIndexComponent,
+        ProductsShowComponent,
+        BootstrapFormComponent,
+        BootstrapInputComponent,
+        BootstrapSelectComponent,
+        BootstrapListComponent,
+        BootstrapCardComponent,
+        BootstrapNavbarComponent,
     ],
     imports: [
         BrowserModule,

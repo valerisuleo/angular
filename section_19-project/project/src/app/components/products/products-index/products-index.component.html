@@ -1,1 +1,21 @@
-<p>products-index works!</p>
+<div class="row mt-5">
+    <div class="col-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quae illo, ipsa asperiores iure a! Et molestiae, atque cum at corrupti esse, perferendis tempore eaque officia qui laborum libero quisquam!</div>
+    <div class="col-10">
+        <div class="card-group">
+            <bootstrap-card *ngFor="let item of products">
+                <img class="selector-header card-img-top" src={{item.imageUrl}} alt="">
+                <ng-container class="selector-body">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{item.title}}
+                        </h5>
+                        <p class="card-text">
+                            ${{item.price}}
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </ng-container>
+            </bootstrap-card>
+        </div>
+    </div>
+</div>

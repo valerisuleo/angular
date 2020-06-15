@@ -3,10 +3,9 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { ID } from './interfaces';
 import { map, first } from 'rxjs/operators';
 
-
-
 @Injectable()
 export class DataService {
+
 
     constructor(private db: AngularFirestore) { }
 
