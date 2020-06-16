@@ -4,7 +4,9 @@ export interface IProduct {
     price: number;
     categories?: string[];
     category: string;
-    id?: string;
+    id: string;
+    count: number;
+    isOpen: boolean;
 }
 
 export interface ICategory {

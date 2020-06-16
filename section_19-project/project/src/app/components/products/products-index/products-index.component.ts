@@ -15,13 +15,20 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
     products: IProduct[] = [];
     categories: ICategory[] = [];
 
-
     constructor(private service: DataService) { }
 
     getCollection() {
         this.subscription = this.service.getAll('vegetables')
             .subscribe((response: any) => {
-                this.products = response;
+
+                const addCounter = response.map((item) => {
+                    return {
+                        ...item,
+                        count: 1,
+                        isOpen:false
+                    }
+                });
+                this.products = addCounter;
                 this.extractCategories(this.products);
             });
     }
@@ -35,9 +42,32 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
                 cssClass: 'organic'
             }
         });
-        this.listGroup = { list: remap, key: 'categoryName'};
+        this.listGroup = { list: remap, key: 'categoryName' };
     }
 
+    counterShow(current: IProduct) {
+        current.isOpen = true;
+    }
+
+
+    addItem(current: IProduct) {
+        const index = this.products.indexOf(current);
+        current.count = current.count + 1;
+        this.products[index] = current;
+    }
+
+    removeItem(current: IProduct) {
+        if (current.count >= 1) {
+            const index = this.products.indexOf(current);
+            current.count = current.count - 1;
+            this.products[index] = current;
+        }
+        if (current.count === 0) {
+            // hide counter
+            current.isOpen = false;
+        }
+
+    }
 
     ngOnInit(): void {
         this.getCollection();
