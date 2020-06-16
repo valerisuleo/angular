@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../../services/data.service';
-import { IProduct } from '../interfaces';
+import { IProduct, ICategory, IListGroup } from '../interfaces';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,19 +10,33 @@ import { Subscription } from 'rxjs';
 })
 export class ProductsIndexComponent implements OnInit, OnDestroy {
 
-    products: IProduct[] = [];
     subscription: Subscription;
+    listGroup: IListGroup;
+    products: IProduct[] = [];
+    categories: ICategory[] = [];
+
 
     constructor(private service: DataService) { }
 
     getCollection() {
         this.subscription = this.service.getAll('vegetables')
             .subscribe((response: any) => {
-                console.log(response);
-                
                 this.products = response;
+                this.extractCategories(this.products);
             });
     }
+
+    extractCategories(data: IProduct[]) {
+        const { categories } = data[0];
+        const remap: ICategory[] = categories.map((item: string) => {
+            return {
+                categoryName: item,
+                isSelected: false
+            }
+        });
+        this.listGroup = { list: remap, key: 'categoryName'};
+    }
+
 
     ngOnInit(): void {
         this.getCollection();

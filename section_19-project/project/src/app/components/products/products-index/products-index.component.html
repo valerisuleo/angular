@@ -1,16 +1,18 @@
 <div class="row mt-5">
-    <div class="col-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quae illo, ipsa asperiores iure a! Et molestiae, atque cum at corrupti esse, perferendis tempore eaque officia qui laborum libero quisquam!</div>
-    <div class="col-10">
+    <div class="col-md-6 col-xl-2">
+        <bootstrap-list [props]='listGroup'></bootstrap-list>
+    </div>
+    <div class="col-md-6 col-xl-10">
         <div class="card-group">
-            <bootstrap-card *ngFor="let item of products">
-                <img class="selector-header card-img-top" src={{item.imageUrl}} alt="">
+            <bootstrap-card *ngFor="let product of products">
+                <img class="selector-header card-img-top" src={{product.imageUrl}} alt="">
                 <ng-container class="selector-body">
                     <div class="card-body">
                         <h5 class="card-title">
-                            {{item.title}}
+                            {{product.title}}
                         </h5>
                         <p class="card-text">
-                            ${{item.price}}
+                            ${{product.price}}
                         </p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>

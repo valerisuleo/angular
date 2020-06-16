@@ -6,3 +6,13 @@ export interface IProduct {
     category: string;
     id?: string;
 }
+
+export interface ICategory {
+    categoryName: string;
+    isSelected: boolean;
+}
+
+export interface IListGroup {
+    list: any[];
+    key: string;
+}

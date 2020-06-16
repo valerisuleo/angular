@@ -1,15 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-bootstrap-list',
-  templateUrl: './bootstrap-list.component.html',
-  styleUrls: ['./bootstrap-list.component.scss']
+    selector: 'bootstrap-list',
+    templateUrl: './bootstrap-list.component.html',
+    styleUrls: ['./bootstrap-list.component.scss']
 })
-export class BootstrapListComponent implements OnInit {
+export class BootstrapListComponent implements OnChanges {
+    @Input() props: any;
 
-  constructor() { }
+    list: any[] = [];
+    propertyKey: string;
 
-  ngOnInit(): void {
-  }
+    constructor() { }
 
+    toggleActiveClass(current) {
+        this.list
+            .filter(el => el != current)
+            .forEach(item => item.isSelected = false);
+        current.isSelected = !current.isSelected;
+    }
+
+    ngOnChanges(change: SimpleChanges): void {
+        const { currentValue, firstChange } = change.props;
+        if (currentValue && !firstChange) {
+            const { list, key } = currentValue;
+            this.list = list;
+            this.propertyKey = key;
+        }
+    }
 }
+
+

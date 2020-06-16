@@ -1,1 +1,8 @@
-<p>bootstrap-list works!</p>
+<ul class="list-group">
+    <li *ngFor="let item of list" 
+        (click)="toggleActiveClass(item)" 
+        class="list-group-item" 
+        [ngClass]="{'active': item.isSelected}">
+        {{ item[propertyKey] }}
+    </li>
+</ul>

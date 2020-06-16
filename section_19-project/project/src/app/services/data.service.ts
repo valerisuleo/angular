@@ -10,6 +10,7 @@ export class DataService {
     constructor(private db: AngularFirestore) { }
 
     getAll(collectioName: string) {
+        
         const response: AngularFirestoreCollection<ID> = this.db.collection(collectioName);
 
         return response.snapshotChanges()
