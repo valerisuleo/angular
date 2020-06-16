@@ -31,7 +31,8 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
         const remap: ICategory[] = categories.map((item: string) => {
             return {
                 categoryName: item,
-                isSelected: false
+                isActive: false,
+                cssClass: 'organic'
             }
         });
         this.listGroup = { list: remap, key: 'categoryName'};

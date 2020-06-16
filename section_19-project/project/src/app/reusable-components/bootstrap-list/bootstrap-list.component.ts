@@ -13,11 +13,11 @@ export class BootstrapListComponent implements OnChanges {
 
     constructor() { }
 
-    toggleActiveClass(current) {
+    toggleActiveClass(current): void {
         this.list
             .filter(el => el != current)
-            .forEach(item => item.isSelected = false);
-        current.isSelected = !current.isSelected;
+            .forEach(item => item.isActive = false);
+        current.isActive = !current.isActive;
     }
 
     ngOnChanges(change: SimpleChanges): void {

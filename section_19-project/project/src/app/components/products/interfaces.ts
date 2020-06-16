@@ -9,7 +9,7 @@ export interface IProduct {
 
 export interface ICategory {
     categoryName: string;
-    isSelected: boolean;
+    isActive: boolean;
 }
 
 export interface IListGroup {
