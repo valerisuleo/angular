@@ -2,7 +2,7 @@ export interface IProduct {
     title: string;
     imageUrl: string;
     price: number;
-    categories?: string[];
+    categories: string[];
     category: string;
     id: string;
     count: number;
@@ -12,6 +12,8 @@ export interface IProduct {
 export interface ICategory {
     categoryName: string;
     isActive: boolean;
+    id: string;
+    cssClass?: string;
 }
 
 export interface IListGroup {

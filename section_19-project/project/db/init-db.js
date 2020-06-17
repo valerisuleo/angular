@@ -3,7 +3,9 @@ const firebase = require("firebase");
 require("firebase/firestore");
 
 const firestore = require('./actions');
-const vegetables = require('./vegetables');
+const vegetables = require('./seeds/vegetables');
+const categories = require("./seeds/categories");
+const bread = require("./seeds/bread");
 
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
@@ -13,6 +15,8 @@ firebase.initializeApp({
 });
 
 const db = firebase.firestore();
+
+const collections = [];
 
 const coursePayload = {
     db: db,
@@ -25,9 +29,27 @@ const coursePayload = {
     //     key: 'url',
     //     value: 'serverless-angular'
     // }
-}
+};
 
-firestore.populate(coursePayload);
+const categoriesPayload = {
+    db: db,
+    collection: categories.collection,
+    collectionPath: 'categories',
+};
+
+const breadPayload = {
+    db: db,
+    collection: bread.collection,
+    collectionPath: 'bread',
+};
+
+// UPLOAD TO FIRESTORE
+collections.push(coursePayload, categoriesPayload, breadPayload);
+collections.forEach((payloadCollection) => {
+    firestore.populate(payloadCollection);
+});
+
+
 
 
 

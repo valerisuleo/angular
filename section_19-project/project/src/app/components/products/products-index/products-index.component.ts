@@ -14,41 +14,53 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
     listGroup: IListGroup;
     products: IProduct[] = [];
     categories: ICategory[] = [];
+    lastPageloaded: number = 0;
+    // default apiCalled onload
+    apiEndpoint: string = 'vegetables';
 
     constructor(private service: DataService) { }
 
-    getCollection() {
-        this.subscription = this.service.getAll('vegetables')
-            .subscribe((response: any) => {
-
-                const addCounter = response.map((item) => {
+    getCategoriesMenu() {
+        this.service.getAll('categories')
+            .subscribe((response: ICategory[]) => {
+                const addCssClass = response.map((item: any) => {
                     return {
                         ...item,
-                        count: 1,
-                        isOpen:false
+                        cssClass: 'organic'
                     }
                 });
-                this.products = addCounter;
-                this.extractCategories(this.products);
+                this.listGroup = { list: addCssClass, key: 'categoryName' };
+            })
+    }
+
+    handleSelection(obj: ICategory) {
+        this.products = [];
+        this.lastPageloaded = 0;
+        const currentCategory = obj.categoryName.toLowerCase();
+        this.apiEndpoint = currentCategory;
+        this.getCollection();
+    }
+
+    getCollection() {
+        this.subscription = this.service
+            .getCollectionPaginated(this.apiEndpoint, 'seqN', "asc", this.lastPageloaded, 3)
+            .subscribe((response: any) => {
+                response.forEach((element) => {
+                    element.count = 0;
+                    element.isOpen = false;
+                    this.products.push(element);
+                });
             });
     }
 
-    extractCategories(data: IProduct[]) {
-        const { categories } = data[0];
-        const remap: ICategory[] = categories.map((item: string) => {
-            return {
-                categoryName: item,
-                isActive: false,
-                cssClass: 'organic'
-            }
-        });
-        this.listGroup = { list: remap, key: 'categoryName' };
+    loadmore() {
+        this.lastPageloaded = this.lastPageloaded + 1;
+        this.getCollection();
     }
 
     counterShow(current: IProduct) {
         current.isOpen = true;
     }
-
 
     addItem(current: IProduct) {
         const index = this.products.indexOf(current);
@@ -63,13 +75,12 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
             this.products[index] = current;
         }
         if (current.count === 0) {
-            // hide counter
             current.isOpen = false;
         }
-
     }
 
     ngOnInit(): void {
+        this.getCategoriesMenu();
         this.getCollection();
     }
 

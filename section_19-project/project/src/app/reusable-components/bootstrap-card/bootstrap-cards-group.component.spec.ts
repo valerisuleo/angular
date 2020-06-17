@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BootstrapCardComponent } from './bootstrap-card.component';
+import { BootstrapCardGroupComponent } from './bootstrap-cards-group.component';
 
-describe('BootstrapCardComponent', () => {
-  let component: BootstrapCardComponent;
-  let fixture: ComponentFixture<BootstrapCardComponent>;
+describe('BootstrapCardGroupComponent', () => {
+  let component: BootstrapCardGroupComponent;
+  let fixture: ComponentFixture<BootstrapCardGroupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BootstrapCardComponent ]
+      declarations: [ BootstrapCardGroupComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BootstrapCardComponent);
+    fixture = TestBed.createComponent(BootstrapCardGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

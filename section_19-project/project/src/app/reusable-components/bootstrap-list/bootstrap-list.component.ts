@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'bootstrap-list',
@@ -7,6 +7,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class BootstrapListComponent implements OnChanges {
     @Input() props: any;
+    @Output('handleSelection') click = new EventEmitter();
 
     list: any[] = [];
     propertyKey: string;
@@ -18,6 +19,7 @@ export class BootstrapListComponent implements OnChanges {
             .filter(el => el != current)
             .forEach(item => item.isActive = false);
         current.isActive = !current.isActive;
+        this.click.emit(current);
     }
 
     ngOnChanges(change: SimpleChanges): void {
