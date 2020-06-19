@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-bootstrap-select',
-  templateUrl: './bootstrap-select.component.html',
-  styleUrls: ['./bootstrap-select.component.scss']
+    selector: 'bootstrap-select',
+    templateUrl: './bootstrap-select.component.html',
+    styleUrls: ['./bootstrap-select.component.scss']
 })
 export class BootstrapSelectComponent implements OnInit {
 
-  constructor() { }
+    @Input() name: any;
+    @Input() options: any;
+    @Input() optionKey: string;
+    @Input() label: any;
+    @Input() formGroup: any;
 
-  ngOnInit(): void {
-  }
+    constructor() { }
+
+    ngOnInit(): void {
+        
+    }
 
 }

@@ -1,1 +1,11 @@
-<p>bootstrap-select works!</p>
+<ng-container [formGroup]="formGroup">
+    <div class="form-group">
+        <label [for]="label">{{label}}</label>
+        <select [formControlName]="name" class="form-control">
+            <option></option>
+            <option *ngFor="let option of options" [ngValue]="option">
+                {{ option[optionKey] }}
+            </option>
+        </select>
+    </div>
+</ng-container>

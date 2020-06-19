@@ -7,7 +7,7 @@ import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from
 })
 export class BootstrapListComponent implements OnChanges {
     @Input() props: any;
-    @Output('handleSelection') click = new EventEmitter();
+    @Output('handleSelectedLi') click = new EventEmitter();
 
     list: any[] = [];
     propertyKey: string;

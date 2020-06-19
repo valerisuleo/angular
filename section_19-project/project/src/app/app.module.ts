@@ -1,14 +1,17 @@
+// modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+// extra
 import { environment } from '../environments/environment';
 import { DataService } from './services/data.service';
+// components
+import { AppComponent } from './app.component';
 import { ProductsIndexComponent } from './components/products/products-index/products-index.component';
 import { ProductsShowComponent } from './components/products/products-show/products-show.component';
 import { BootstrapFormComponent } from './reusable-components/bootstrap-form/bootstrap-form.component';
@@ -35,7 +38,8 @@ import { BootstrapCardGroupComponent } from './reusable-components/bootstrap-car
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
-        AngularFireAnalyticsModule
+        AngularFireAnalyticsModule,
+        ReactiveFormsModule
     ],
     providers: [DataService],
     bootstrap: [AppComponent]

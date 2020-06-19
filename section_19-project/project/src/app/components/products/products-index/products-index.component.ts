@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { IProduct, ICategory, IListGroup } from '../interfaces';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'products-index',
@@ -18,7 +19,7 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
     // default apiCalled onload
     apiEndpoint: string = 'vegetables';
 
-    constructor(private service: DataService) { }
+    constructor(private service: DataService, private router: Router) { }
 
     getCategoriesMenu() {
         this.service.getAll('categories')
@@ -33,12 +34,17 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
             })
     }
 
-    handleSelection(obj: ICategory) {
+    handleSelectedLi(obj: ICategory) {
         this.products = [];
         this.lastPageloaded = 0;
         const currentCategory = obj.categoryName.toLowerCase();
         this.apiEndpoint = currentCategory;
         this.getCollection();
+    }
+
+    navigateTo(currentProduct: IProduct) {
+        const endPoint = currentProduct.category.toLowerCase();
+        this.router.navigate([`/products/${currentProduct.id}`], { state: { data: currentProduct } });
     }
 
     getCollection() {
