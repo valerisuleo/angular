@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../../services/data.service';
-import { IProduct, ICategory, IListGroup } from '../interfaces';
+import { IProduct, ICategoryMenu, IListGroup } from '../interfaces';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
     subscription: Subscription;
     listGroup: IListGroup;
     products: IProduct[] = [];
-    categories: ICategory[] = [];
+    categories: ICategoryMenu[] = [];
     lastPageloaded: number = 0;
     // default apiCalled onload
     apiEndpoint: string = 'vegetables';
@@ -23,7 +23,7 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
 
     getCategoriesMenu() {
         this.service.getAll('categories')
-            .subscribe((response: ICategory[]) => {
+            .subscribe((response: ICategoryMenu[]) => {
                 const addCssClass = response.map((item: any) => {
                     return {
                         ...item,
@@ -34,7 +34,7 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
             })
     }
 
-    handleSelectedLi(obj: ICategory) {
+    handleSelectedLi(obj: ICategoryMenu) {
         this.products = [];
         this.lastPageloaded = 0;
         const currentCategory = obj.categoryName.toLowerCase();
@@ -43,7 +43,6 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
     }
 
     navigateTo(currentProduct: IProduct) {
-        const endPoint = currentProduct.category.toLowerCase();
         this.router.navigate([`/products/${currentProduct.id}`], { state: { data: currentProduct } });
     }
 

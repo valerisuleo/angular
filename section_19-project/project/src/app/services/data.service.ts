@@ -47,8 +47,31 @@ export class DataService {
             )
     }
 
+    getCollectionOrderBy(
+        collectioName: string,
+        key: string,
+        sortOrder: OrderByDirection,
+      
+    ) {
+        const response: AngularFirestoreCollection<ID> = this.db.collection(
+            collectioName,
+            ref => ref
+                .orderBy(key, sortOrder)
+        );
+
+        return response.snapshotChanges()
+            .pipe(
+                map(snaps => snapsCoverter(snaps)),
+                first()
+            )
+    }
+
     getItem(collectioName: string, id: string) {
         return this.db.collection(collectioName).doc(id).valueChanges();
+    }
+
+    update(collectioName: string, id: string, resource) {
+        return this.db.collection(collectioName).doc(id).set(resource);
     }
 
 

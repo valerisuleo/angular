@@ -1,56 +1,113 @@
-import { Component, OnInit } from '@angular/core';
-import { IProduct } from '../interfaces';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
 import { BootstrapFormComponent } from '../../../reusable-components/bootstrap-form/bootstrap-form.component';
+import { DataService } from '../../../services/data.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { IProduct, ICategory } from '../interfaces';
 import formTemplate from './form-template';
+import * as fsBatchedWrites from '../batched-writes';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'products-show',
     templateUrl: './products-show.component.html',
     styleUrls: ['./products-show.component.scss']
 })
-export class ProductsShowComponent extends BootstrapFormComponent implements OnInit {
+export class ProductsShowComponent extends BootstrapFormComponent implements OnInit, OnDestroy {
 
-    constructor() { 
+    constructor(private service: DataService, private db: AngularFirestore) {
         super()
     }
 
-    product: IProduct;
+    public id: string;
+    public apiEndPoint: string;
+    public product: IProduct;
+    private destroyed$: Subject<boolean> = new Subject();
 
-    productDetail() {
+
+    productDetail(): void {
         const { data } = history.state;
         if (data) {
             localStorage.setItem('product', JSON.stringify(data));
             this.product = data;
         } else {
-            // this will prevent a blank page on refresh
             const fetchDataFromLocalStorage = JSON.parse(localStorage.getItem('product'));
             this.product = fetchDataFromLocalStorage;
         }
-        console.log(this.product);
-        // this.productEdit(this.product)
+        this.setFormValue(this.product);
+        this.apiEndPoint = this.product.category.toLowerCase();
+        this.id = this.product.id;
     }
 
-    productEdit(product: IProduct) {
-        console.log(product);
+    setFormValue(product: IProduct): void {
         this.formGroup.setValue({
             title: product.title,
             imageUrl: product.imageUrl,
             price: product.price,
-            categories: product.categories,
-            // category: product.category
-        })
-
+            categories: this.preSelectCategory()
+        });
     }
 
-    handleSubmit(isSubmitted: boolean) {
-        const { value } = this.formGroup;
-        console.log(value)
-        
+    preSelectCategory(): ICategory {
+        const { categories, category } = this.product;
+        const current: string = category.toLowerCase();
+        return categories.find(item => item.name.toLowerCase() === current);
+    }
+
+    productEdit(resource: IProduct) {
+        this.service.update(this.apiEndPoint, this.id, resource);
+    }
+
+    handleSubmit(isSubmitted: boolean): void {
+
+        if (isSubmitted) {
+            const { value } = this.formGroup;
+            const payload = { ...this.product };
+
+            payload.imageUrl = value.imageUrl;
+            payload.price = value.price;
+            payload.title = value.title;
+
+            if (payload.category === value.categories.name) {
+                this.productEdit(payload);
+                this.refreshStorage();
+            } else {
+                payload.category = value.categories.name;
+
+                let newApiEndPoint: string = value.categories.name;
+                newApiEndPoint = newApiEndPoint.replace(/ /g, '').toLowerCase();
+
+                this.service.getCollectionOrderBy(newApiEndPoint, 'seqN', "desc")
+                    .pipe(takeUntil(this.destroyed$))
+                    .subscribe((res: any) => {
+                        const seqNHighest = res[0].seqN;
+                        payload.seqN = seqNHighest + 1;
+                        fsBatchedWrites.default.remove(this.db, this.apiEndPoint, this.id);
+                        fsBatchedWrites.default.create(this.db, newApiEndPoint, this.id, payload);
+                    });
+            }
+
+        }
+        this.formGroup.reset();
+    }
+
+    refreshStorage(): void {
+        this.service.getItem(this.apiEndPoint, this.id)
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe((response: any) => {
+                this.product = response;
+                localStorage.setItem('product', JSON.stringify(this.product));
+            });
     }
 
     ngOnInit(): void {
         this.formMaker(formTemplate);
         this.productDetail();
+    }
+
+    public ngOnDestroy(): void {
+        this.destroyed$.next(true);
+        this.destroyed$.complete();
     }
 
 
