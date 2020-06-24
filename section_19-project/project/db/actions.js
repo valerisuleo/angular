@@ -88,19 +88,23 @@ function createCollection(payload) {
 
 function createNestedCollection(obj, docRef, i, payload) {
     obj.id = docRef.id;
-    const { id } = payload.collection[payload.nestedCollectionParentIndex];
-    if (i === 0) {
-
-        payload.nestedCollection.forEach((obj) => {
-            payload.db.collection(`${payload.collectionPath}/${id}/${payload.nestedCollectionPath}`)
-                .add(obj)
-                .then(() => {
-                    console.log("sub collection written: ", obj);
-                })
-                .catch((error) => {
-                    console.log('sub collection', error);
-                })
-        })
+    
+    for (let j = 0; j < payload.nestedCollectionParentIndex.length; j++) {
+        const { id } = payload.collection[payload.nestedCollectionParentIndex[j]];
+        
+        if (i === payload.nestedCollectionParentIndex[j]) {
+            payload.nestedCollection[j].forEach((obj) => {
+                payload.db.collection(`${payload.collectionPath}/${id}/${payload.nestedCollectionPath[j]}`)
+                    .add(obj)
+                    .then(() => {
+                        console.log("sub collection written: ", obj);
+                    })
+                    .catch((error) => {
+                        console.log('sub collection', error);
+                    })
+            })
+    
+        }
     }
 }
 
@@ -132,4 +136,3 @@ function populateDB(payload) {
 module.exports = {
     populate: populateDB
 }
-

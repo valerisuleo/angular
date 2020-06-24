@@ -1,4 +1,4 @@
-let collection = [
+let collectionBread = [
     {
         title: 'Pizza Slice',
         imageUrl: 'https://www.dropbox.com/s/0dymh0nkdhccz6j/119627_01.jpg?raw=1',
@@ -38,38 +38,16 @@ let collection = [
 ]
 
 
-collection = collection.map((item, index) => {
+collectionBread = collectionBread.map((item, index) => {
     return {
         ...item,
         seqN: index + 1,
-        categories: [
-            {
-                name: 'Bread',
-                id: 1
-            },
-            {
-                name: 'Dairy',
-                id: 2
-            },
-            {
-                name: 'Fruits',
-                id: 3
-            },
-            {
-                name: 'Seasoning and Spice',
-                id: 4
-            },
-            {
-                name: 'Vegetables',
-                id: 5
-            }
-        ]
     }
 })
 
 
 module.exports = {
-    collection
+    collectionBread
 }
 
 

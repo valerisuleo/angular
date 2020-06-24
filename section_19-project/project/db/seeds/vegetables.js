@@ -1,4 +1,4 @@
-let collection = [
+let collectionVegetable = [
     {
         title: 'Oaklands Selection Pointed Red Peppers ',
         imageUrl: 'https://www.dropbox.com/s/3uvy83gkftwtmln/82632_01.jpg?raw=1',
@@ -32,38 +32,16 @@ let collection = [
 ]
 
 
-collection = collection.map((item, index) => {
+collectionVegetable = collectionVegetable.map((item, index) => {
     return {
         ...item,
         seqN: index + 1,
-        categories: [
-            {
-                name: 'Bread',
-                id: 1
-            },
-            {
-                name: 'Dairy',
-                id: 2
-            },
-            {
-                name: 'Fruits',
-                id: 3
-            },
-            {
-                name: 'Seasoning and Spice',
-                id: 4
-            },
-            {
-                name: 'Vegetables',
-                id: 5
-            }
-        ]
     }
 })
 
 
 module.exports = {
-    collection
+    collectionVegetable
 }
 
 

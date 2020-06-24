@@ -62,28 +62,35 @@ export class ProductsShowComponent extends BootstrapFormComponent implements OnI
 
         if (isSubmitted) {
             const { value } = this.formGroup;
-            const payload = { ...this.product };
+            const product = { ...this.product };
 
-            payload.imageUrl = value.imageUrl;
-            payload.price = value.price;
-            payload.title = value.title;
+            product.imageUrl = value.imageUrl;
+            product.price = value.price;
+            product.title = value.title;
 
-            if (payload.category === value.categories.name) {
-                this.productEdit(payload);
+            if (product.category === value.categories.name) {
+                this.productEdit(product);
                 this.refreshStorage();
+
+                this.db.collection('vegetables')
+                    .get()
+                    .toPromise()
+                    .then(snap => {
+                        console.log(snap);
+                    });
             } else {
-                payload.category = value.categories.name;
+                product.category = value.categories.name;
 
                 let newApiEndPoint: string = value.categories.name;
                 newApiEndPoint = newApiEndPoint.replace(/ /g, '').toLowerCase();
 
                 this.service.getCollectionOrderBy(newApiEndPoint, 'seqN', "desc")
                     .pipe(takeUntil(this.destroyed$))
-                    .subscribe((res: any) => {
-                        const seqNHighest = res[0].seqN;
-                        payload.seqN = seqNHighest + 1;
+                    .subscribe((response: any) => {
+                        const seqNHighest = response[0].seqN;
+                        product.seqN = seqNHighest + 1;
                         fsBatchedWrites.default.remove(this.db, this.apiEndPoint, this.id);
-                        fsBatchedWrites.default.create(this.db, newApiEndPoint, this.id, payload);
+                        fsBatchedWrites.default.create(this.db, newApiEndPoint, this.id, product);
                     });
             }
 
@@ -105,7 +112,7 @@ export class ProductsShowComponent extends BootstrapFormComponent implements OnI
         this.productDetail();
     }
 
-    public ngOnDestroy(): void {
+    ngOnDestroy(): void {
         this.destroyed$.next(true);
         this.destroyed$.complete();
     }

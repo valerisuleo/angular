@@ -11,17 +11,17 @@ import { Router } from '@angular/router';
 })
 export class ProductsIndexComponent implements OnInit, OnDestroy {
 
-    subscription: Subscription;
-    listGroup: IListGroup;
-    products: IProduct[] = [];
-    categories: ICategoryMenu[] = [];
-    lastPageloaded: number = 0;
+    public subscription: Subscription;
+    public listGroup: IListGroup;
+    public products: IProduct[] = [];
+    public categories: ICategoryMenu[] = [];
+    public lastPageloaded: number = 0;
     // default apiCalled onload
-    apiEndpoint: string = 'vegetables';
+    public apiEndpoint: string = 'vegetables';
 
     constructor(private service: DataService, private router: Router) { }
 
-    getCategoriesMenu() {
+    getCategoriesMenu(): void {
         this.service.getAll('categories')
             .subscribe((response: ICategoryMenu[]) => {
                 const addCssClass = response.map((item: any) => {
@@ -35,8 +35,10 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
     }
 
     handleSelectedLi(obj: ICategoryMenu) {
+        // reset
         this.products = [];
         this.lastPageloaded = 0;
+        //
         const currentCategory = obj.categoryName.toLowerCase();
         this.apiEndpoint = currentCategory;
         this.getCollection();
@@ -46,7 +48,7 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
         this.router.navigate([`/products/${currentProduct.id}`], { state: { data: currentProduct } });
     }
 
-    getCollection() {
+    getCollection(): void {
         this.subscription = this.service
             .getCollectionPaginated(this.apiEndpoint, 'seqN', "asc", this.lastPageloaded, 3)
             .subscribe((response: any) => {
@@ -58,7 +60,7 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
             });
     }
 
-    loadmore() {
+    loadmore(): void {
         this.lastPageloaded = this.lastPageloaded + 1;
         this.getCollection();
     }
@@ -89,7 +91,7 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
         this.getCollection();
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
 

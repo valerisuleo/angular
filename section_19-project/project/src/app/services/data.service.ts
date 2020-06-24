@@ -8,7 +8,6 @@ import { OrderByDirection } from '@firebase/firestore-types';
 @Injectable()
 export class DataService {
 
-
     constructor(private db: AngularFirestore) { }
 
     getAll(collectioName: string) {

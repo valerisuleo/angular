@@ -16,38 +16,25 @@ firebase.initializeApp({
 
 const db = firebase.firestore();
 
-const collections = [];
-
-const coursePayload = {
-    db: db,
-    collection: vegetables.collection,
-    collectionPath: 'vegetables',
-    // nestedCollectionPath: 'lessons',
-    // nestedCollection: vegetables.nestedCollection,
-    // nestedCollectionParentIndex: 0,
-    // targetObj: {
-    //     key: 'url',
-    //     value: 'serverless-angular'
-    // }
-};
 
 const categoriesPayload = {
     db: db,
     collection: categories.collection,
     collectionPath: 'categories',
+    nestedCollectionPath: ['bread', 'vegetables'],
+    nestedCollection: categories.nestedCollection,
+    nestedCollectionParentIndex: [0, 4]
 };
 
-const breadPayload = {
-    db: db,
-    collection: bread.collection,
-    collectionPath: 'bread',
-};
+
+firestore.populate(categoriesPayload);
+
 
 // UPLOAD TO FIRESTORE
-collections.push(coursePayload, categoriesPayload, breadPayload);
-collections.forEach((payloadCollection) => {
-    firestore.populate(payloadCollection);
-});
+// collections.push(coursePayload, categoriesPayload, breadPayload);
+// collections.forEach((payloadCollection) => {
+//     firestore.populate(payloadCollection);
+// });
 
 
 
