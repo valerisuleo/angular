@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../../services/data.service';
-import { IProduct, ICategoryMenu, IListGroup } from '../interfaces';
+import { IProduct, ICategoryMenu, IListGroup, ICategory } from '../interfaces';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -16,14 +16,23 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
     public products: IProduct[] = [];
     public categories: ICategoryMenu[] = [];
     public lastPageloaded: number = 0;
+    public collectionSize: number = 6;
+    public page: number = 1;
+    public pageSize: number = 3;
     // default apiCalled onload
-    public apiEndpoint: string = 'vegetables';
+    public apiEndpoint: string;
 
     constructor(private service: DataService, private router: Router) { }
 
     getCategoriesMenu(): void {
         this.service.getAll('categories')
             .subscribe((response: ICategoryMenu[]) => {
+
+                const defaultCategory: ICategoryMenu = this.getDefaultCollection(response, 'categoryName', 'Bread');
+                const { id, categoryName } = defaultCategory;
+                this.apiEndpoint = this.pathMaker(categoryName, id);
+                this.getCollection();
+
                 const addCssClass = response.map((item: any) => {
                     return {
                         ...item,
@@ -34,19 +43,33 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
             })
     }
 
-    handleSelectedLi(obj: ICategoryMenu) {
+    getDefaultCollection(array: ICategoryMenu[], key: string, string): ICategoryMenu {
+        return array.find((obj) => {
+            return obj[key] === string;
+        });
+    }
+
+    pathMaker(string, id: string): string {
+        const subPath: string = string.replace(/ /g, '').toLowerCase();
+        return `categories/${id}/${subPath}`;
+    }
+
+    handleSelectedLi(obj: ICategoryMenu): void {
         // reset
         this.products = [];
         this.lastPageloaded = 0;
         //
-        const currentCategory = obj.categoryName.toLowerCase();
-        this.apiEndpoint = currentCategory;
+        const { id, categoryName, collectionSize } = obj;
+        this.apiEndpoint = this.pathMaker(categoryName, id)
+        this.collectionSize = collectionSize;
         this.getCollection();
     }
 
     navigateTo(currentProduct: IProduct) {
         this.router.navigate([`/products/${currentProduct.id}`], { state: { data: currentProduct } });
     }
+
+    // _________________________HANDLE PAGINATION_________________________
 
     getCollection(): void {
         this.subscription = this.service
@@ -55,16 +78,43 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
                 response.forEach((element) => {
                     element.count = 0;
                     element.isOpen = false;
-                    this.products.push(element);
                 });
+                this.products = response;
             });
     }
 
-    loadmore(): void {
+    handlePageChange(currentPage): void {
+        this.lastPageloaded = currentPage - 1;
+        this.getCollection();
+    }
+
+    handlePagination(e): void {
+        const next: string = 'Next';
+        const previous: string = 'Previous';
+        const current: HTMLElement = e.target;
+
+        if (current.getAttribute("aria-label") === next ||
+            current.parentElement.getAttribute("aria-label") === next) {
+            this.getNextSetOfItems();
+        }
+
+        if (current.getAttribute("aria-label") === previous ||
+            current.parentElement.getAttribute("aria-label") === previous) {
+            this.getPreviousSetOfItems();
+        }
+    }
+
+    getNextSetOfItems(): void {
         this.lastPageloaded = this.lastPageloaded + 1;
         this.getCollection();
     }
 
+    getPreviousSetOfItems(): void {
+        this.lastPageloaded = this.lastPageloaded - 1;
+        this.getCollection();
+    }
+
+    // _________________________HANDLE COUNTERS_________________________
     counterShow(current: IProduct) {
         current.isOpen = true;
     }
@@ -88,11 +138,12 @@ export class ProductsIndexComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.getCategoriesMenu();
-        this.getCollection();
     }
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
+
+
 
 }

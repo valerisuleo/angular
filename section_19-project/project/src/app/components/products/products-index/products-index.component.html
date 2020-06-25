@@ -2,6 +2,8 @@
     <div class="col-4">
         <bootstrap-list (handleSelectedLi)='handleSelectedLi($event)' [props]='listGroup'></bootstrap-list>
     </div>
+
+
     <div class="col-8">
 
         <div class="row row-cols-md-2 row-cols-xl-3">
@@ -40,16 +42,19 @@
 
         <nav>
             <ul class="pagination justify-content-center m-5">
-                <li class="page-item">
-                    <a class="page-link" href="#">
-                        Prev
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" (click)="loadmore()">Next</a>
-                </li>
+                <ngb-pagination 
+                [collectionSize]="collectionSize" 
+                [(page)]="page"
+                [maxSize]="5" 
+                [pageSize]="pageSize" 
+                aria-label="Default pagination"
+                (pageChange)="handlePageChange($event)" 
+                (click)="handlePagination($event)">
+            </ngb-pagination>
             </ul>
         </nav>
+
+       
 
     </div>
 </div>

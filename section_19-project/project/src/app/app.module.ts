@@ -20,6 +20,8 @@ import { BootstrapSelectComponent } from './reusable-components/bootstrap-select
 import { BootstrapListComponent } from './reusable-components/bootstrap-list/bootstrap-list.component';
 import { BootstrapNavbarComponent } from './components/bootstrap-navbar/bootstrap-navbar.component';
 import { BootstrapCardGroupComponent } from './reusable-components/bootstrap-card/bootstrap-cards-group.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
     declarations: [
@@ -39,7 +41,8 @@ import { BootstrapCardGroupComponent } from './reusable-components/bootstrap-car
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         AngularFireAnalyticsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule
     ],
     providers: [DataService],
     bootstrap: [AppComponent]

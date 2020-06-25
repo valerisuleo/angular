@@ -35,8 +35,8 @@ let collection = [
 ];
 
 const nestedCollection = [
-    collectionVegetable,
-    collectionBread
+    collectionBread,
+    collectionVegetable
 ];
 
 module.exports = {

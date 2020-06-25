@@ -15,6 +15,7 @@ export interface ICategoryMenu {
     isActive: boolean;
     id: string;
     cssClass?: string;
+    collectionSize: number;
 }
 
 export interface IListGroup {
