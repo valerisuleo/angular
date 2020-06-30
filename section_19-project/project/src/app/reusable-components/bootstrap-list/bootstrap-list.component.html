@@ -1,8 +1,0 @@
-<ul class="list-group">
-    <li *ngFor="let item of list" 
-        (click)="toggleActiveClass(item)" 
-        class="list-group-item"
-        [ngClass]='item.isActive && item.cssClass'>
-        {{ item[propertyKey] }}
-    </li>
-</ul>
