@@ -14,6 +14,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+// components
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { RadioComponent } from './radio/radio.component';
 import { SelectComponent } from './select/select.component';
@@ -28,6 +30,10 @@ import { TooltipsComponent } from './tooltips/tooltips.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { DialogsComponent } from './dialogs/dialogs.component';
 import { TypoComponent } from './typo/typo.component';
+import { TableComponent } from './table/table.component';
+import { FilterPipe } from './table/filter.pipe';
+import { MatSortModule } from '@angular/material/sort';
+
 
 
 @NgModule({
@@ -46,6 +52,8 @@ import { TypoComponent } from './typo/typo.component';
         TabsComponent,
         DialogsComponent,
         TypoComponent,
+        TableComponent,
+        FilterPipe,
     ],
     imports: [
         CommonModule,
@@ -62,7 +70,9 @@ import { TypoComponent } from './typo/typo.component';
         MatProgressSpinnerModule,
         MatTooltipModule,
         MatTabsModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTableModule,
+        MatSortModule
     ]
 })
 export class MaterialModule { }

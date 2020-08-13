@@ -15,8 +15,10 @@ import { TooltipsComponent } from './mat-components/tooltips/tooltips.component'
 import { TabsComponent } from './mat-components/tabs/tabs.component';
 import { DialogsComponent } from './mat-components/dialogs/dialogs.component';
 import { TypoComponent } from './mat-components/typo/typo.component';
+import { TableComponent } from './mat-components/table/table.component';
 
 const routes: Routes = [
+    { path: 'table', component: TableComponent },
     { path: 'typo', component: TypoComponent },
     { path: 'courses/edit', component: DialogsComponent },
     { path: 'dialogs', component: DialogsComponent },
