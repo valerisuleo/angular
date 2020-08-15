@@ -1,14 +1,14 @@
 <div>
     <mat-form-field class="example-full-width">
-        <input [(ngModel)]="query" matInput placeholder="Filter">
+        <input (keyup)="filterGlobal($event.target.value)" matInput placeholder="Filter">
     </mat-form-field>
 </div>
 
-<mat-table [dataSource]="dataSource | filter: query" matSort class="mat-elevation-z0">
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z0">
 
     <ng-container *ngFor="let item of displayedColumns">
         <ng-container [matColumnDef]="item">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> {{item}} </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ item | titlecase }} </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element[item]}} </mat-cell>
         </ng-container>
     </ng-container>

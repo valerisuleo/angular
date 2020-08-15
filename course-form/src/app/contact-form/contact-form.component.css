@@ -1,9 +1,0 @@
-form{
-  width: 70vw;
-  margin: auto;
-  margin-top: 50px;
-}
-
-.form-control.ng-invalid.ng-dirty.ng-touched{
-  border: 2px solid red;
-}

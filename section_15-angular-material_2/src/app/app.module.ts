@@ -14,12 +14,13 @@ import { HomeComponent } from './home/home.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
 // import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
         HomeComponent,
-        EditCourseComponent
+        EditCourseComponent,
     ],
     entryComponents: [EditCourseComponent],
     imports: [
