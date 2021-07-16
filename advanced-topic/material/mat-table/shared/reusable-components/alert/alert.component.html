@@ -1,0 +1,15 @@
+<div [class]="alert.className" role="alert">
+    <h4 class="alert-heading">
+        {{alert.heading}}
+    </h4>
+    <p>
+        {{alert.body}}
+    </p>
+    <hr>
+
+    <ng-container *ngFor="let btn of alert.buttons">
+        <button *ngIf="btn.isVisible" mat-button [mat-dialog-close] [ngClass]="btn.className" (click)="btn.method()">
+            {{btn.label}}
+        </button>
+    </ng-container>
+</div>

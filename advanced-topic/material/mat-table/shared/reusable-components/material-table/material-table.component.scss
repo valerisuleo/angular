@@ -1,0 +1,80 @@
+@import "../../../theme/styles/base";
+@import "../../../theme/styles/colors";
+
+mat-form-field {
+    width: 100%;
+}
+
+.search {
+    color: black;
+}
+
+.mat-table {
+    display: table;
+    width: 100%;
+
+    >.mat-header-row,
+    >.mat-row {
+        display: table-row;
+        min-height: 0;
+        
+
+        >.mat-header-cell,
+        >.mat-cell {
+            display: table-cell;
+            height: 48px;
+            vertical-align: middle;
+        }
+    }
+}
+
+.striped {
+    background-color: #F2F2F2;
+}
+
+.badge {
+    border-radius: 100px;
+    width: 120px;
+    min-height: 20px;
+    max-height: 20px;
+    position: relative;
+
+    &.badge-success {
+        background-color: $success;
+    }
+
+    &.badge-primary {
+        background-color: $primary;
+    }
+
+    &.badge-danger {
+        background-color: $danger;
+    }
+
+    &.badge-warning {
+        background-color: $warning;
+    }
+
+    span {
+        @extend .centered-styles;
+        color: white;
+    }
+}
+
+
+mat-cell {
+    position: relative;
+}
+
+.center {
+    @extend .centered-styles;
+    left: 35%;
+}
+
+.check_circle {
+    color: $success;
+}
+
+.not_interested {
+    color: $warning;
+}

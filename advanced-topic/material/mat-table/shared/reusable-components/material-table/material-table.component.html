@@ -1,0 +1,42 @@
+<mat-form-field *ngIf="tableFilter.isFiltering" class="example-full-width">
+    <mat-label>
+        <span>
+            <mat-icon class="search">search</mat-icon>
+        </span>
+        {{ label }}
+    </mat-label>
+    <input (keyup)="applyFilter($event.target.value)" matInput>
+</mat-form-field>
+
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z0">
+
+    <ng-container *ngFor="let col of columns" [matColumnDef]="col">
+        <mat-header-cell 
+            *matHeaderCellDef 
+            mat-sort-header
+            style="color: white;">{{ col | splitOnUppecase }}
+        </mat-header-cell>
+
+        <mat-cell
+            class="animated fadeIn"
+            (click)="navigateTo(element)"
+            *matCellDef="let element; even as isEven" [ngClass]="isStriped && isEven && 'striped'">
+
+            <p [ngClass]="element[col].className"> 
+                <span *ngIf="element[col].isValueShow">
+                    {{ element[col].value | dateAndString }}
+                </span>
+            </p>    
+
+            <mat-icon *ngIf="element[col].isIconShow" [ngClass]="[element[col].icon + ' ' + element[col].className]">
+                <span [matTooltip]="element[col].value" matTooltipPosition="before">
+                    {{ element[col].icon }}
+                </span>
+            </mat-icon>
+
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columns" style="background-color: #00aeef;"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+</mat-table>

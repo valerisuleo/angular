@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-6">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <licence-name (handleNameClose)="handleNameClose($event)"></licence-name>
+            </li>
+            <li class="list-group-item">
+                <licence-number 
+                    [assignedLicense]="assignedLicense"
+                    (handleNumberClose)="handleNumberClose($event)">
+                </licence-number>
+            </li>
+            <li class="list-group-item">
+                <button class="btn btn-primary btn" (click)="save()">Save</button>
+            </li>
+          </ul>
+    </div>
+</div>

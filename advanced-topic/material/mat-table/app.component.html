@@ -1,0 +1,135 @@
+<div id="app" class="app" [dir]="settings.rtl ? 'rtl' : 'ltr'" [ngClass]="settings.theme" [class.fixed-header]="settings.fixedHeader" [class.horizontal-menu]="settings.menu == 'horizontal'" [class.compact]="settings.menuType == 'compact'" [class.mini]="settings.menuType == 'mini'">
+
+    <mat-sidenav-container autosize>
+
+        <mat-sidenav-content id="main" perfectScrollbar (psScrollY)="onPsScrollY($event)">
+            <mat-toolbar class="flex-p-x" *ngIf="isUserLoggedIn" [ngClass]="{'_bg-darkmode': settings?.theme === 'blue-dark', '_bg-primary' :settings?.theme !== 'blue-dark'}">
+
+                <a class="navbar-brand" href="#">
+                    <img src="../assets/img/classroom-cloud_logo_device.png" width="60" height="50" alt="admin console">
+                    Admin Console <small>1.00.0000i5a</small>
+                </a>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="end center">
+                        <div fxLayout="row" fxLayoutAlign="start center" fxShow="false" fxShow.gt-xs class="search-bar"></div>
+                        <button mat-icon-button id="theme-selector" [mat-menu-trigger-for]="themeMenu" matTooltip="Select a theme!">
+                            <mat-icon class="auto-flip">
+                                <i class="fa-container fas fa-palette" aria-hidden="true"></i>
+                            </mat-icon>
+                        </button>
+                        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+                            <mat-icon>
+                                <i class="fa-container fas fa-user-circle" aria-hidden="true"></i>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-toolbar>
+
+            <div class="pt-2 pb-2 _bg-primary" *ngIf="!isUserLoggedIn">
+                <mat-toolbar color="primary" class="flex-p-x">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+                        <span [routerLink]="['/signin']" class="logo">
+                            <img src="../assets/img/classroom-cloud_logo_full.png" style="max-height: 50px;" />
+                        </span>
+                    </div>
+                </mat-toolbar>
+            </div>
+
+            <main id="main-content" [ngClass]="{ '_bg-primary': !isUserLoggedIn }" class="inner-sidenav-content transition-2" perfectScrollbar [disabled]="!settings.fixedHeader" (psScrollY)="onPsScrollY($event)">
+                <div id="app-spinner" [class.d-none]="!settings.loadingSpinner">
+                    <div id="pre-bootstrap" class="app-component fxs-splashscreen">
+                        <div class="messaging">
+                            <img src="../assets/img/wait.gif" alt="wait" />
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="maintenanceStarted" id="maintenance" class="maintenance fxs-splashscreen">
+                    <div class="maintenance-container">
+                        <div class="header">
+                            <div class="logo-container">
+                                <div class="logo">
+                                    <a href="index.htm"><img src="../assets/img/classroom-cloud_logo_full.png" data-spai="1" alt="classroom.cloud" id="logo" data-height-percentage="72" data-actual-width="72" data-actual-height="72" data-spai-upd="62" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="content-inner">
+                                <div class="signinform">
+                                    <div class="signinform-inner">
+                                        <h1>Maintenance</h1>
+                                        <hr class="headunderline" />
+                                        <p>&nbsp;</p>
+                                        <p>classroom.cloud is currently down for maintenance.</p>
+                                        <p>
+                                            We expect to be back shortly. Thank you for your patience.
+                                        </p>
+                                    </div>
+                                    <div class="maintenance-image"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div [class.has-footer]="settings.hasFooter" [ngClass]="{ 'has-iframe': router.url === '/accounts' }">
+
+                    <mat-card>
+                        <app-ng7-mat-breadcrumb 
+                            [hidden]="isCrumble" 
+                            [fontSize]="'14px'" 
+                            [bgColor]="'#FFFFFF'">
+                        </app-ng7-mat-breadcrumb>
+                    </mat-card>
+
+                    <router-outlet></router-outlet>
+                </div>
+
+                <app-footer *ngIf="!isUserLoggedIn"></app-footer>
+
+            </main>
+
+            <div #backToTop fxLayout="row" fxLayoutAlign="center center" class="back-to-top" (click)="scrollToTop()">
+                <mat-icon>arrow_upward</mat-icon>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+
+<mat-menu #themeMenu="matMenu">
+    <mat-grid-list cols="2" class="theme-selectors-container">
+        <mat-grid-tile *ngFor="let theme of themes">
+            <button mat-button class="theme-selector" (click)="$event.stopPropagation(); changeTheme(theme)">
+                <div class="skin-primary {{ theme }}">
+                    <div class="skin-secondary"></div>
+                </div>
+            </button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-menu>
+
+
+<mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="toolbar-dropdown-menu user-menu">
+    <div class="p-2 user-info muted-text">
+        <div fxLayout="row" fxLayoutAlign="center center" class="mb-3">
+            <mat-icon class="user-icon text-center">
+                <i class="primary-color fas fa-user-circle" aria-hidden="true"></i>
+            </mat-icon>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <h2 class="text-capitalize font-Yanone"> {{ userDetails?.name }} </h2>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" class="mb-3">
+            <span title="{{ userDetails?.email }}" class="w-100 text-truncate text-center">{{ userDetails?.email }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <button mat-flat-button color="primary" (click)="signOut()">
+                <mat-icon class="mr-2">power_settings_new</mat-icon>Sign out
+            </button>
+        </div>
+    </div>
+</mat-menu>

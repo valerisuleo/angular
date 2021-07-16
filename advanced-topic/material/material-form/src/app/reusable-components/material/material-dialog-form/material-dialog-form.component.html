@@ -1,0 +1,14 @@
+<form-container [formGroup]='formGroup'>
+    <material-input *ngFor="let item of inputs"
+        (handleValidation)="handleValidation($event)"
+        [formGroup]='formGroup' 
+        [name]='item.name' 
+        [type]='item.type' 
+        [label]='item.label'>
+    </material-input>
+</form-container>
+
+<div mat-dialog-actions>
+    <button mat-button color="accent" (click)="onNoClick()">Cancel</button>
+    <button mat-flat-button color="primary" [disabled]="!isValid" [mat-dialog-close]="formGroup.value" cdkFocusInitial>Submit</button>
+</div>

@@ -1,0 +1,31 @@
+@import "../../css-partials/colors";
+
+table {
+    width: 100%;
+
+    th {
+        padding: 0 .5rem 0 .5rem;
+    }
+
+    td {
+        padding: 0 .5rem 0 .5rem;
+    }
+}
+
+mat-form-field {
+    width: 50%;
+}
+
+.chip-primary {
+    background-color: $primary;
+    color: white;
+    border-radius: 50px;
+    padding: .5rem;
+}
+
+.chip-success {
+    background-color: $success;
+    color: white;
+    border-radius: 50px;
+    padding: .5rem;
+}

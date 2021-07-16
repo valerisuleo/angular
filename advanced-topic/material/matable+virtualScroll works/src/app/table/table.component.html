@@ -1,0 +1,77 @@
+<!-- <mat-form-field class="example-full-width">
+    <input (keyup)="filterGlobal($event.target.value)" matInput placeholder="Filter">
+</mat-form-field>
+
+<div class="wrapper" *ngIf="dataSource.filteredData.length">
+    <cdk-virtual-scroll-viewport tvsItemSize="60" style="height: 100vh;">
+        <mat-table matSort [dataSource]="dataSource">
+            <ng-container *ngFor="let col of displayedColumns; index as i">
+                <ng-container [matColumnDef]="col">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef mat-sort-header>
+                        <span class="c-box" *ngIf="i === 0">
+                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                            </mat-checkbox>
+                        </span>
+                        {{ col | colTitle | titlecase }}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+
+                        <span class="c-box" *ngIf="i === 0">
+                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null" [checked]="selection.isSelected(element)" [aria-label]="checkboxLabel(element)">
+                            </mat-checkbox>
+                        </span>
+
+                        <ul *ngIf="col === 'actions' else regular">
+                            <li *ngFor="let item of element[col]" (click)="postDelete(element)" class="material-icons" [title]="item.label">
+                                {{item.icon}}
+                            </li>
+                        </ul>
+
+                        <ng-template #regular>
+                            <span class="cell">{{element[col]}}</span>
+                        </ng-template>
+
+                    </mat-cell>
+                </ng-container>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+            <mat-row style="height: 60px;" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </cdk-virtual-scroll-viewport>
+</div> -->
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let element">{{element.name}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  

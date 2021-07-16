@@ -1,0 +1,51 @@
+.wrapper {
+    background-color: silver;
+    height: 100vh;
+}
+
+
+table {
+    width: 100%;
+
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+        cursor: pointer;
+        display: inline;
+    }
+}
+
+
+.mat-column-userId {
+    // border: 1px solid red;
+    flex: 0 0 10%;
+}
+.mat-column-id {
+    // border: 1px solid green;
+    flex: 0 0 5%;
+}
+.mat-column-title {
+    // border: 1px solid blue;
+    flex: 0 0 25%;
+}
+.mat-column-body {
+    // border: 1px solid yellow;
+    flex: 0 0 50%;
+}
+.mat-column-actions {
+    // border: 1px solid pink;
+    flex: 0 0 10%;
+}
+
+.cell {
+    padding-right: 1em;
+}
+
+
+.c-box {
+    margin-right: 1em;
+}

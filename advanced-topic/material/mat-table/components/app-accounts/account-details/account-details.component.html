@@ -1,0 +1,152 @@
+<div *ngIf="account.accountStatus === 'OnHold'" class="m-4 animated fadeIn">
+    <bootstrap-alert [className]="'danger'">
+        Account on hold please contact your account manager.
+    </bootstrap-alert>
+</div>
+
+<mat-tab-group [disableRipple]="false" (selectedTabChange)="handleSelection($event)">
+    <mat-tab *ngFor="let tab of tabs" [label]="tab | titlecase">
+        <ng-container *ngIf="tab === 'details'
+            then details
+            else history">
+        </ng-container>
+    </mat-tab>
+</mat-tab-group>
+
+
+<ng-template #details>
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Licensed to:</th>
+                <td>
+                    {{ account.licenseName }}
+                </td>
+                <td>
+                    <button 
+                        #licenseName 
+                        mat-flat-button 
+                        color='accent' 
+                        name="licenseName" 
+                        (click)="setFormValue(licenseName)">Edit
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Account ID:</th>
+                <td>
+                    {{ account.accountId}}
+                </td>
+                <td>
+                    <button
+                        mat-flat-button
+                        [cdkCopyToClipboard]="account.accountId">Copy
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th  scope="row">Account Status:</th>
+                <td>
+                    <p [ngClass]="[account.accountStatus === 'Active' ? 'badge badge-success' : 'badge badge-warning']">
+                        {{ account.accountStatus | dateAndString }}
+                    </p>
+                </td>
+                <td>
+                    <mat-slide-toggle (change)="toggleStatus()">
+                        {{ toggleLabel }}
+                    </mat-slide-toggle>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">License type:</th>
+                <td>
+                    <span class="badge badge-primary">{{ account.licenseType | dateAndString }}</span>
+                </td>
+                <td>
+                    <button
+                        disabled 
+                        #licenseType 
+                        mat-flat-button 
+                        color='accent' 
+                        name="licenseType" 
+                        (click)="setFormValue(licenseType)">Edit
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Number of license:</th>
+                <td>
+                    <span class="badge badge-secondary">{{ account.numberOfLicenses }}</span>
+                </td>
+                <td>
+                    <button 
+                        #numberOfLicenses 
+                        mat-flat-button 
+                        color='accent' 
+                        name="numberOfLicenses" 
+                        (click)="setFormValue(numberOfLicenses)">Edit
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Assigned licenses:</th>
+                <td>
+                    <span class="badge badge-secondary">{{ account.assignedLicenses }}</span>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Expiry date:</th>
+                <td>
+                    <span class="badge badge-secondary">{{ account.expiryDate | dateAndString }}</span>
+                </td>
+                <td>
+                    <button
+                        disabled 
+                        #expiryDate 
+                        mat-flat-button 
+                        color='accent' 
+                        name="expiryDate" 
+                        (click)="setFormValue(expiryDate)">Edit
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Days Left:</th>
+                <td>
+                    <span [ngClass]="badge">{{ daysLeft }}</span>
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <th scope="col">
+                <button mat-flat-button (click)="alertShow()">Back</button>
+            </th>
+            <th scope="col"></th>
+            <th scope="col">
+                <button mat-flat-button (click)="submit()">Update</button>
+            </th>
+        </tfoot>
+    </table>
+</ng-template>
+
+
+<ng-template #history>
+    <material-table 
+    [displayedColumns]="displayedColumns" 
+    [isNavigationEnabled]="false"
+    [tableFilter]="tableFilter" 
+    [elementData]="dataSource">
+</material-table>
+
+</ng-template>

@@ -1,0 +1,24 @@
+@import "../../../theme/styles/colors";
+
+.mat-dialog-content {
+    overflow: visible !important;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.mat-dialog-actions {
+    button {
+        color: white;
+
+        &:nth-of-type(1) {
+            background-color: $danger;
+        }
+
+        &:nth-of-type(2) {
+            background-color: $success;
+        }
+    }
+}
+

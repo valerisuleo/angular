@@ -1,0 +1,34 @@
+<div mat-dialog-content>
+    <mat-form-field class="example-full-width">
+
+        <mat-label>
+            {{ property | splitOnUppecase }}
+        </mat-label>
+        
+        <input 
+            matInput type="text" 
+            licensesValidator required [maxlength]="length"
+            [(ngModel)]="formModel[property]" 
+            [name]="property" 
+            ngModel #input='ngModel'>
+        
+        <mat-hint align="end">
+            <span *ngIf="isMax">
+                {{input.value?.length || 0}}/70
+            </span>
+        </mat-hint>
+
+        <!-- ng messages -->
+        <mat-error *ngIf="input.touched && !input.valid">
+            <mat-error *ngIf="input.errors.required">{{ property | splitOnUppecase }} is required!</mat-error>
+            <mat-error *ngIf="input.errors.licensevalidator">The {{ property | splitOnUppecase }} cannot be less than the number of assigned licenses - contact the account manager to resolve this issue.</mat-error>
+        </mat-error>
+        <!-- end msg -->
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-flat-button [disabled]="!input.valid" [mat-dialog-close]="formModel" cdkFocusInitial>Ok</button>
+</div>
+

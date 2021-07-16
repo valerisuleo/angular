@@ -1,0 +1,18 @@
+<ng-container [formGroup]="formGroup">
+    <div class="form-group m-0">
+        <mat-form-field class="example-full-width">
+            <mat-label>{{ label | titlecase }}</mat-label>
+            <input matInput [formControlName]="name" [type]="type">
+        </mat-form-field>
+    </div>
+</ng-container>
+
+<mat-error *ngIf="input.touched && input.invalid">
+    <mat-error *ngFor="let error of input.errors | keyvalue">
+        {{ error.value.message  }}
+    </mat-error>
+</mat-error>
+
+
+
+

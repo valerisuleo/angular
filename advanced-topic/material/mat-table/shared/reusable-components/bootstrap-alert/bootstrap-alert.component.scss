@@ -1,0 +1,24 @@
+@import '../../../theme/styles/colors';
+
+.alert {
+    color: white;
+
+    &.alert-success {
+        background-color: $success;
+    }
+
+    &.alert-primary {
+        background-color: $primary;
+    }
+
+    &.alert-danger {
+        background-color: $danger;
+    }
+
+    &.alert-warning {
+        background-color: $warning;
+    }
+}
+
+
+

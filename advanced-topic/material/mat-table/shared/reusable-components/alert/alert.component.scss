@@ -1,0 +1,32 @@
+@import "../../../theme/styles/colors";
+
+.alert {
+    margin-bottom: 0 !important;
+}
+
+
+button {
+    color: white !important;
+    margin-right: 15px;
+
+    &.success {
+        background-color: $success !important;
+    }
+
+    &.primary {
+        background-color: $primary !important;
+    }
+
+    &.danger {
+        background-color: $danger !important;
+    }
+
+    &.warning {
+        background-color: $warning !important;
+    }
+
+    &.secondary {
+        background-color: #6c757d !important;
+        color: white;
+    }
+}

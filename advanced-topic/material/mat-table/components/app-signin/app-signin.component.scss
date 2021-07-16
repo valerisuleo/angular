@@ -1,0 +1,51 @@
+.login-container {
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: column nowrap;
+	flex-flow: column nowrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+
+	.messaging {
+		color: #000;
+		font-family: monospace;
+		left: 0px;
+		margin-top: -240px;
+		position: absolute;
+		right: 0px;
+		text-align: center;
+		top: 55%;
+		z-index: 1;
+
+		.mat-flat-button {
+			margin: 0 14px;
+		}
+
+		.bg-success-custom {
+			background-color: #7cda24;
+		}
+
+		.bg-warning-custom {
+			background-color: #e09900;
+		}
+	}
+
+	.cloud-background {
+		background-image: url(../../../assets/img/clouds.png);
+		background-size: auto;
+		background-position: bottom;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-repeat-x: repeat;
+		bottom: 55px;
+		position: fixed;
+		width: 100%;
+		height: 230px;
+	}
+}
