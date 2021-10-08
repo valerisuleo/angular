@@ -1,0 +1,51 @@
+.app-container {
+    height: 100px;
+
+    .body {
+        // background-color: silver;
+        height: 75%;
+        position: relative;
+
+        .app {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background-color: pink;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            &.selected {
+                border: 3px solid dodgerblue;
+            }
+
+            fa-icon {
+                color: white;
+                font-size: 25px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+
+    .footer {
+        // background-color: green;
+        height: 25%;
+        text-align: center;
+    }
+}
+
+.folder {
+    &.selected {
+        border: 3px solid dodgerblue !important;
+    }
+}
+
+// .card {
+//     height: 200px;
+//     overflow: auto;
+// }

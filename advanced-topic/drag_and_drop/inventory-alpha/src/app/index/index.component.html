@@ -1,0 +1,106 @@
+<main class="container p-5">
+    <div class="row mb-3">
+        <div class="col">
+            <h2>About this device:</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let card of cards" [class]="card.isOpen ? 'col-12' : 'col-md-6 col-lg-4'">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img [src]="card.img" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <button (click)="togglExpand(card)" class="btn btn-primary">
+                                {{card.btnLabel | titlecase}}
+                            </button>
+                            <ul *ngIf="card.isOpen" class="list-group my-4">
+                                <li *ngFor="let item of card.details" class="list-group-item">
+                                    <strong>{{item.label}}</strong>
+                                    <span>
+                                        {{item.value}}
+                                    </span>
+
+                                    <div *ngIf="card.btnLabel === 'storage'" class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                    </div>
+
+                                    <table *ngIf="card.btnLabel == 'software'" class="table table-striped">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Size</th>
+                                            <th scope="col">Kind</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Teams</td>
+                                            <td>150 MB</td>
+                                            <td>Application</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Office</td>
+                                            <td>2 GB</td>
+                                            <td>Application</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Powershell</td>
+                                            <td>275 KB</td>
+                                            <td>Application</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Teams</td>
+                                            <td>150 MB</td>
+                                            <td>Application</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Office</td>
+                                            <td>2 GB</td>
+                                            <td>Application</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Powershell</td>
+                                            <td>275 KB</td>
+                                            <td>Application</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Teams</td>
+                                            <td>150 MB</td>
+                                            <td>Application</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Office</td>
+                                            <td>2 GB</td>
+                                            <td>Application</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Powershell</td>
+                                            <td>275 KB</td>
+                                            <td>Application</td>
+                                          </tr>
+            
+                                        </tbody>
+                                      </table>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,29 @@
+<main class="container mt-5">
+    <div class="row">
+        <div *ngFor="let card of cards" [class]="card.className">
+            <div class="card item-card card-block mb-5" [ngClass]="{'expanded': card.isOpen}">
+                <div class="header" (click)="togglExpand(card)" [ngClass]="{'expanded': card.isOpen}">
+                    <fa-icon [icon]="card.icon"></fa-icon>
+                </div>
+                <div class="card-body" [ngClass]="{'expanded': card.isOpen}" style="overflow: auto;">
+                    <ng-container *ngIf="!card.isOpen; else details">
+                        <h5 class="card-title">
+                            {{card.btnLabel | titlecase }}
+                        </h5>
+                    </ng-container>
+                </div>
+            </div>
+            <ng-template #details>
+                <ul *ngIf="card.btnLabel !== 'software'; else table" class="list-group">
+                    <li *ngFor="let item of card.details" class="list-group-item">
+                        <strong>{{item.label | titlecase}}</strong> {{item.value}}
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+    </div>
+</main>
+
+<ng-template #table>
+    <material-table [columns]="data.columns" [collection]="data.dataSource"></material-table>
+</ng-template>

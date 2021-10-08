@@ -1,0 +1,71 @@
+<main class="container">
+
+
+    <div class="row my-4">
+        <div class="col-6">
+            <mat-form-field style="width: 100%;">
+                <input (keyup)="filterGlobal($event.target.value)" matInput placeholder="Filter">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-6">
+            <button class="btn btn-primary" (click)="isVisible = !isVisible">Customise table</button>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div *ngIf="isVisible" class="col-md-12 col-lg-2 mb-5">
+            <mat-list role="list" class="list">
+                <mat-list-item>
+                    <strong>Toggle columns</strong>
+                </mat-list-item>
+                <mat-list-item *ngFor="let item of columnsMenu; index as i" role="listitem">
+                    <div style="width: 100%;" class="d-flex justify-content-between">
+                        <mat-slide-toggle (change)="toggleCol(item)" [checked]="item.isChecked">
+                            {{item.name}}
+                        </mat-slide-toggle>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </div>
+
+        <div [class]="isVisible ? default : fluid">
+            <div class="wrapper" *ngIf="dataSource && dataSource.filteredData.length">
+                <cdk-virtual-scroll-viewport tvsItemSize="120" style="height: 100vh;">
+                    <mat-table matSort [dataSource]="dataSource" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+                        <div *ngFor="let col of columns; index as i">
+                            <ng-container [matColumnDef]="col">
+                                <mat-header-cell mat-sort-header *matHeaderCellDef mat-sort-header cdkDrag cdkDragLockAxis="x">
+                                    {{ col | colTitle | titlecase }}
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+
+
+                                    <ul *ngIf="col === 'actions' else regular">
+                                        <li *ngFor="let item of element[col]" (click)="postDelete(element)" class="material-icons" [title]="item.label">
+                                            {{item.icon}}
+                                        </li>
+                                    </ul>
+
+                                    <ng-template #regular>
+                                        <span class="cell">{{element[col]}}</span>
+                                    </ng-template>
+
+                                </mat-cell>
+                            </ng-container>
+                        </div>
+
+                        <mat-header-row style="background-color: pink;" *matHeaderRowDef="columns; sticky: true"></mat-header-row>
+                        <mat-row style="height: 120px;" *matRowDef="let row; columns: columns"></mat-row>
+
+                    </mat-table>
+                </cdk-virtual-scroll-viewport>
+            </div>
+        </div>
+
+    </div>
+
+</main>

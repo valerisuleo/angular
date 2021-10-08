@@ -1,0 +1,43 @@
+<mat-form-field class="example-full-width">
+    <input (keyup)="filterGlobal($event.target.value)" matInput placeholder="Filter">
+</mat-form-field>
+
+<div class="wrapper" *ngIf="dataSource && dataSource.filteredData.length">
+    <cdk-virtual-scroll-viewport tvsItemSize="60" style="height: 100vh;">
+        <mat-table matSort [dataSource]="dataSource">
+            <ng-container *ngFor="let col of displayedColumns; index as i">
+                <ng-container [matColumnDef]="col">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef mat-sort-header>
+                        <!-- <span class="c-box" *ngIf="i === 0">
+                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                            </mat-checkbox>
+                        </span> -->
+                        {{ col | colTitle | titlecase }}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+
+                        <!-- <span class="c-box" *ngIf="i === 0">
+                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null" [checked]="selection.isSelected(element)" [aria-label]="checkboxLabel(element)">
+                            </mat-checkbox>
+                        </span> -->
+
+                        <ul *ngIf="col === 'actions' else regular">
+                            <li *ngFor="let item of element[col]" (click)="postDelete(element)" class="material-icons" [title]="item.label">
+                                {{item.icon}}
+                            </li>
+                        </ul>
+
+                        <ng-template #regular>
+                            <span class="cell">{{element[col]}}</span>
+                        </ng-template>
+
+                    </mat-cell>
+                </ng-container>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+            <mat-row style="height: 60px;" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </cdk-virtual-scroll-viewport>
+</div>
+

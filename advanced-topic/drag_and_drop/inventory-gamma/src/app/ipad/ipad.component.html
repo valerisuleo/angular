@@ -1,0 +1,85 @@
+<main class="container" cdkDropListGroup>
+
+    <div class="row my-4">
+        <div class="col-6">
+            <div class="input-group">
+                <input [(ngModel)]="query" type="text" class="form-control" placeholder="search app">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" cdkDropList [cdkDropListData]="data.apps" (cdkDropListDropped)="drop($event)">
+        <div class="col-6 col-md-3 col-lg-2 mb-3" *ngFor="let app of data.apps | filter : query; index as j" cdkDrag>
+            <div class="app-container">
+                <div class="body">
+                    <div class="app" [class.selected]="app.isActive" (mouseenter)="getCurrentIndex(app)" (dblclick)="openDialog()">
+                        <fa-icon [icon]="app.brand"></fa-icon>
+                    </div>
+                </div>
+                <div class="footer">
+                    <small class="text-muted">
+                        {{app.brand.iconName | titlecase}} {{app.version}}
+                    </small>
+                </div>
+            </div>
+        </div>
+        <!-- {{data.apps | json}} -->
+    </div>
+
+    <hr>
+
+    <div class="row" *ngIf="data.folders.length">
+        <div *ngFor="let folder of data.folders; index as i" cdkDropList [cdkDropListData]="folder.apps" (cdkDropListDropped)="drop($event, i)" class="col-md-6 col-lg-4">
+
+            <div *ngIf="folder && folder.apps" class="card border-secondary mb-4" (contextmenu)="showDropDown(folder, $event)">
+
+                <div class="c-body">
+                    <div class="row">
+                        <div *ngFor="let app of folder.apps" class="col-4" cdkDrag>
+                            <div class="app-container">
+                                <div class="body">
+                                    <div class="app" [class.selected]="app.isActive">
+                                        <fa-icon [icon]="app.brand"></fa-icon>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <small class="text-muted">
+                                        {{app.brand.iconName | titlecase}} {{app.version}}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="c-footer">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-container">
+                                <!-- {{folder.title | titlecase}} -->
+                                <input [(ngModel)]="folder.title" type="text" class="input-group-text">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <ng-container *ngIf="folder.actions.isVisible">
+                                <div class="dropdown" (click)="toggleDropDownList(folder)" [ngClass]="{'show': folder.actions.isOpen}">
+                                    <button class="btn btn-outline-light dropdown-toggle" type="button">
+                                        Actions
+                                    </button>
+                                    <div class="dropdown-menu" [ngClass]="{'show': folder.actions.isOpen}">
+                                        <a (click)="removeFolder(folder, i)" class="dropdown-item">Delete folder</a>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" (click)="newFolder()">New folder</button>
+
+</main>

@@ -1,0 +1,14 @@
+<ng-container *ngIf="dataSource && dataSource.filteredData">
+
+    <mat-form-field>
+        <mat-label>
+            <span>
+                <mat-icon class="search">search</mat-icon>
+            </span>
+            Label
+        </mat-label>
+        <input (keyup)="applyFilter($event.target.value)" matInput autocomplete="off">
+    </mat-form-field>
+
+
+</ng-container>

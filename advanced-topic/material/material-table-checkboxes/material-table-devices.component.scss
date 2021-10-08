@@ -1,0 +1,116 @@
+@import "../../../theme/styles/variables";
+
+main {
+    height: 75vh;
+    overflow: hidden;
+    padding: .5rem 1rem 0 1rem;
+}
+
+.wrapper {
+    height: 70vh;
+    // overflow: auto;
+}
+
+table {
+    width: 100%;
+
+    th {
+        font-size: .8rem !important;
+        
+        &.light-mode {
+            background-color: #f2f2f2 !important;
+        }
+
+        &:first-of-type {
+            padding-left: .5rem;
+        }
+    }
+
+    td {
+        font-size: .8rem !important;
+    }
+}
+
+.chips {
+    color: white;
+    height: 100%;
+    padding: 0.3rem;
+    border-radius: 50px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &.chip-danger {
+        background-color: $chip-danger;
+    }
+
+    &.chip-success {
+        background-color: $chip-success;
+    }
+
+    &.chip-warning {
+        background-color: $chip-warning;
+    }
+
+    &.chip-primary {
+        background-color: $chip-neutral;
+    }
+
+    &.chip-disabled {
+        background-color: $chip-disabled;
+    }
+
+    &.chip-unassigned {
+        background-color: #e0e0e0;
+        color: black;
+    }
+
+    &.chip-plain {
+        background-color: white;
+        color: black;
+    }
+}
+
+.smooth {
+    transition: 0.8s;
+}
+
+.device-search {
+    width: 0;
+    overflow: hidden;
+    transition: 0.8s;
+    // margin: 0px 5px;
+
+    .mat-form-field {
+        width: 100% !important;
+        text-align: center !important;
+        height: 36px;
+    }
+
+    .mat-input-element {
+        text-align: center;
+    }
+
+    &.show {
+        width: 100%;
+        overflow: visible;
+    }
+}
+
+.trunks {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.device-spinner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.mobile-margin {
+    margin: 0 1rem 0 0 !important;
+}

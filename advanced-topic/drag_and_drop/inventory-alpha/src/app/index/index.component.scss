@@ -1,0 +1,21 @@
+.card {
+    // height: 35vh;
+    overflow: auto;
+    border: 1px solid silver;
+
+    &.expanded {
+        // height: auto;
+        -webkit-transition: all .5s ease-in;
+
+        // background-color: silver;
+
+    }
+
+    &.close {
+        height: 25vh;
+        -webkit-transition: all .5s ease-out;
+
+        // background-color: silver;
+
+    }
+}

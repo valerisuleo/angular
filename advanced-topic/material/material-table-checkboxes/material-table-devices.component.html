@@ -1,0 +1,139 @@
+﻿<main>
+    <!-- HEADER -->
+    <div class="row">
+        <div class="col">
+            <ng-content select=".titlez"></ng-content>
+            <ng-content select=".sub-titlez"></ng-content>
+        </div>
+    </div>
+    <!-- TOOLBAR -->
+    <div class="row mt-4">
+        <div [class]="!isVisibleBtnBulkAssing ? classDefaultLeft : classResposiveLeft">
+            <div class="d-flex flex-row">
+
+                <button (click)="fresh(); isRefresh = true" mat-flat-button class="me-2 mat-elevation-z1" title="{{'app.common.buttons.btn_refresh' | translate }}">
+                    <mat-icon>
+                        <i class="fa-container fas fa-redo" aria-hidden="true"></i>
+                    </mat-icon>
+                </button>
+
+                <button mat-flat-button (click)="toggleFilter()" class="mat-elevation-z1">
+                    <mat-icon>
+                        <i class="fa-container fas fa-search" aria-hidden="true"></i>
+                    </mat-icon>
+                </button>
+
+                <div class="device-search" [ngClass]="{'show': isFilterVisible}">
+                    <mat-form-field class="mat-form-field">
+                        <input #filter matInput (keyup)="applyFilter($event.target.value)" placeholder="{{ organisationalldevices + 'searchplaceholder' | translate }}">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div [class]="!isVisibleBtnBulkAssing ? classDefaultRight : classResponsiveRight" [class.mobile-margin]="!classReverse" [class.pt-3]="!classReverse">
+
+            <div class="d-flex flex-row{{classReverse}}">
+                <button mat-flat-button class="mat-elevation-z1 ms-4 trunks" [class.mobile-margin]="!classReverse" [disabled]="deviceSelected.length === 0" (click)="deleteDeviceMulti()" data-i18n-string="app.devices.devices_bulkdelete" title="{{'app.devices.devices_deleteselecteddevices' | translate}}">
+                    <mat-icon color="warn">delete</mat-icon>
+                    {{ 'app.devices.devices_bulkdelete' | translate }}
+                </button>
+
+                <button mat-flat-button *ngIf="isVisibleBtnBulkAssing" class="mat-elevation-z1 ms-4 trunks" [class.mobile-margin]="!classReverse" [disabled]="deviceSelected.length === 0" (click)="connectDeviceMulti()" data-i18n-string="app.devices.devices_bulkassign" title="{{'app.devices.devices_bulkassign' | translate}}">
+                    <mat-icon color="warn">share</mat-icon>
+                    {{ 'app.devices.devices_bulkassign' | translate }}
+                </button>
+
+                <mat-checkbox *ngIf="isCheckBoxVisible" class="mt-2" [(ngModel)]="isChecked" (change)="filterDevices($event.checked)" [attr.data-i18n-string]="organisationalldevices + 'includeunassigned'">
+                    {{ organisationalldevices + 'includeunassigned' | translate }}
+                </mat-checkbox>
+            </div>
+        </div>
+    </div>
+    <!-- TABLE -->
+    <div class="row mt-4">
+        <div class="col">
+            <div *ngIf="dataSource && dataSource.filteredData.length; else alert" class="wrapper">
+                <cdk-virtual-scroll-viewport tvsItemSize="60" style="height: 70vh;" perfectScrollbar>
+                    <table mat-table matSort [dataSource]="dataSource">
+                        <ng-container *ngFor="let col of props.displayedColumns; index as i" [matColumnDef]="col">
+
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header [attr.data-i18n-string]="col" class="text-truncate" [class.light-mode]="settings.theme !== 'blue-dark'">
+                                <span *ngIf="i === 0">
+                                    <mat-checkbox (click)="$event.stopPropagation()" (change)="masterToggle()" [indeterminate]="selection.hasValue() && !isMasterChecked && !isRefresh" [checked]="isMasterChecked">
+                                    </mat-checkbox>
+                                </span>
+                                <span class="ms-2">{{ col | hideColName: col | translate }}</span>
+                            </th>
+
+                            <td class="px-2" mat-cell *matCellDef="let element; index as j">
+                                <span class="pe-1" *ngIf="i === 0">
+                                    <mat-checkbox (click)="$event.stopPropagation();" (change)="selection.toggle(element); isRefresh = false" [checked]="selection.isSelected(element) || isMasterChecked">
+                                    </mat-checkbox>
+                                </span>
+
+                                <ng-template #regular>
+                                    <span *ngIf="col !== organisationalldevices + 'field_actions'; else actions">
+                                        {{
+                                            col === key + 'lastconnected' ?
+                                            (element[col] | date:(props.settings?.lang === 'en-US' ? usa : uk): undefined:props.settings?.lang) : element[col]}}
+                                    </span>
+                                </ng-template>
+
+                                <ng-template #icon>
+                                    <span *ngIf="i === props.col.iconsIndex; else regular" class="text-muted">
+                                        <i [class]="element.deviceIcon">
+                                            <span class="px-1">/</span>
+                                        </i>
+                                        <i [class]="element.osIcon"></i>
+                                    </span>
+                                </ng-template>
+
+                                <mat-chip-list *ngIf="(
+                                    i === props.col.siteIndex ||
+                                    i === props.col.groupIndex ||
+                                    i === props.col.versionIndex ||
+                                    i === props.col.statusIndex); else icon">
+                                    <mat-chip [class]="element[col].className">
+                                        {{ element[col].label | parseVersion: element }}
+                                    </mat-chip>
+                                </mat-chip-list>
+
+                                <ng-template #actions>
+                                    <mat-icon *ngFor="let item of element[organisationalldevices + 'field_actions']" (click)="action(item)" [color]="item.color" class="c-pointer" [attr.data-i18n-string]="item.label" title="{{ item.label | translate }}" style="display: inline;">
+                                        {{ item.icon }}
+                                    </mat-icon>
+                                </ng-template>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="props.displayedColumns; sticky:true"></tr>
+                        <tr mat-row style="height: 90px;" *matRowDef="let row; columns: props.displayedColumns;"></tr>
+                    </table>
+                </cdk-virtual-scroll-viewport>
+            </div>
+
+            <ng-template #alert>
+                <div *ngIf="!isLoading" class="alert alert-primary" role="alert">
+                    <span [attr.data-i18n-string]="organisationalldevices + 'nothingtoshow'">
+                        {{ organisationalldevices + 'nothingtoshow' | translate }}
+                    </span>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+</main>
+
+
+
+<div *ngIf="isLoading" fxLayout="column" fxLayoutAlign="center center" class="device-spinner">
+    <mat-spinner color="primary"></mat-spinner>
+</div>
+
+
+<p *ngIf="dataSource && dataSource.filteredData.length" class="m-3">
+    <span [attr.data-i18n-string]="organisationalldevices + 'selecteddevices'">
+        {{ organisationalldevices + 'selecteddevices' | translate: {'selected_count':deviceSelected.length, 'total_count': dataSource.filteredData.length} }}
+    </span>
+</p>

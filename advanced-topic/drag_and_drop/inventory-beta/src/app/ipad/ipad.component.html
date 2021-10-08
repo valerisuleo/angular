@@ -1,0 +1,63 @@
+<main class="container">
+    <div class="row">
+        <div class="col-md-3 col-lg-2" *ngFor="let app of data.apps">
+            <div class="app-container" 
+                (mouseenter)="setCurrentItem(app)" 
+                (mouseleave)="unSetCurrentItem()" 
+                (cdkDragStarted)="appSelect($event, app)" 
+                cdkDrag (cdkDragEnded)="drop($event)">
+                <div class="body">
+                    <div class="app" [class.selected]="app.isActive">
+                        <fa-icon [icon]="app.brand"></fa-icon>
+                    </div>
+                </div>
+                <div class="footer">
+                    <small class="text-muted">
+                        {{app.brand.iconName | titlecase}}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row" *ngIf="data.folders.length">
+        <div *ngFor="let folder of data.folders; index as i" (click)="folderSelect(i);" class="col-md-6 col-lg-4">
+
+            <div *ngIf="folder && folder.apps" class="card border-secondary mb-3 folder" [ngClass]="{'selected': i === this.folderSelectedIndex}">
+                <div class="card-header">
+                    {{folder.title | titlecase}}
+                </div>
+                <div class="card-body text-secondary">
+                    <div class="row">
+                        <div *ngFor="let app of folder.apps" class="col-6">
+                            <div class="app-container">
+                                <div class="body">
+                                    <div (cdkDragStarted)="appSelect($event,app)" class="app" [class.selected]="app.isActive">
+                                        <fa-icon [icon]="app.brand"></fa-icon>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <small class="text-muted">
+                                        {{app.brand.iconName | titlecase}}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="folderSelected" class="card-footer bg-transparent border-secondary d-flex justify-content-around">
+                    <!-- <button [disabled]="!isActive" class="btn btn-sm btn-primary" (click)="saveChange()">Add selected app</button> -->
+                    <button class="btn btn-sm btn-warning" (click)="removeAppFromFolder()">Remove selected app</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col">
+
+        </div>
+    </div>
+</main>
