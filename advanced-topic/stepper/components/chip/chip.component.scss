@@ -1,0 +1,15 @@
+.chip {
+  border-radius: 32px;
+  /* stylelint-disable-next-line */
+  font-size: 14px;
+  text-align: center;
+  display: inline;
+  padding: 6px 30px;
+  margin-right: 15px;
+  cursor: pointer;
+
+  &:hover {
+    transition-duration: 0.2s;
+    transition-timing-function: linear, ease-in;
+  }
+}

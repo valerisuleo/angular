@@ -1,0 +1,17 @@
+@import 'base';
+@import 'mixins/component';
+@import '../scss/modules/color';
+
+.card {
+  width: 100%;
+  border-radius: calculate-rem(4px);
+  /* stylelint-disable-next-line */
+  border: solid calculate-rem(1px) #dbdbdb;
+  background-color: $white;
+  cursor: pointer;
+
+  &.active,
+  &:hover {
+    border: solid calculate-rem(1px) $green;
+  }
+}

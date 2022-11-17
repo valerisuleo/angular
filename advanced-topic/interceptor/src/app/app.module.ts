@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthService } from '../services/auth.service';
 import { AuthGuard } from '../services/auth-guard.service';
 import { HeaderInterceptor } from '../services/interceptor';
+import { CacheInterceptorService } from 'src/services/cache-interceptor.service';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,11 @@ import { HeaderInterceptor } from '../services/interceptor';
         {
             provide: HTTP_INTERCEPTORS,
             useClass: HeaderInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CacheInterceptorService,
             multi: true
         }
     ],

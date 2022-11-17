@@ -1,0 +1,12 @@
+<ng-container [formGroup]="formGroup">
+  <div class="form-group">
+    <input
+      [id]="item.id"
+      [formControlName]="item.name"
+      [type]="item.type"
+      [checked]="item.isChecked"
+      (change)="toggleBox()"
+      [ngClass]="{ hidden: isHidden }"
+    />
+  </div>
+</ng-container>

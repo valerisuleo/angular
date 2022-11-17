@@ -1,0 +1,190 @@
+<ng-container *ngIf="!steps.length">
+  <section class="vm-container start">
+    <div class="vm-row">
+      <div class="vm-col-md-8 vm-col-md-offset-2">
+        <h3>Welcome To Our Quick And Easy Recommendation Tool!</h3>
+        <p>
+          Give us some minutes to tell us what you are after, and we will do the heavy lifting to find your perfect
+          bundle.
+        </p>
+        <img *ngFor="let icon of icons" src="{{ assetBaseUrl || '' }}assets/icons/{{ icon }}.svg" [alt]="icon" />
+        <vm-button (click)="getSteps(); getProductCards()" [level]="btnColor.TERTIARY"> Let's go! </vm-button>
+      </div>
+    </div>
+  </section>
+</ng-container>
+
+<ng-container *ngIf="steps && steps.length">
+  <div class="vm-container">
+    <ng-container *ngIf="count <= steps[steps.length - 1].page; else finalRecommendation">
+      <form [formGroup]="form">
+        <ng-container *ngFor="let obj of steps; index as j">
+          <div *ngIf="j === count" class="vm-row">
+            <div class="vm-col">
+              <h2 id="pageTitle">
+                {{ obj.pageTitle | titlecase }}
+              </h2>
+              <p *ngIf="!isBreakpointActive">
+                {{ obj.pageSubTitle | titlecase }}
+              </p>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngFor="let controller of formsArray.controls; index as i" [formGroup]="controller">
+          <ng-container *ngIf="i === count">
+            <div *ngFor="let item of steps">
+              <ng-container *ngIf="item.page == count">
+                <div class="vm-row card-container">
+                  <label
+                    [for]="option.id"
+                    class="vm-col-xs-6 vm-col-md-6 vm-col-lg-{{ 12 / item.columns }}"
+                    *ngFor="let option of item.options"
+                  >
+                    <vm-stepper-card [isActive]="option.isChecked">
+                      <div class="card-header">
+                        <div>
+                          <img src="{{ assetBaseUrl || '' }}assets/images/{{ option.icon }}.svg" [alt]="option.label" />
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <h5>
+                          {{ option.label | titlecase }}
+                        </h5>
+                        <vm-stepper-input
+                          [formGroup]="controller"
+                          [item]="option"
+                          [isHidden]="true"
+                          (handleChange)="handleChange($event, controller)"
+                        ></vm-stepper-input>
+                      </div>
+                    </vm-stepper-card>
+                  </label>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+          <!-- ________________________BTNS________________________ -->
+          <ng-container *ngIf="i === count">
+            <section class="vm-row buttons">
+              <div class="vm-col-xs-12 vm-col-sm-6">
+                <vm-button
+                  *ngIf="count > 0"
+                  (buttonClick)="prev()"
+                  [level]="btnColor.TERTIARY"
+                  [styles]="[btnStyle.OUTLINE]"
+                  >Previous
+                </vm-button>
+              </div>
+              <div class="vm-col-xs-12 vm-col-sm-6">
+                <vm-button (buttonClick)="next()" [level]="btnColor.TERTIARY" [disabled]="isBtnDisabled">
+                  {{ btnTxt | titlecase }}
+                </vm-button>
+              </div>
+            </section>
+          </ng-container>
+        </ng-container>
+      </form>
+    </ng-container>
+
+    <!-- ______________________________CHIPS____________________ -->
+    <ng-container *ngIf="count <= steps[steps.length - 1].page">
+      <section class="vm-row chips" *ngIf="!isBreakpointActive">
+        <hr />
+        <div class="vm-col-md-3">
+          <h4>Based off your choices:</h4>
+        </div>
+        <div class="vm-col-md-9">
+          <div class="chip-container">
+            <vm-chip
+              *ngFor="let item of breadCrumbLabels; index as y"
+              (click)="navigateToStep(y)"
+              [chipStyle]="chipStyle"
+              [chipStyleHover]="chipStyleHover"
+            >
+              <ng-container class="chip-label">
+                {{ item.breadcrumbLabel | titlecase }}
+              </ng-container>
+            </vm-chip>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+  </div>
+
+  <!-- CARDS ON DESKTOP -->
+  <section *ngIf="productCards && productCards.length && !isBreakpointActive" class="vm-container">
+    <div class="vm-row">
+      <div class="vm-col">
+        <vm-carousel [templateRef]="templateRef" [data]="carouselData">
+          <ng-template #templateRef let-item>
+            <vm-product-card
+              [primaryButtonText]="'Select bundle'"
+              [secondaryButtonText]="'Customise this bundle'"
+              [moreDetailsText]="'Plan details'"
+              [products]="[item]"
+              [recommendedText]="'RECOMMENDED'"
+              [promoText]="'THE BEST OF EVERYTHING'"
+            >
+            </vm-product-card>
+          </ng-template>
+        </vm-carousel>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS ON MOBILE -->
+  <div *ngIf="isBreakpointActive" class="vm-row">
+    <div *ngFor="let card of productCards" class="vm-col-xs-12 vm-col-md-6">
+      <vm-product-card
+        [primaryButtonText]="'Select bundle'"
+        [secondaryButtonText]="'Customise this bundle'"
+        [moreDetailsText]="'Plan details'"
+        [products]="[card]"
+        [recommendedText]="'RECOMMENDED'"
+        [promoText]="'THE BEST OF EVERYTHING'"
+      >
+      </vm-product-card>
+    </div>
+  </div>
+
+  <!-- ____________________finalRecommendation____________________ -->
+  <ng-template #finalRecommendation>
+    <div class="vm-row">
+      <h3>Fantastic! We have found the following packages that we think will be perfect for you:</h3>
+      <div class="vm-col-sm-12 vm-col-md-6">
+        <vm-product-card
+          [primaryButtonText]="'Select bundle'"
+          [secondaryButtonText]="'Customise this bundle'"
+          [moreDetailsText]="'Plan details'"
+          [products]="[productCards[0]]"
+          [recommendedText]="'RECOMMENDED'"
+          [promoText]="'THE BEST OF EVERYTHING'"
+        >
+        </vm-product-card>
+      </div>
+      <div class="vm-col-sm-12 vm-col-md-6 recommendation-col">
+        <div class="recommendation">
+          <section>
+            <h4>You have told us you need...</h4>
+          </section>
+          <section>
+            <ul>
+              <li *ngFor="let item of optionsRecap">
+                <span>
+                  <img src="{{ assetBaseUrl || '' }}assets/images/{{ item.icon }}.svg" [alt]="item.label" />
+                </span>
+                {{ item.label | titlecase }}
+              </li>
+            </ul>
+          </section>
+          <section>
+            <div class="wrapper">
+              <p>Not quite right?</p>
+              <vm-button (click)="reset()" [level]="btnColor.TERTIARY"> Start again </vm-button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>

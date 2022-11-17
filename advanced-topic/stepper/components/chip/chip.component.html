@@ -1,0 +1,8 @@
+<div
+  class="chip"
+  [ngStyle]="!isHovering ? chipStyle : chipStyleHover"
+  (mouseover)="handleMouseOver()"
+  (mouseout)="handleMouseOut()"
+>
+  <ng-content select=".chip-label"></ng-content>
+</div>

@@ -1,0 +1,24 @@
+<div class="carusel">
+  <div
+    class="slides-container"
+    #slidesContainer
+    (mouseenter)="carouselStop()"
+    (mouseleave)="carouselStart()"
+  >
+    <ng-container *ngFor="let slide of slides">
+      <ng-container *ngFor="let item of slide.items">
+        <div class="item" [style]="minWidth">
+          <ng-template
+            [ngTemplateOutlet]="templateRef"
+            [ngTemplateOutletContext]="{ $implicit: item }"
+          ></ng-template>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="controls">
+    <div (click)="prevSlide()" class="control">&#9668;</div>
+    <div (click)="nextSlide()" class="control">&#9658;</div>
+  </div>
+</div>

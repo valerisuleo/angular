@@ -14,9 +14,7 @@ export class IndexComponent implements OnInit {
     constructor(private service: DonutService) { }
 
     donutsIndex() {
-        this.donut$ = this.service.getCollection();
-        console.log(this.donut$);
-        
+        this.donut$ = this.service.getCollection();        
     }
 
     // donutShow() {
