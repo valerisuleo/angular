@@ -1,0 +1,81 @@
+<main class="wrap">
+	<bootstrap-form [props]="formGroup">
+		<!-- CONTACT DETAILS -->
+		<section class="mt-5">
+			<h3>Contact details</h3>
+
+			<ng-container *ngFor="let item of formData">
+				<ng-container *ngIf="item.type === 'select'">
+					<bootstrap-form-group-select
+						[formGroup]="formGroup"
+						[label]="item.label"
+						[type]="item.type"
+						[options]="item.options"
+						[name]="item.name"
+					>
+					</bootstrap-form-group-select>
+				</ng-container>
+			</ng-container>
+
+			<ng-container *ngFor="let item of formData">
+				<ng-container *ngIf="item.type == 'text' || item.type == 'date'">
+					<bootstrap-form-group-input
+						[formGroup]="formGroup"
+						[type]="item.type"
+						[label]="item.label"
+						[name]="item.name"
+					>
+					</bootstrap-form-group-input>
+				</ng-container>
+			</ng-container>
+            
+		</section>
+		<!-- PASSWORD -->
+		<section class="mt-5">
+			<hr />
+			<h3>Security word</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			<ng-container *ngFor="let item of formData">
+				<ng-container *ngIf="item.type === 'password'">
+					<bootstrap-form-group-input
+						[formGroup]="formGroup"
+						[type]="item.type"
+						[label]="item.label"
+						[name]="item.name"
+					>
+					</bootstrap-form-group-input>
+				</ng-container>
+			</ng-container>
+		</section>
+		<!-- STAY IN TOUCH -->
+		<section class="mt-5">
+			<hr />
+			<h3>Get the full virgin experience!</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			<ng-container *ngFor="let item of formData">
+				<ng-container *ngIf="item.type === 'checkbox'">
+					<bootstrap-form-group-checkbox
+						[formGroup]="formGroup"
+						[type]="item.type"
+						[label]="item.label"
+						[name]="item.name"
+					>
+					</bootstrap-form-group-checkbox>
+				</ng-container>
+			</ng-container>
+		</section>
+
+		<button
+			[disabled]="!formGroup.valid"
+			type="submit"
+			class="btn btn-primary mt-5"
+			(click)="submit()"
+		>
+			Submit
+		</button>
+	</bootstrap-form>
+
+	<div class="mt-5">
+		{{ formGroup.value | json }}
+	</div>
+</main>

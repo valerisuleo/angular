@@ -1,0 +1,18 @@
+<ng-container [formGroup]="formGroup">
+    <div class="form-group">
+        <label for="favourite-book">{{ label }}</label>
+        <select [formControlName]='name' class="form-control">
+            <option *ngFor="let option of options">
+                {{ option }}
+            </option>
+        </select>
+        <ng-container *ngIf="select.touched && select.invalid">
+			<div
+				*ngFor="let error of input.errors | keyvalue"
+				class="alert alert-danger"
+			>
+				{{ error.value.message }}
+			</div>
+		</ng-container>
+    </div>
+</ng-container>
