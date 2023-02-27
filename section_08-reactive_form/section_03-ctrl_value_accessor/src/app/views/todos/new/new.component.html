@@ -15,12 +15,7 @@
         <label class="form-check-label" for="completed">completed</label>
     </div>
 
-    <color-picker
-        (handleClick)="handleClick($event)"
-        [colors]="colors"
-        ctrlsValueAccessorDirective
-        formControlName="color"
-    ></color-picker>
+    <color-picker [colors]="colors" formControlName="color"></color-picker>
 </form>
 
 {{ formGroup.value | json }}

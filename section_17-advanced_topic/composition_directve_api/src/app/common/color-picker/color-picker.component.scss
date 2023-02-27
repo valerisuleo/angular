@@ -1,0 +1,17 @@
+.squares-container {
+    height: 80px;
+    width: 120px;
+    // border: 2px solid black;
+
+    .square {
+        height: 50%;
+        width: 33.33%;
+        display: block;
+        float: left;
+        cursor: pointer;
+
+        &:hover {
+            border: 3px solid dodgerblue;
+        }
+    }
+}

@@ -1,30 +1,20 @@
 import {
     Component,
-    CUSTOM_ELEMENTS_SCHEMA,
     OnInit,
-    ViewChild,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { ColorPickerComponent } from "../../../common/color-picker/color-picker.component";
-import { CtrlsValueAccessorDirective } from "../../../common/ctrls-value-accessor.directive";
 
 @Component({
     selector: "todo-new",
     standalone: true,
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        ColorPickerComponent,
-        CtrlsValueAccessorDirective,
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    imports: [CommonModule, ReactiveFormsModule, ColorPickerComponent],
     templateUrl: "./new.component.html",
     styleUrls: ["./new.component.scss"],
 })
 export class NewComponent implements OnInit {
-    @ViewChild(CtrlsValueAccessorDirective)
-    private child: CtrlsValueAccessorDirective<any>;
+
 
     public formGroup: FormGroup;
     public currentColor: string;
@@ -43,11 +33,6 @@ export class NewComponent implements OnInit {
     ];
 
     constructor() {}
-
-    public handleClick(color): void {
-        this.currentColor = color;
-        this.child.updateValue(color);
-    }
 
     public ngOnInit(): void {
         this.formMaker(this.ctrls);

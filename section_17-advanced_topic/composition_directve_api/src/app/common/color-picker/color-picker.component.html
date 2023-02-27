@@ -1,0 +1,8 @@
+<div class="squares-container">
+    <div
+        *ngFor="let color of colors"
+        class="square"
+        [style.background-color]="color"
+        (click)="getCurrent(color)"
+    ></div>
+</div>

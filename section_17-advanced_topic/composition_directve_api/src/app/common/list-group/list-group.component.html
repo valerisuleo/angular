@@ -1,0 +1,9 @@
+<ul class="list-group">
+    <li
+        *ngFor="let item of list"
+        (click)="getCurrent(item)"
+        class="list-group-item"
+    >
+        {{ item.title }}
+    </li>
+</ul>
