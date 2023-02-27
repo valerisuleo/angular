@@ -1,0 +1,26 @@
+<h1>New Todo</h1>
+
+<form [formGroup]="formGroup">
+    <div class="mb-3">
+        <label for="title" class="form-label">title</label>
+        <input type="text" class="form-control" formControlName="title" />
+    </div>
+
+    <div class="mb-3 form-check">
+        <input
+            type="checkbox"
+            class="form-check-input"
+            formControlName="completed"
+        />
+        <label class="form-check-label" for="completed">completed</label>
+    </div>
+
+    <color-picker
+        (handleClick)="handleClick($event)"
+        [colors]="colors"
+        ctrlsValueAccessorDirective
+        formControlName="color"
+    ></color-picker>
+</form>
+
+{{ formGroup.value | json }}
