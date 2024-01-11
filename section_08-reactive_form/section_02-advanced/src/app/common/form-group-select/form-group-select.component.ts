@@ -1,4 +1,6 @@
 import { Component, Input } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { IFormFieldProps } from "../intefaces";
 
 @Component({
 	selector: "bootstrap-form-group-select",
@@ -6,15 +8,13 @@ import { Component, Input } from "@angular/core";
 	styleUrls: ["./form-group-select.component.scss"],
 })
 export class FormGroupSelectComponent {
-	@Input() formGroup: any;
-	@Input() label: any;
-	@Input() type: any;
-	@Input() options: any;
-	@Input() name: any;
+    @Input() props: IFormFieldProps;
+    @Input() formGroup: FormGroup;
 
-	constructor() {}
+    constructor() {}
 
-	get select() {        
-		return this.formGroup.get(this.name);
-	}
+    get select() {
+        return this.formGroup.get(this.props.name);
+    }
+
 }

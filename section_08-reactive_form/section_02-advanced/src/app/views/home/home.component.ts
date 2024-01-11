@@ -1,29 +1,36 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { FormContainerComponent } from "src/app/common/form-container/form-container.component";
-import formAPI from "./mock";
+import formConfig from "./form-config";
 
 @Component({
-	selector: "home",
-	templateUrl: "./home.component.html",
-	styleUrls: ["./home.component.scss"],
+    selector: "home",
+    templateUrl: "./home.component.html",
+    styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent extends FormContainerComponent implements OnInit {
-	public formData;
-	public formGroup: FormGroup;
+    public formControllers: any[];
+    public formGroup: FormGroup;
 
-	constructor() {
-		super();
-	}
+    constructor() {
+        super();
+    }
 
-	ngOnInit(): void {
-		//fetch data from api
-		this.formData = formAPI;
-		this.formGroup = this.formMaker(formAPI);
-	}
+    public ngOnInit(): void {
+        this.formControllers = this.sortFormApi(formConfig);
+        this.formGroup = this.formMaker(this.formControllers);
 
-	submit() {
-        console.log(this.formGroup);
-        
+        console.log("this.formGroup", this.formGroup);
+        console.log("this.formControllers", this.formControllers);
+    }
+
+    public submit(): void {
+        console.log(this.formGroup.value);
+    }
+
+    private sortFormApi(array): any[] {
+        return array.sort((a, b) =>
+            a.order > b.order ? 1 : b.order > a.order ? -1 : 0
+        );
     }
 }
